@@ -1,2 +1,2 @@
-# HUCONv2
+# HUCON
 https://hucon.com.tr
