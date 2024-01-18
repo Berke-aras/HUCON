@@ -60,7 +60,6 @@ h6 {
   background: #fff url("../img/preloader.svg") no-repeat center center;
 }
 
-/* Back to top button */
 
 .back-to-top {
   position: fixed;
@@ -92,8 +91,7 @@ h6 {
   color: #fff;
 }
 
-/* Sections Header
---------------------------------*/
+
 
 .section-header {
   margin-bottom: 60px;
@@ -186,7 +184,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 
-/* Nav Menu Essentials */
+
 
 .nav-menu,
 .nav-menu * {
@@ -226,7 +224,6 @@ h6 {
   min-width: 180px;
 }
 
-/* Nav Menu Arrows */
 
 .sf-arrows .sf-with-ul {
   padding-right: 30px;
@@ -252,7 +249,7 @@ h6 {
   margin: 0;
 }
 
-/* Nav Meu Styling */
+/* Nav Meu Style */
 
 .nav-menu a {
   padding: 8px;
@@ -441,7 +438,7 @@ h6 {
   display: none;
 }
 
-/* Mobile Nav body classes */
+/* Mobile Nav */
 
 body.mobile-nav-active {
   overflow: hidden;
@@ -455,9 +452,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #fff;
 }
 
-/*--------------------------------------------------------------
+/*
 # Intro Section
---------------------------------------------------------------*/
+*/
 
 #intro {
   width: 100%;
@@ -949,7 +946,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /*--------------------------------------------------------------
-# Hotels Section
+# Section
 --------------------------------------------------------------*/
 
 #hotels {
