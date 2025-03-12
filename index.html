@@ -42,6 +42,161 @@
 
   <link href="css/style.css" rel="stylesheet">
 
+
+
+  <style>
+            :root {
+                --deep-blue: #005f73;
+                --ocean-teal: #0a9396;
+                --seafoam: #94d2bd;
+                --wave-crest: #e9d8a6;
+                --coral: #ee9b00;
+            }
+
+            a,
+            .back-to-top,
+            .nav-menu > li > a:before {
+                color: var(--ocean-teal);
+            }
+
+            .section-header::before,
+            .nav-menu li.buy-tickets a,
+            #schedule .nav-tabs a.active {
+                background: var(--ocean-teal);
+            }
+
+            #intro .play-btn {
+                background: radial-gradient(
+                    var(--deep-blue) 50%,
+                    rgba(10, 147, 150, 0.15) 52%
+                );
+            }
+
+            /* Dalga Efekti */
+            .ocean-overlay {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .wave {
+                background: url(../img/wave-pattern.png);
+                position: absolute;
+                bottom: 0;
+                width: 6400px;
+                height: 198px;
+                animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            }
+
+            @keyframes wave {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-1600px);
+                }
+            }
+
+            /* Balık Animasyonu */
+            .fish-swim {
+                position: absolute;
+                width: 80px;
+                animation: swim 20s linear infinite;
+            }
+
+            @keyframes swim {
+                0% {
+                    transform: translateX(-100vw) scaleX(1);
+                }
+                100% {
+                    transform: translateX(100vw) scaleX(1);
+                }
+            }
+
+            .nav-menu a {
+                position: relative;
+                padding-bottom: 5px;
+            }
+
+            .nav-menu a:hover::after {
+                width: 100%;
+            }
+
+            #speakers .speaker {
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 95, 115, 0.2);
+            }
+
+            #speakers .speaker:hover {
+                transform: translateY(-10px);
+                transition: 0.3s;
+            }
+
+            #speakers .speaker::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    45deg,
+                    var(--deep-blue),
+                    var(--ocean-teal)
+                );
+                opacity: 0.1;
+            }
+            #schedule .schedule-item {
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 10px;
+                margin: 10px 0;
+                padding: 20px;
+                border-left: 5px solid var(--ocean-teal);
+            }
+
+            #schedule .schedule-item time {
+                color: var(--deep-blue);
+                font-weight: 600;
+            }
+            #faq #faq-list a.collapse {
+                background: rgba(10, 147, 150, 0.1);
+                border-radius: 5px;
+                padding: 15px;
+            }
+
+            #faq #faq-list .collapse.show {
+                border-left: 3px solid var(--ocean-teal);
+            }
+            .floating {
+                animation: float 3s ease-in-out infinite;
+            }
+
+            .bubbles {
+                animation: bubble-rise 5s linear infinite;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+
+            @keyframes bubble-rise {
+                from {
+                    transform: translateY(0) scale(0.5);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateY(-100px) scale(1.2);
+                    opacity: 0;
+                }
+            }
+        </style>
+  
 </head>
 
 <body>
