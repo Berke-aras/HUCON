@@ -820,3 +820,80 @@ section {
     position: absolute;
     left: 0;
 }
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+    /* Adjust hero section height and layout */
+    .hero {
+        min-height: 100vh;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .hero-overlay {
+        position: relative;
+        padding-top: 60px;
+        justify-content: flex-start;
+    }
+
+    /* Stack navigation vertically */
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Adjust video button position */
+    .video-btn {
+        margin-top: 20px;
+        position: relative;
+        z-index: 3;
+    }
+
+    /* Hide custom cursor on mobile */
+    .custom-cursor {
+        display: none !important;
+    }
+
+    /* Ensure content stays in view */
+    .hero-content {
+        transform: translateZ(0);
+        padding-bottom: 40px;
+    }
+
+    /* Adjust countdown layout */
+    .countdown {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .countdown-item {
+        padding: 15px;
+        min-width: 80px;
+    }
+
+    .countdown-item span {
+        font-size: 2rem;
+    }
+}
+
+/* Additional touch device detection */
+@media (hover: none) and (pointer: coarse) {
+    .custom-cursor {
+        display: none !important;
+    }
+}
+
+/* Prevent mobile browser address bar from affecting height */
+@media (max-height: 700px) {
+    .hero {
+        min-height: 700px;
+    }
+}
