@@ -1,611 +1,305 @@
 <!DOCTYPE html>
 <html lang="tr">
+    <head>
+        <meta charset="utf-8" />
+        <title>HUCON'25</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta
+            content="hücon, Hucon, Cosplay, Anime, Convension, Hümat, BKFT, Convension, HACETTEPE, Etkinlik, Parti, HÜCON, 2025"
+            name="keywords"
+        />
+        <meta
+            name="description"
+            content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği! Hücon"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Ercüment Berke Arastaman" />
+        <meta property="og:type" content="Hücon" />
+        <meta property="og:title" content="Hücon" />
+        <meta
+            property="og:description"
+            content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!"
+        />
+        <meta property="og:url" content="https://hucon.com.tr/" />
+        <meta
+            property="og:image"
+            content="https://hucon.com.tr/img/hlogo.png"
+        />
 
-<head>
-  <meta charset="utf-8">
-  <title>HUCON'25</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta
-    content="hücon, Hucon, Cosplay, Anime, Convension, Hümat, BKFT, Convension, HACETTEPE, Etkinlik, Parti, HÜCON, 2025"
-    name="keywords">
-  <meta name="description"
-    content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği! Hücon">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Ercüment Berke Arastaman">
-  <meta property="og:type" content="Hücon" />
-  <meta property="og:title" content="Hücon" />
-  <meta property="og:description"
-    content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!" />
-  <meta property="og:url" content="https://hucon.com.tr/" />
-  <meta property="og:image" content="https://hucon.com.tr/img/hlogo.png" />
+        <meta itemprop="name" content="Hücon" />
+        <meta
+            itemprop="description"
+            content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!"
+        />
+        <meta itemprop="image" content="https://hucon.com.tr/img/hlogo.png" />
 
-  <meta itemprop="name" content="Hücon">
-  <meta itemprop="description"
-    content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!">
-  <meta itemprop="image" content="https://hucon.com.tr/img/hlogo.png">
+        <!-- Favicons -->
+        <link href="img/hlogo.png" rel="icon" />
+        <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+        <!-- Google Fonts ile modern font kullanımı -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <div class="scroll-progress"></div>
+        <!-- Custom Cursor -->
+        <div class="custom-cursor"></div>
 
-
-  <!-- Favicons -->
-  <link href="img/hlogo.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
-    rel="stylesheet">
-
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/venobox/venobox.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-  <link href="css/style.css" rel="stylesheet">
-
-
-
-  <style>
-            :root {
-                --deep-blue: #005f73;
-                --ocean-teal: #0a9396;
-                --seafoam: #94d2bd;
-                --wave-crest: #e9d8a6;
-                --coral: #ee9b00;
-            }
-
-            a,
-            .back-to-top,
-            .nav-menu > li > a:before {
-                color: var(--ocean-teal);
-            }
-
-            .section-header::before,
-            .nav-menu li.buy-tickets a,
-            #schedule .nav-tabs a.active {
-                background: var(--ocean-teal);
-            }
-
-            #intro .play-btn {
-                background: radial-gradient(
-                    var(--deep-blue) 50%,
-                    rgba(10, 147, 150, 0.15) 52%
-                );
-            }
-
-            /* Dalga Efekti */
-            .ocean-overlay {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 100%;
-            }
-
-            .wave {
-                background: url(../img/wave-pattern.png);
-                position: absolute;
-                bottom: 0;
-                width: 6400px;
-                height: 198px;
-                animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            }
-
-            @keyframes wave {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(-1600px);
-                }
-            }
-
-            /* Balık Animasyonu */
-            .fish-swim {
-                position: absolute;
-                width: 80px;
-                animation: swim 20s linear infinite;
-            }
-
-            @keyframes swim {
-                0% {
-                    transform: translateX(-100vw) scaleX(1);
-                }
-                100% {
-                    transform: translateX(100vw) scaleX(1);
-                }
-            }
-
-            .nav-menu a {
-                position: relative;
-                padding-bottom: 5px;
-            }
-
-            .nav-menu a:hover::after {
-                width: 100%;
-            }
-
-            #speakers .speaker {
-                border-radius: 15px;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0, 95, 115, 0.2);
-            }
-
-            #speakers .speaker:hover {
-                transform: translateY(-10px);
-                transition: 0.3s;
-            }
-
-            #speakers .speaker::before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(
-                    45deg,
-                    var(--deep-blue),
-                    var(--ocean-teal)
-                );
-                opacity: 0.1;
-            }
-            #schedule .schedule-item {
-                background: rgba(255, 255, 255, 0.9);
-                border-radius: 10px;
-                margin: 10px 0;
-                padding: 20px;
-                border-left: 5px solid var(--ocean-teal);
-            }
-
-            #schedule .schedule-item time {
-                color: var(--deep-blue);
-                font-weight: 600;
-            }
-            #faq #faq-list a.collapse {
-                background: rgba(10, 147, 150, 0.1);
-                border-radius: 5px;
-                padding: 15px;
-            }
-
-            #faq #faq-list .collapse.show {
-                border-left: 3px solid var(--ocean-teal);
-            }
-            .floating {
-                animation: float 3s ease-in-out infinite;
-            }
-
-            .bubbles {
-                animation: bubble-rise 5s linear infinite;
-            }
-
-            @keyframes float {
-                0%,
-                100% {
-                    transform: translateY(0);
-                }
-                50% {
-                    transform: translateY(-20px);
-                }
-            }
-
-            @keyframes bubble-rise {
-                from {
-                    transform: translateY(0) scale(0.5);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateY(-100px) scale(1.2);
-                    opacity: 0;
-                }
-            }
-        </style>
-  
-</head>
-
-<body>
-
-  <!--
-    Header
--->
-  <header id="header">
-    <div class="container">
-
-      <div id="logo" class="pull-left">
-        <a href="#intro" class="scrollto"><img src="./img/hlogo.png" alt="main" title=""
-            style="width: 85px;max-height:80px;"></a>
-      </div>
-
-      <nav id="nav-menu-container" style="max-height: 800px;">
-        <ul class="nav-menu">
-          <li><a href="#intro">Anasayfa</a></li>
-          <li><a href="#about">Hakkımızda</a></li>
-          <li><a href="#speakers">Katılımcılar</a></li>
-          <li><a href="#schedule">Program</a></li>
-          <li><a href="#venue">Lokasyon</a></li>
-          <!--============================<li><a href="#supporters">Sponsorlarımız</a></li>============================-->
-          <li><a href="#faq">Sıkça Sorulan Sorular</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header><!-- #header -->
-
-  <!--
-    Intro
--->
-  <section id="intro">
-    <div class="intro-container wow fadeIn">
-      <h1 class="mb-4 pb-0">HUCON'25</h1>
-      <p class="mb-4 pb-0"> 26-27 Nisan - Beytepe Kongre Merkezi</p>
-      <a href="https://vimeo.com/830803761?share=copy" class="venobox play-btn mb-4" data-vbtype="video"
-        data-autoplay="true"></a>
-      <a href="hucon.com.tr" class="about-btn scrollto" target="_blank"> 
-      </a>
-
-    </div>
-  </section>
-
-  <main id="main">
-
-    <!--
-      About Section
--->
-    <section id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <h2>Hucon Hakkında</h2>
-            <p> Hacettepe Üniversitesi bünyesinde her yıl Hacettepe Üniversitesi Anime Manga Topluluğu,
-              Bilim Kurgu ve
-              Fantezi Topluluğu, Elektronik Spor Topluluğu tarafından düzenlenen bir etkinliktir.
-              <br>HUCON; başta
-              cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları olmak üzere birçok
-              aktiviteye ev
-              sahipliği yapan bir alt kültür etkinliğidir.
-            </p>
-          </div>
-          <div class="col-lg-3">
-            <h3>Hucon Nerede</h3>
-            <p>Üniversiteler, Hacettepe Üniversitesi, Beytepe Kongre ve Kültür Merkezi <br />06800
-              Çankaya/Ankara</p>
-          </div>
-          <div class="col-lg-3">
-            <h3>Ne Zaman ?</h3>
-            <p> 26/27 Nisan </p>
-          </div>
+        <!-- Particle JS Container -->
+        <div id="particles-js"></div>
+        <!-- Su efektleri -->
+        <div class="water-effect">
+            <img
+                src="./img/fish.png"
+                class="fish"
+                style="top: 20%; animation-delay: 0s"
+            />
+            <img
+                src="./img/fish.png"
+                class="fish"
+                style="top: 40%; animation-delay: 3s; width: 70px"
+            />
         </div>
-      </div>
-    </section>
-
-    <!--
-        Speakers Section-->
-    <section id="speakers" class="wow fadeInUp">
-      <div class="container">
-        <div class="section-header">
-          <h2>Katılımcılar</h2>
-          <p></p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="./img/hl.png" alt="Speaker 1" class="img-fluid">
-              <div class="details">
-                <h3><a href="https://www.instagram.com/">?</a></h3>
-                <p>?</p>
-              </div>
+        <!-- Hero & Navigasyon -->
+        <div class="hero">
+            <div class="bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
             </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!--
-    Schedule Section
--->
-    <section id="schedule" class="section-with-bg">
-      <div class="container wow fadeInUp">
-        <div class="section-header">
-          <h2>Hucon Programı</h2>
-        </div>
-
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" href="#day-1" role="tab" data-toggle="tab">1. gün</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-2" role="tab" data-toggle="tab">2. gün</a>
-          </li>
-        </ul>
-
-        <h3 class="sub-heading">Tüm katılımcılarımıza iyi eğlenceler dileriz.</h3>
-
-        <div class="tab-content row justify-content-center">
-
-          <!-- Day 1 -->
-          <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/intro-bg.jpg" alt="Brenden Legros">
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <div class="animated-logo">
+                        <img src="img/hlogo.png" alt="HUCON Logo" />
+                    </div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span id="days">00</span>
+                            <small>Gün</small>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours">00</span>
+                            <small>Saat</small>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes">00</span>
+                            <small>Dakika</small>
+                        </div>
+                    </div>
                 </div>
-                <h4>Kapı Açılışı <span>Beklemede kalın</span></h4>
-                <p>?</p>
-              </div>
-            </div>
-          </div>
-          <!-- Day 1 -->
-
-          <!--  Day 2 -->
-          <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="img/intro-bg.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Kapı Açılışı <span></span></h4>
-                <p>?</p>
-              </div>
-            </div>
-
-
-
-          </div>
-          <!-- Day 2 -->
-
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!--
-      Venue Section
--->
-    <section id="venue" class="wow fadeInUp">
-
-      <div class="container-fluid">
-
-        <div class="section-header">
-          <h2>Konum</h2>
-          <p></p>
-        </div>
-
-        <div class="row no-gutters">
-          <div class="col-lg-6 venue-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3747.6327734179863!2d32.73249505022254!3d39.881907551840634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d347714f1c805d%3A0xe29c06b288d5604b!2sBeytepe%20Kongre%20ve%20K%C3%BClt%C3%BCr%20Merkezi!5e0!3m2!1str!2str!4v1680394936394!5m2!1str!2str"
-              frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>
-
-          <div class="col-lg-6 venue-info">
-            <div class="row justify-content-center">
-              <div class="col-11 col-lg-8">
-                <h3>
-                  <p>Konumumuz
+                <h3 style="margin-bottom: 20px; margin-top: 20px">
+                    26-27 Nisan - Beytepe Kongre Merkezi
                 </h3>
-                <p>Üniversiteler, Hacettepe Üniversitesi, Beytepe Kongre ve Kültür Merkezi
-                  06800 Çankaya/Ankara</p>
-              </div>
+                <nav>
+                    <a href="#about">Hakkında</a>
+                    <a href="#participants">Katılımcılar</a>
+                    <a href="#program">Program</a>
+                    <a href="#location">Konum</a>
+                    <a href="#faq">SSS</a>
+                </nav>
+
+                <button class="video-btn" id="openModal">
+                    <i class="fas fa-play"></i>
+                </button>
             </div>
-          </div>
         </div>
 
-      </div>
-
-
-    </section>
-
-
-
-
-    <!--
-      F.A.Q Section
--->
-    <section id="faq" class="wow fadeInUp">
-
-      <div class="container">
-
-        <div class="section-header">
-          <h2>Sıkça Sorulan Sorular</h2>
+        <!-- Vimeo Video Modal -->
+        <!-- Vimeo Video Modal -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">×</span>
+                <iframe
+                    id="vimeoVideo"
+                    src="https://player.vimeo.com/video/830803761?badge=0&autopause=0&player_id=0&app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                    allowfullscreen
+                ></iframe>
+            </div>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <ul id="faq-list">
+        <!-- Hakkında Bölümü -->
 
-              <li>
-                <a data-toggle="collapse" class="collapsed" href="#faq1"> HUCON'25<i
-                    class="fa fa-minus-circle"></i></a>
-                <div id="faq1" class="collapse" data-parent="#faq-list">
-                    
-                  </a>
+        <section id="about" class="about">
+            <div class="about-container">
+                <h2 class="section-title">HUCON 2025</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="info-card">
+                            <i class="fas fa-water"></i>
+                            <h3>Nedir?</h3>
+                            <p>
+                                Hacettepe Üniversitesi'nin en köklü alt kültür
+                                etkinliği olarak, anime tutkunlarından oyun
+                                severlere kadar herkesi buluşturan benzersiz bir
+                                deneyim sunuyoruz.
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Katılım</h3>
+                            <p>
+                                Ücretsiz etkinliğimize herkes katılabilir.
+                                Cosplay yarışması, e-spor turnuvaları ve daha
+                                birçok aktivite sizleri bekliyor!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="date-card">
+                        <div class="date-header">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Etkinlik Tarihleri</h3>
+                        </div>
+                        <div class="date-body">
+                            <div class="date-item">
+                                <span class="day">26 Nisan</span>
+                                <span class="time">10:00 - 17:00</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="day">27 Nisan</span>
+                                <span class="time">10:00 - 17:00</span>
+                            </div>
+                        </div>
+                        <div class="date-footer">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Beytepe Kongre ve Kültür Merkezi</p>
+                        </div>
+                    </div>
                 </div>
-              </li>
+            </div>
+        </section>
 
-              <li>
-                <a data-toggle="collapse" href="#faq2" class="collapsed">Cosplay yarışması ödülleri
-                  nelerdir ?<i class="fa fa-minus-circle"></i></a>
-                <div id="faq2" class="collapse" data-parent="#faq-list">
-                  <p>
-                    <!-- <img src="img/cosOdul.webp" style="width: 90%;" alt=""> -->
-                  </p>
+        <!-- Katılımcılar -->
+        <!-- Güncellenmiş Katılımcı Kartları -->
+        <section id="participants">
+            <h2 class="section-title">Katılımcılar</h2>
+            <div class="participants">
+                <div class="participant-card">
+                    <img
+                        src="./img/about-bg.jpg"
+                        alt="Katılımcı 1"
+                        style="z-index: 50"
+                    />
+                    <h3>....</h3>
+                    <p>?</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-              </li>
+                <!-- Diğer katılımcılar -->
+            </div>
+        </section>
 
-              <li>
-                <a data-toggle="collapse" href="#faq3" class="collapsed">Stant Başvurusu !
-                  <i class="fa fa-minus-circle"></i></a>
-                <div id="faq3" class="collapse" data-parent="#faq-list">
-                  <p><strong>KAYITLAR ŞUAN KAPALIDIR</strong></p>
-                  <p>
-                  <!-- <p> <strong> STANT AÇMAK ÜCRETSİZDİR </strong><br> -->
-                    Başvurular .... tarihinde kapanacaktır. <br>
-                    Başvurular incelendikten ...... sonra tüm Stant sahiplerine dönüş sağlanacaktır. <br>
-                    Etkinlik stant başvurusu için aşağıdaki formu doldurunuz. <br>
-                    <strong> BAŞVURU KOŞULLARI: </strong><br>
-                    -Etkinliğe her 2 gün de katılım göstermek zorunludur. <br>
-                    -Standınızı etkinlik başlamadan önce kurmuş olmanız beklenmektedir. <br>
-                    -Görevlilerin talimatlarına uyulması beklenmektedir. <br>
-                    -Tahsis edilen malzemelerin (masa, sandalye, örtü vb.) sorumlulukları stant sahibindedir.
-                    <!-- </p>
-                  <a href="https://forms.gle/VKr5EsVhf5sBm88s5" target="_blank">Stant Kayıt Formu</a>
-                  </p> -->
-                </div>
-              </li>
+        <!-- Program Bölümü -->
+        <section id="program">
+            <h2 class="section-title">Program</h2>
+            <div class="tabs">
+                <div class="tab active" data-day="day1">Gün 1</div>
+                <div class="tab" data-day="day2">Gün 2</div>
+            </div>
+            <div id="day1" class="program-content active">
+                <ul class="program-list">
+                    <li>
+                        <span class="program-time">10:00</span>
+                        <span>Açılış & Hoş Geldiniz</span>
+                    </li>
+                    <li>
+                        <span class="program-time">11:00</span>
+                        <span>?</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="day2" class="program-content">
+                <ul class="program-list">
+                    <li>
+                        <span class="program-time">10:00</span>
+                        <span>Sabah Oturumu</span>
+                    </li>
+                    <li>
+                        <span class="program-time">11:00</span>
+                        <span>?</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-              <li>
-                <a data-toggle="collapse" href="#faq4" class="collapsed"> After Party'e nasıl
-                  katılabilirim ?<i class="fa fa-minus-circle"></i></a>
-                <div id="faq4" class="collapse" data-parent="#faq-list">
-                  <p>
-                    <strong>ALIMLAR ŞUAN KAPALIDIR!</strong>
-                    <!-- <br>
-                    - Etkinlik içinde bilet satın alabilirsiniz.
-                    - <a href="hucon.com.tr" target="_blank">Online Bilet
-                      Alabilirsiniz</a>
-                    <br> -->
-                    <!-- <a href="#">Online Bilet</a> -->
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-toggle="collapse" href="#faq5" class="collapsed">GM KAYIT
-                  <i class="fa fa-minus-circle"></i></a>
-                <div id="faq5" class="collapse" data-parent="#faq-list">
-                  <p><strong>ALIMLAR ŞUAN KAPALIDIR!</strong></p>
-                  <p>
-                  <p> <strong> GM KAYIT FORMU</strong><br>
-                    HÜCON25'te FRP oyunu oynatmak isteyen GM'ler aşağıdaki formu doldurarak katılım sağlayabilirler.
-                  </p>
-                  <!-- <a href="https://forms.gle/Qr8CdCNpSXBd9yeg9" target="_blank">GM KAYIT</a> -->
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-toggle="collapse" href="#faq6" class="collapsed">Cosplay Yarışması
-                  <i class="fa fa-minus-circle"></i></a>
-                <div id="faq6" class="collapse" data-parent="#faq-list">
-                  <p><strong>ALIMLAR ŞUAN KAPALIDIR</strong></p>
-                  <p><strong>HUCON'25 COSPLAY YARIŞMASI</strong></p>
-                  <p>
-                  <p> <strong> COSPLAY YARIŞMASI SADECE PAZAR GÜNÜ OLACAKTIR.</strong><br>
-                    <strong> KURALLAR:</strong><br>
-                    Daha önceden herhangi bir etkinlikte dereceye girmiş (jüri özel ödülleri hariç) bir kostüm ile
-                    yarışmaya katılamazsınız.
-                    Kendi tasarladığınız karakterler kabul edilmeyecektir.
-                    Katılımcıların, yarışmaya katıldıkları kostümün en az %70’ini kendilerinin yapmış olması
-                    gerekmektedir.
-                    Sahne gösterisi maksimum 3 dakika olacaktır. Süre geçtiği anda müzik ve video duraklatılacaktır.
-                    Sahne şovuna evcil hayvan getirilmesi yasaktır.
-                    Sahne gösterisi esnasında yanıcı, patlayıcı veya sahneyi kirletecek ekipman kullanımı yasaktır.
-                    14 yaşından küçükler yarışmaya katılamazlar.
-                    Sahne gösterisinde en fazla 3 figüran kullanabilirsiniz, (grup olarak katılanlar figüran
-                    ekleyemezler).
-                    Sahnede mikrofon, hoparlör vs. ürünlere zarar vermeniz veya bozmanız durumunda ücreti alınacaktır.
-                    Yarışma başlamadan 15 dakika önce sahne arkasında olmalısınız aksi takdirde diskalifiye edilirsiniz.
-                    Eğer grup olarak kazanırsanız ödül kişi başı değil gruba verilir.
-                  </p>
-                  <!-- <a href="hucon.com.tr" target="_blank">Yarışma Kayıt Formu</a> -->
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    </section>
-
-
-  </main>
-
-
-  <!--
-    Footer
--->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <img src="img/logo.png" alt="TheEvenet">
-            <img src="img/logo3.jpg" alt="TheEvenet" style="border-radius: 50%;">
-            <img src="img/logo2.jpg" alt="TheEvenet" style="border-radius: 50%;">
-            <p>Herkesi aramızda görmekten mutluluk duyarız.</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Bağlantılar</h4>
-            <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Ana sayfa</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#"></a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#"></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Kayıt Formları</h4>
-            <ul>
-              <!-- <li><i class="fa fa-angle-right"></i> <a href="https://forms.gle/wEPkp2ycTS2QMJqT9">Cosplay
-                  Yarışması Kayıt</a></li> -->
-              <li><i class="fa fa-angle-right"></i></li>
-              <li><i class="fa fa-angle-right"></i></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>İletişim</h4>
-            <p>
-              İnstagram üzerinden İletişime geçebilirsiniz. <br>
+        <!-- Konum -->
+        <section id="location">
+            <h2 class="section-title">Konum</h2>
+            <p style="text-align: center; margin-bottom: 20px">
+                Üniversiteler, Hacettepe Üniversitesi, Beytepe Kongre ve Kültür
+                Merkezi 06800 Çankaya/Ankara
             </p>
-            <div class="social-links">
-              <a href="https://www.instagram.com/hucon_25/" class="instagram" target="_blank"><i
-                  class="fa fa-instagram"></i></a>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3747.6327734179863!2d32.73249505022254!3d39.881907551840634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d347714f1c805d%3A0xe29c06b288d5604b!2sBeytepe%20Kongre%20ve%20K%C3%BClt%C3%BCr%20Merkezi!5e0!3m2!1str!2str!4v1680394936394!5m2!1str!2str"
+                    frameborder="0"
+                    style="border: 0"
+                    allowfullscreen
+                ></iframe>
             </div>
+        </section>
 
-          </div>
+        <!-- SSS Bölümü -->
+        <section id="faq">
+            <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+            <div class="faq-container">
+                <!-- Güncellenmiş SSS Öğeleri -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Etkinlik ücretli mi? Nasıl katılabilirim?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Etkinliğimiz tamamen ücretsizdir. Etkinlik girişinde
+                            kayıt yapmanız gerekmektedir, etkinlik günü
+                            istediğiniz zaman katılım sağlayabilirsiniz.
+                        </p>
+                    </div>
+                </div>
 
+                >
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Fotoğraf ve video çekimi yapılabilir mi?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Etkinlik alanında serbestçe fotoğraf ve video çekimi
+                            yapabilirsiniz. Ancak diğer katılımcıların
+                            mahremiyetine saygı göstermenizi rica ederiz.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="copyright" style="height: 1px">
+                <strong><a href="https://github.com/Berke-aras">©</a></strong>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="container">
-      <div class="copyright" style="height: 1px;">
-        <strong><a href="https://github.com/Berke-aras">©</a></strong>
-      </div>
-    </div>
-  </footer><!-- #footer -->
-
-  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-  <!-- JavaScript  -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/superfish/hoverIntent.js"></script>
-  <script src="lib/superfish/superfish.min.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/venobox/venobox.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-
-  <script src="contactform/contactform.js"></script>
-
-
-  <script src="js/main.js"></script>
-</body>
-
+        <script src="https://player.vimeo.com/api/player.js"></script>
+        <script src="./js/main.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+    </body>
 </html>
