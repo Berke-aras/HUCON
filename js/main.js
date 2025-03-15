@@ -20,6 +20,28 @@ window.addEventListener("click", (e) => {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const linksOverlay = document.getElementById("linksOverlay");
+
+    document.getElementById("openLinks").addEventListener("click", function () {
+        linksOverlay.style.display = "flex";
+    });
+
+    document
+        .getElementById("closeLinks")
+        .addEventListener("click", function () {
+            linksOverlay.style.display = "none";
+        });
+
+    // Overlay dışına tıklandığında kapat
+    linksOverlay.addEventListener("click", function (event) {
+        // Eğer tıklanan alan doğrudan overlay ise (içerideki kutu hariç)
+        if (event.target === linksOverlay) {
+            linksOverlay.style.display = "none";
+        }
+    });
+});
+
 // Program Sekme Geçişi
 const tabs = document.querySelectorAll(".tab");
 const contents = document.querySelectorAll(".program-content");

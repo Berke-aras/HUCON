@@ -821,6 +821,120 @@ section {
     left: 0;
 }
 
+/* Linkler Açılır Pencere Overlay */
+/* Linkler Açılır Pencere Overlay */
+.links-overlay {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px); /* Bulanıklık efekti */
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeInOverlay 0.5s ease-in-out;
+}
+
+/* Overlay fade-in animasyonu */
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Linkler İçerik Kutusu */
+.links-content {
+    background: linear-gradient(135deg, #02457a, #013a63);
+    padding: 40px;
+    border-radius: 15px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.5s ease;
+}
+
+/* İçerik kutusu slide down animasyonu */
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Çarpı (kapatma) butonunu büyütüp hover efekti ekleme */
+.links-content .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 3rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: transform 0.3s;
+}
+.links-content .close-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Linkler listesi */
+.links-list {
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 0;
+}
+.links-list li {
+    margin-bottom: 20px;
+}
+.links-list li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: color 0.3s, transform 0.3s;
+}
+.links-list li a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+/* Linkler Butonu */
+.link-btn {
+    padding: 12px 25px;
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.3s;
+    margin-bottom: 15px;
+}
+.link-btn:hover {
+    background: #ffa500;
+    transform: translateY(-3px);
+}
+
+/* Responsive ayarlamalar */
+@media (max-width: 768px) {
+    .links-content {
+        padding: 30px;
+    }
+    .links-list li a {
+        font-size: 1.1rem;
+    }
+}
+
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
     /* Adjust hero section height and layout */
