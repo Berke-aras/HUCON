@@ -170,10 +170,10 @@ body {
     height: 100vh;
     background: linear-gradient(
             180deg,
-            rgba(0, 17, 34, 0.212),
+            rgba(0, 17, 34, 0.034),
             var(--primary-color)
         ),
-        url("../img/hposter.png") no-repeat center center/cover;
+        url("../img/hposter.jpg") no-repeat center center/cover;
     overflow: hidden;
 }
 .hero-overlay {
