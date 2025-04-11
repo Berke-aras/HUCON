@@ -897,6 +897,31 @@ section {
 
 .links-list li {
     margin-bottom: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.link-button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.link-button.active {
+    background-color: #0a5cb4;
+    color: white;
+}
+
+.link-button.closed {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
 }
 
 /* Link stilini güçlendirdik */
