@@ -360,5 +360,771 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         />
+
+        <!-- Bildirim Butonu ve Overlay -->
+        <button id="notificationBtn" class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">0</span>
+        </button>
+
+        <!-- Bildirim Overlay -->
+        <div id="notificationOverlay" class="notification-overlay">
+            <div class="notification-content">
+                <div class="notification-header">
+                    <h2>Bildirimler</h2>
+                    <span
+                        class="close-notification-btn"
+                        id="closeNotificationBtn"
+                        >×</span
+                    >
+                </div>
+                <div class="notification-list" id="notificationList">
+                    <!-- Bildirimler JavaScript ile oluşturulacak -->
+                </div>
+            </div>
+        </div>
+
+        <style>
+            /* Bildirim Butonu Stili */
+            .notification-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: var(--accent-color);
+                color: white;
+                border: none;
+                cursor: pointer;
+                z-index: 99;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            .notification-btn:hover {
+                transform: scale(1.1);
+                background: #ffa500;
+            }
+
+            .notification-badge {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                background: #e74c3c;
+                color: white;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: pulse-red 1.5s infinite;
+            }
+
+            @keyframes pulse-red {
+                0% {
+                    transform: scale(1);
+                    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+                }
+                50% {
+                    transform: scale(1.1);
+                    box-shadow: 0 0 10px 5px rgba(231, 76, 60, 0);
+                }
+                100% {
+                    transform: scale(1);
+                    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+                }
+            }
+
+            /* Bildirim Overlay Stili */
+            .notification-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(5px);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                animation: fadeIn 0.3s ease-in-out;
+                pointer-events: auto;
+            }
+
+            .notification-content {
+                background: linear-gradient(135deg, #001f3f, #013a63);
+                width: 90%;
+                max-width: 500px;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                animation: slideIn 0.4s ease;
+                max-height: 80vh;
+                display: flex;
+                flex-direction: column;
+                pointer-events: auto;
+            }
+
+            .notification-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 20px;
+                background: var(--card-bg);
+                border-bottom: 2px solid var(--accent-color);
+            }
+
+            .notification-header h2 {
+                margin: 0;
+                color: var(--text-color);
+                font-size: 1.5rem;
+            }
+
+            .close-notification-btn {
+                font-size: 2rem;
+                cursor: pointer;
+                color: var(--text-color);
+                transition: color 0.3s;
+            }
+
+            .close-notification-btn:hover {
+                color: var(--accent-color);
+            }
+
+            .notification-list {
+                padding: 10px;
+                overflow-y: auto;
+                max-height: calc(80vh - 60px);
+            }
+
+            .notification-item {
+                display: flex;
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+                background: rgba(255, 255, 255, 0.05);
+                position: relative;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .notification-item:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px);
+            }
+
+            .notification-item.unread {
+                background: rgba(255, 133, 27, 0.1);
+                border-left: 3px solid var(--accent-color);
+            }
+
+            .notification-icon {
+                flex: 0 0 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--accent-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+            }
+
+            .notification-text {
+                flex: 1;
+            }
+
+            .notification-text h3 {
+                margin: 0 0 5px 0;
+                font-size: 1rem;
+                color: var(--text-color);
+            }
+
+            .notification-text p {
+                margin: 0;
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.4;
+            }
+
+            .notification-time {
+                display: block;
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.5);
+                margin-top: 8px;
+            }
+
+            .notification-status {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+
+            .notification-item.unread .notification-status {
+                background: var(--accent-color);
+            }
+
+            .notification-empty {
+                text-align: center;
+                padding: 20px;
+                color: rgba(255, 255, 255, 0.6);
+                font-style: italic;
+            }
+
+            /* Notification overlay'in gösterimi artık JavaScript ile 
+       display:flex yerine body sınıfı ile kontrol edilecek */
+            body.notifications-active .notification-overlay {
+                display: flex;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateY(-30px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            /* Mobil Uyumlu Düzenlemeler */
+            @media (max-width: 768px) {
+                .notification-btn {
+                    bottom: 15px;
+                    right: 15px;
+                    width: 45px;
+                    height: 45px;
+                }
+
+                .notification-content {
+                    width: 95%;
+                    max-height: 85vh;
+                }
+
+                .notification-header {
+                    padding: 12px 15px;
+                }
+
+                .notification-header h2 {
+                    font-size: 1.3rem;
+                }
+
+                .notification-item {
+                    padding: 12px;
+                }
+            }
+        </style>
+
+        <script>
+            // Bildirim Sistemi - Geliştirilmiş Versiyon
+            document.addEventListener("DOMContentLoaded", function () {
+                // Gerekli elementleri seçelim
+                const body = document.body;
+                const notificationBtn =
+                    document.getElementById("notificationBtn");
+                const closeNotificationBtn = document.getElementById(
+                    "closeNotificationBtn"
+                );
+                const notificationOverlay = document.getElementById(
+                    "notificationOverlay"
+                );
+                const notificationBadge = document.querySelector(
+                    ".notification-badge"
+                );
+                const notificationList =
+                    document.getElementById("notificationList");
+
+                // Bildirim ayarları
+                const NOTIFICATION_SETTINGS = {
+                    autoDisplayOnLoad: true, // Sayfa yüklendiğinde bildirimleri otomatik göster
+                    autoDisplayDelay: 2000, // Otomatik gösterim gecikmesi (ms)
+                    refreshInterval: 60000, // Zaman bilgilerinin yenilenme sıklığı (ms)
+                    storageKey: "hucon_notifications", // LocalStorage anahtarı
+                };
+
+                // Bildirim verilerini tanımlayalım
+                const notifications = [
+                    {
+                        id: "notification1",
+                        icon: "fas fa-info-circle",
+                        title: "GM Kayıt Başladı!",
+                        message: "GM Kayıt Başvurusu Açıldı! Tıklayın!",
+                        time: new Date(2025, 3, 14, 14, 30), // 17 Nisan 2025, 14:30
+                        unread: true,
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform?usp=dialog", // Sayfa içi bağlantı
+                    },
+                    {
+                        id: "notification2",
+                        icon: "fas fa-info-circle",
+                        title: "Cosplay Kayıt Başladı!",
+                        message:
+                            "Cosplay Yarışması Başvurusu Açıldı! Tıklayın!",
+                        time: new Date(2025, 3, 17, 20, 30), // 17 Nisan 2025, 14:30
+                        unread: true,
+                        link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
+                    },
+
+                    // {
+                    //     id: "notification2",
+                    //     icon: "fas fa-trophy",
+                    //     title: "E-spor Turnuvası Kayıtları Açıldı",
+                    //     message:
+                    //         "E-spor turnuvasına kayıt olmak için son gün 25 Nisan! Kaçırmayın.",
+                    //     time: new Date(2025, 3, 15, 10, 0), // 16 Nisan 2025, 10:00
+                    //     unread: true,
+                    //     link: "https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform", // Harici bağlantı örneği
+                    // },
+                    // {
+                    //     id: "notification3",
+                    //     icon: "fas fa-users",
+                    //     title: "Konuk Konuşmacı Duyurusu",
+                    //     message:
+                    //         "Özel konuk konuşmacımız, 27 Nisan 13:00'da ana sahnede sizlerle buluşacak!",
+                    //     time: new Date(2025, 3, 14, 9, 0), // 15 Nisan 2025, 9:00
+                    //     unread: true,
+                    //     link: null, // Bağlantı yok
+                    // },
+                    // {
+                    //     id: "notification4",
+                    //     icon: "fas fa-gamepad",
+                    //     title: "Yeni Etkinlik: Retro Oyun Köşesi",
+                    //     message:
+                    //         "Retro oyun severlere müjde! 26-27 Nisan tarihlerinde B salonunda nostaljik oyunlar sizleri bekliyor.",
+                    //     time: new Date(2025, 2, 13, 15, 45), // 14 Nisan 2025, 15:45
+                    //     unread: true,
+                    //     link: "#location", // Konum bölümüne yönlendirme
+                    // },
+                ];
+
+                // LocalStorage Yönetimi
+                const NotificationStorage = {
+                    // Tüm bildirim durumlarını al
+                    getAll: function () {
+                        const data = localStorage.getItem(
+                            NOTIFICATION_SETTINGS.storageKey
+                        );
+                        return data
+                            ? JSON.parse(data)
+                            : {
+                                  readNotifications: [],
+                                  lastSeenTime: 0,
+                              };
+                    },
+
+                    // Bildirim durumlarını kaydet
+                    save: function (data) {
+                        localStorage.setItem(
+                            NOTIFICATION_SETTINGS.storageKey,
+                            JSON.stringify(data)
+                        );
+                    },
+
+                    // Okunmuş bildirimleri al
+                    getReadNotifications: function () {
+                        return this.getAll().readNotifications || [];
+                    },
+
+                    // Son görülme zamanını al
+                    getLastSeenTime: function () {
+                        return this.getAll().lastSeenTime || 0;
+                    },
+
+                    // Bildirimi okundu olarak işaretle
+                    markAsRead: function (notificationId) {
+                        const data = this.getAll();
+                        if (!data.readNotifications.includes(notificationId)) {
+                            data.readNotifications.push(notificationId);
+                            this.save(data);
+                        }
+                    },
+
+                    // Son görülme zamanını güncelle
+                    updateLastSeenTime: function () {
+                        const data = this.getAll();
+                        data.lastSeenTime = Date.now();
+                        this.save(data);
+                    },
+                };
+
+                // Zaman Formatla
+                function formatTime(date) {
+                    const now = new Date();
+                    const diff = now - date;
+
+                    const seconds = Math.floor(diff / 1000);
+                    const minutes = Math.floor(seconds / 60);
+                    const hours = Math.floor(minutes / 60);
+                    const days = Math.floor(hours / 24);
+
+                    // Eğer fark 1 günden az ise saat:dakika olarak göster
+                    if (days < 1) {
+                        // Aynı gün ise "Bugün" olarak göster
+                        if (date.getDate() === now.getDate()) {
+                            let h = date.getHours();
+                            let m = date.getMinutes();
+                            return `Bugün, ${h < 10 ? "0" + h : h}:${
+                                m < 10 ? "0" + m : m
+                            }`;
+                        }
+
+                        // Dün ise "Dün" olarak göster
+                        if (date.getDate() === now.getDate() - 1) {
+                            let h = date.getHours();
+                            let m = date.getMinutes();
+                            return `Dün, ${h < 10 ? "0" + h : h}:${
+                                m < 10 ? "0" + m : m
+                            }`;
+                        }
+                    }
+
+                    // 7 günden az ise gün adı ve saat:dakika olarak göster
+                    if (days < 7) {
+                        const dayNames = [
+                            "Pazar",
+                            "Pazartesi",
+                            "Salı",
+                            "Çarşamba",
+                            "Perşembe",
+                            "Cuma",
+                            "Cumartesi",
+                        ];
+                        let h = date.getHours();
+                        let m = date.getMinutes();
+                        return `${dayNames[date.getDay()]}, ${
+                            h < 10 ? "0" + h : h
+                        }:${m < 10 ? "0" + m : m}`;
+                    }
+
+                    // Diğer durumlar için tam tarih
+                    return `${date.getDate()} ${date.toLocaleString("tr-TR", { month: "long" })}, ${date.getFullYear()}`;
+                }
+
+                // Bildirimleri oluştur ve göster
+                function renderNotifications() {
+                    // Okunmuş bildirimleri al
+                    const readNotifications =
+                        NotificationStorage.getReadNotifications();
+
+                    // Bildirimleri tarih sırasına göre sırala (en yeni üstte)
+                    const sortedNotifications = [...notifications].sort(
+                        (a, b) => b.time - a.time
+                    );
+
+                    // Önce listeyi temizle
+                    notificationList.innerHTML = "";
+
+                    // Bildirimleri ekle
+                    if (sortedNotifications.length === 0) {
+                        notificationList.innerHTML =
+                            '<div class="notification-empty">Henüz bildirim bulunmuyor.</div>';
+                    } else {
+                        sortedNotifications.forEach((notification) => {
+                            // LocalStorage'da okunmuş mu kontrol et
+                            const isRead = readNotifications.includes(
+                                notification.id
+                            );
+
+                            // Bildirim öğesini oluştur
+                            const notificationElement =
+                                document.createElement("div");
+                            notificationElement.className = `notification-item ${
+                                isRead ? "" : "unread"
+                            }`;
+                            notificationElement.dataset.id = notification.id;
+
+                            // Bildirimin link yönlendirmesi varsa data-link ekle
+                            if (notification.link) {
+                                notificationElement.dataset.link =
+                                    notification.link;
+                            }
+
+                            // Bildirimin içeriğini oluştur
+                            notificationElement.innerHTML = `
+                        <div class="notification-icon">
+                            <i class="${notification.icon}"></i>
+                        </div>
+                        <div class="notification-text">
+                            <h3>${notification.title}</h3>
+                            <p>${notification.message}</p>
+                            <span class="notification-time">${formatTime(
+                                notification.time
+                            )}</span>
+                        </div>
+                        <div class="notification-status"></div>
+                    `;
+
+                            // Bildirime tıklama işlevini ekle
+                            notificationElement.addEventListener(
+                                "click",
+                                function () {
+                                    // Bildirimi okundu olarak işaretle
+                                    markAsRead(notification.id);
+
+                                    // Yönlendirme varsa işle
+                                    if (notification.link) {
+                                        // Sayfa içi bağlantı mı?
+                                        if (notification.link.startsWith("#")) {
+                                            // Bildirim panelini kapat
+                                            hideNotifications();
+
+                                            // Belirli bir süre sonra sayfayı kaydır
+                                            setTimeout(() => {
+                                                const target =
+                                                    document.querySelector(
+                                                        notification.link
+                                                    );
+                                                if (target) {
+                                                    target.scrollIntoView({
+                                                        behavior: "smooth",
+                                                        block: "start",
+                                                    });
+                                                }
+                                            }, 300);
+                                        } else {
+                                            // Harici bağlantı
+                                            window.open(
+                                                notification.link,
+                                                "_blank"
+                                            );
+                                        }
+                                    }
+                                }
+                            );
+
+                            notificationList.appendChild(notificationElement);
+                        });
+                    }
+
+                    // Okunmamış bildirimleri güncelle
+                    updateUnreadCount();
+                }
+
+                // Bildirimi okundu olarak işaretle
+                function markAsRead(id) {
+                    // DOM'da bildirim öğesini bul ve okundu olarak işaretle
+                    const notificationElement = document.querySelector(
+                        `.notification-item[data-id="${id}"]`
+                    );
+                    if (notificationElement) {
+                        notificationElement.classList.remove("unread");
+                    }
+
+                    // LocalStorage'a kaydet
+                    NotificationStorage.markAsRead(id);
+
+                    // Okunmamış bildirim sayısını güncelle
+                    updateUnreadCount();
+                }
+
+                // Tüm bildirimleri okundu olarak işaretle
+                function markAllAsRead() {
+                    // Tüm bildirimlerin ID'lerini al
+                    const allIds = notifications.map(
+                        (notification) => notification.id
+                    );
+
+                    // DOM'da tüm bildirim öğelerini okundu olarak işaretle
+                    document
+                        .querySelectorAll(".notification-item.unread")
+                        .forEach((element) => {
+                            element.classList.remove("unread");
+                        });
+
+                    // Her bildirimi localStorage'da okundu olarak işaretle
+                    allIds.forEach((id) => NotificationStorage.markAsRead(id));
+
+                    // Okunmamış bildirim sayısını güncelle
+                    updateUnreadCount();
+                }
+
+                // Okunmamış bildirimleri güncelle
+                function updateUnreadCount() {
+                    const readNotifications =
+                        NotificationStorage.getReadNotifications();
+
+                    // Okunmamış bildirimleri say
+                    const unreadCount = notifications.filter(
+                        (notification) =>
+                            !readNotifications.includes(notification.id)
+                    ).length;
+
+                    // Bildirim rozetini güncelle
+                    if (unreadCount > 0) {
+                        notificationBadge.textContent = unreadCount;
+                        notificationBadge.style.display = "flex";
+                    } else {
+                        notificationBadge.style.display = "none";
+                    }
+                }
+
+                // Bildirimleri göster
+                function showNotifications() {
+                    body.classList.add("notifications-active");
+                    body.style.overflow = "hidden";
+                    notificationOverlay.style.display = "flex";
+
+                    // Son görüntüleme zamanını güncelle
+                    NotificationStorage.updateLastSeenTime();
+                }
+
+                // Bildirimleri gizle
+                function hideNotifications() {
+                    body.classList.remove("notifications-active");
+                    body.style.overflow = "";
+                    notificationOverlay.style.display = "none";
+                }
+
+                // Yeni bildirim var mı kontrol et
+                function hasNewNotifications() {
+                    const lastSeenTime = NotificationStorage.getLastSeenTime();
+                    const readNotifications =
+                        NotificationStorage.getReadNotifications();
+
+                    return notifications.some((notification) => {
+                        // Okunmamış ve son görülmeden sonra eklenmiş bildirimleri bul
+                        return (
+                            !readNotifications.includes(notification.id) &&
+                            notification.time.getTime() > lastSeenTime
+                        );
+                    });
+                }
+
+                // Zaman bilgilerini güncelle
+                function updateTimestamps() {
+                    document
+                        .querySelectorAll(".notification-time")
+                        .forEach((timeElement, index) => {
+                            const notificationId =
+                                timeElement.closest(".notification-item")
+                                    .dataset.id;
+                            const notification = notifications.find(
+                                (n) => n.id === notificationId
+                            );
+
+                            if (notification) {
+                                timeElement.textContent = formatTime(
+                                    notification.time
+                                );
+                            }
+                        });
+                }
+
+                // "Tümünü Okundu Olarak İşaretle" butonunu ekle
+                function addMarkAllAsReadButton() {
+                    const markAllBtn = document.createElement("button");
+                    markAllBtn.className = "mark-all-read-btn";
+                    markAllBtn.textContent = "Tümünü Okundu İşaretle";
+                    markAllBtn.style.cssText = `
+                background: var(--accent-color);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 8px 12px;
+                margin: 10px auto;
+                cursor: pointer;
+                display: block;
+                font-size: 0.9rem;
+                transition: background 0.3s;
+            `;
+
+                    markAllBtn.addEventListener("mouseenter", function () {
+                        this.style.background = "#ffa500";
+                    });
+
+                    markAllBtn.addEventListener("mouseleave", function () {
+                        this.style.background = "var(--accent-color)";
+                    });
+
+                    markAllBtn.addEventListener("click", markAllAsRead);
+
+                    // Bildirimlerin üstüne ekle
+                    notificationList.parentElement.insertBefore(
+                        markAllBtn,
+                        notificationList
+                    );
+                }
+
+                // Olay dinleyicilerini ekle
+                function setupEventListeners() {
+                    // Bildirim butonuna tıklanınca
+                    notificationBtn.addEventListener(
+                        "click",
+                        showNotifications
+                    );
+
+                    // Kapatma butonuna tıklanınca
+                    closeNotificationBtn.addEventListener(
+                        "click",
+                        hideNotifications
+                    );
+
+                    // Overlay dışına tıklanınca kapat
+                    notificationOverlay.addEventListener("click", function (e) {
+                        if (e.target === notificationOverlay) {
+                            hideNotifications();
+                        }
+                    });
+
+                    // ESC tuşuna basınca kapat
+                    document.addEventListener("keydown", function (e) {
+                        if (
+                            e.key === "Escape" &&
+                            body.classList.contains("notifications-active")
+                        ) {
+                            hideNotifications();
+                        }
+                    });
+                }
+
+                // Uygulamayı başlat
+                function initNotifications() {
+                    // Olay dinleyicilerini ekle
+                    setupEventListeners();
+
+                    // Okundu olarak işaretle butonu ekle
+                    addMarkAllAsReadButton();
+
+                    // Bildirimleri oluştur
+                    renderNotifications();
+
+                    // Zamanları periyodik olarak güncelle
+                    setInterval(
+                        updateTimestamps,
+                        NOTIFICATION_SETTINGS.refreshInterval
+                    );
+
+                    // Sayfa yüklendiğinde otomatik gösterme
+                    if (NOTIFICATION_SETTINGS.autoDisplayOnLoad) {
+                        setTimeout(() => {
+                            showNotifications();
+                        }, NOTIFICATION_SETTINGS.autoDisplayDelay);
+                    }
+                }
+
+                // Başlat
+                initNotifications();
+            });
+        </script>
     </body>
 </html>

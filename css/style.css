@@ -713,6 +713,7 @@ section {
 /* Custom Cursor */
 .custom-cursor {
     position: fixed;
+    z-index: 1001;
     width: 25px;
     height: 25px;
     border: 2px solid var(--accent-color);
