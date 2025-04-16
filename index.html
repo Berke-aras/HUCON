@@ -582,8 +582,47 @@
                 font-style: italic;
             }
 
+            /* Buton Animasyonu */
+            .mark-all-read-btn {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .mark-all-read-btn::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 5px;
+                height: 5px;
+                background: rgba(255, 255, 255, 0.5);
+                opacity: 0;
+                border-radius: 100%;
+                transform: scale(1, 1) translate(-50%);
+                transform-origin: 50% 50%;
+            }
+
+            .mark-all-read-btn:focus:not(:active)::after {
+                animation: ripple 1s ease-out;
+            }
+
+            @keyframes ripple {
+                0% {
+                    transform: scale(0, 0);
+                    opacity: 0.5;
+                }
+                20% {
+                    transform: scale(25, 25);
+                    opacity: 0.3;
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(40, 40);
+                }
+            }
+
             /* Notification overlay'in gösterimi artık JavaScript ile 
-       display:flex yerine body sınıfı ile kontrol edilecek */
+display:flex yerine body sınıfı ile kontrol edilecek */
             body.notifications-active .notification-overlay {
                 display: flex;
             }
@@ -633,6 +672,11 @@
                 .notification-item {
                     padding: 12px;
                 }
+
+                .mark-all-read-btn {
+                    padding: 8px 16px;
+                    font-size: 0.85rem;
+                }
             }
         </style>
 
@@ -670,7 +714,7 @@
                         icon: "fas fa-info-circle",
                         title: "GM Kayıt Başladı!",
                         message: "GM Kayıt Başvurusu Açıldı! Tıklayın!",
-                        time: new Date(2025, 3, 14, 14, 30), // 17 Nisan 2025, 14:30
+                        time: new Date(2025, 3, 14, 14, 30), // 14 Nisan 2025, 14:30
                         unread: true,
                         link: "https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform?usp=dialog", // Sayfa içi bağlantı
                     },
@@ -680,41 +724,10 @@
                         title: "Cosplay Kayıt Başladı!",
                         message:
                             "Cosplay Yarışması Başvurusu Açıldı! Tıklayın!",
-                        time: new Date(2025, 3, 17, 20, 30), // 17 Nisan 2025, 14:30
+                        time: new Date(2025, 3, 17, 20, 30), // 17 Nisan 2025, 20:30
                         unread: true,
                         link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
                     },
-
-                    // {
-                    //     id: "notification2",
-                    //     icon: "fas fa-trophy",
-                    //     title: "E-spor Turnuvası Kayıtları Açıldı",
-                    //     message:
-                    //         "E-spor turnuvasına kayıt olmak için son gün 25 Nisan! Kaçırmayın.",
-                    //     time: new Date(2025, 3, 15, 10, 0), // 16 Nisan 2025, 10:00
-                    //     unread: true,
-                    //     link: "https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform", // Harici bağlantı örneği
-                    // },
-                    // {
-                    //     id: "notification3",
-                    //     icon: "fas fa-users",
-                    //     title: "Konuk Konuşmacı Duyurusu",
-                    //     message:
-                    //         "Özel konuk konuşmacımız, 27 Nisan 13:00'da ana sahnede sizlerle buluşacak!",
-                    //     time: new Date(2025, 3, 14, 9, 0), // 15 Nisan 2025, 9:00
-                    //     unread: true,
-                    //     link: null, // Bağlantı yok
-                    // },
-                    // {
-                    //     id: "notification4",
-                    //     icon: "fas fa-gamepad",
-                    //     title: "Yeni Etkinlik: Retro Oyun Köşesi",
-                    //     message:
-                    //         "Retro oyun severlere müjde! 26-27 Nisan tarihlerinde B salonunda nostaljik oyunlar sizleri bekliyor.",
-                    //     time: new Date(2025, 2, 13, 15, 45), // 14 Nisan 2025, 15:45
-                    //     unread: true,
-                    //     link: "#location", // Konum bölümüne yönlendirme
-                    // },
                 ];
 
                 // LocalStorage Yönetimi
@@ -861,18 +874,18 @@
 
                             // Bildirimin içeriğini oluştur
                             notificationElement.innerHTML = `
-                        <div class="notification-icon">
-                            <i class="${notification.icon}"></i>
-                        </div>
-                        <div class="notification-text">
-                            <h3>${notification.title}</h3>
-                            <p>${notification.message}</p>
-                            <span class="notification-time">${formatTime(
-                                notification.time
-                            )}</span>
-                        </div>
-                        <div class="notification-status"></div>
-                    `;
+                <div class="notification-icon">
+                    <i class="${notification.icon}"></i>
+                </div>
+                <div class="notification-text">
+                    <h3>${notification.title}</h3>
+                    <p>${notification.message}</p>
+                    <span class="notification-time">${formatTime(
+                        notification.time
+                    )}</span>
+                </div>
+                <div class="notification-status"></div>
+            `;
 
                             // Bildirime tıklama işlevini ekle
                             notificationElement.addEventListener(
@@ -918,6 +931,9 @@
 
                     // Okunmamış bildirimleri güncelle
                     updateUnreadCount();
+
+                    // Tümünü okundu işaretle butonunu güncelle
+                    updateMarkAllReadButton();
                 }
 
                 // Bildirimi okundu olarak işaretle
@@ -935,6 +951,9 @@
 
                     // Okunmamış bildirim sayısını güncelle
                     updateUnreadCount();
+
+                    // Tümünü okundu işaretle butonunu güncelle
+                    updateMarkAllReadButton();
                 }
 
                 // Tüm bildirimleri okundu olarak işaretle
@@ -956,6 +975,9 @@
 
                     // Okunmamış bildirim sayısını güncelle
                     updateUnreadCount();
+
+                    // Butonu güncelle (bu durumda kaldır)
+                    updateMarkAllReadButton();
                 }
 
                 // Okunmamış bildirimleri güncelle
@@ -1030,39 +1052,66 @@
                         });
                 }
 
-                // "Tümünü Okundu Olarak İşaretle" butonunu ekle
-                function addMarkAllAsReadButton() {
-                    const markAllBtn = document.createElement("button");
-                    markAllBtn.className = "mark-all-read-btn";
-                    markAllBtn.textContent = "Tümünü Okundu İşaretle";
-                    markAllBtn.style.cssText = `
-                background: var(--accent-color);
+                // "Tümünü Okundu Olarak İşaretle" butonunu ekle/güncelle
+                function updateMarkAllReadButton() {
+                    // Önce varolan butonu kaldır
+                    const existingBtn =
+                        document.querySelector(".mark-all-read-btn");
+                    if (existingBtn) {
+                        existingBtn.remove();
+                    }
+
+                    // Okunmamış bildirim sayısını kontrol et
+                    const readNotifications =
+                        NotificationStorage.getReadNotifications();
+                    const unreadCount = notifications.filter(
+                        (notification) =>
+                            !readNotifications.includes(notification.id)
+                    ).length;
+
+                    // Eğer okunmamış bildirim varsa butonu göster
+                    if (unreadCount > 0) {
+                        const markAllBtn = document.createElement("button");
+                        markAllBtn.className = "mark-all-read-btn";
+                        markAllBtn.textContent = "Tümünü Okundu İşaretle";
+                        markAllBtn.style.cssText = `
+                background: linear-gradient(135deg, #007BFF, #00A3FF);
                 color: white;
                 border: none;
-                border-radius: 5px;
-                padding: 8px 12px;
-                margin: 10px auto;
+                border-radius: 20px;
+                padding: 10px 20px;
+                margin: 15px auto 10px auto;
                 cursor: pointer;
                 display: block;
-                font-size: 0.9rem;
-                transition: background 0.3s;
+                font-size: 0.95rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             `;
 
-                    markAllBtn.addEventListener("mouseenter", function () {
-                        this.style.background = "#ffa500";
-                    });
+                        markAllBtn.addEventListener("mouseenter", function () {
+                            this.style.background =
+                                "linear-gradient(135deg, #0069D9, #0090EA)";
+                            this.style.transform = "translateY(-2px)";
+                            this.style.boxShadow =
+                                "0 6px 12px rgba(0, 0, 0, 0.25)";
+                        });
 
-                    markAllBtn.addEventListener("mouseleave", function () {
-                        this.style.background = "var(--accent-color)";
-                    });
+                        markAllBtn.addEventListener("mouseleave", function () {
+                            this.style.background =
+                                "linear-gradient(135deg, #007BFF, #00A3FF)";
+                            this.style.transform = "translateY(0)";
+                            this.style.boxShadow =
+                                "0 4px 8px rgba(0, 0, 0, 0.2)";
+                        });
 
-                    markAllBtn.addEventListener("click", markAllAsRead);
+                        markAllBtn.addEventListener("click", markAllAsRead);
 
-                    // Bildirimlerin üstüne ekle
-                    notificationList.parentElement.insertBefore(
-                        markAllBtn,
-                        notificationList
-                    );
+                        // Bildirimlerin ALTINA ekle
+                        notificationList.after(markAllBtn);
+                    }
                 }
 
                 // Olay dinleyicilerini ekle
@@ -1101,9 +1150,6 @@
                 function initNotifications() {
                     // Olay dinleyicilerini ekle
                     setupEventListeners();
-
-                    // Okundu olarak işaretle butonu ekle
-                    addMarkAllAsReadButton();
 
                     // Bildirimleri oluştur
                     renderNotifications();
