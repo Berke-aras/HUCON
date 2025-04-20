@@ -647,6 +647,28 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                 }
             }
 
+            .notification-image {
+                width: 100%;
+                border-radius: 8px;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                max-height: 150px;
+                object-fit: contain;
+                transition: transform 0.3s ease;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .notification-item:hover .notification-image {
+                transform: scale(1.02);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .notification-image {
+                    max-height: 120px;
+                }
+            }
+
             /* Mobil Uyumlu Düzenlemeler */
             @media (max-width: 768px) {
                 .notification-btn {
@@ -710,24 +732,37 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                 // Bildirim verilerini tanımlayalım
                 const notifications = [
                     {
-                        id: "notification1",
+                        id: "notification4",
                         icon: "fas fa-info-circle",
                         title: "GM Kayıt Başladı!",
                         message: "GM Kayıt Başvurusu Açıldı! Tıklayın!",
-                        time: new Date(2025, 3, 14, 14, 30), // 14 Nisan 2025, 14:30
+                        time: new Date(2025, 3, 19, 14, 10), // 14 Nisan 2025, 14:30
                         unread: true,
-                        link: "https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform?usp=dialog", // Sayfa içi bağlantı
+                        link: "https://www.instagram.com/p/DIoN_BgILJo/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==", // Sayfa içi bağlantı
+                        image: "./img/Screenshot 2025-04-20 at 16-59-35 HUCON'25 (@hucon_25) • Instagram photos and videos.png", // Bildirim resmi ekledik
                     },
-                    {
-                        id: "notification2",
-                        icon: "fas fa-info-circle",
-                        title: "Cosplay Kayıt Başladı!",
-                        message:
-                            "Cosplay Yarışması Başvurusu Açıldı! Tıklayın!",
-                        time: new Date(2025, 3, 16, 20, 30), // 17 Nisan 2025, 20:30
-                        unread: true,
-                        link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
-                    },
+                    // {
+                    //     id: "notification2",
+                    //     icon: "fas fa-info-circle",
+                    //     title: "Cosplay Kayıt Başladı!",
+                    //     message:
+                    //         "Cosplay Yarışması Başvurusu Açıldı! Tıklayın!",
+                    //     time: new Date(2025, 3, 16, 20, 30), // 17 Nisan 2025, 20:30
+                    //     unread: true,
+                    //     link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
+                    //     image: "./img/fish.png", // Bildirim resmi ekledik
+                    // },
+                    // {
+                    //     id: "notification3",
+                    //     icon: "fas fa-exclamation-triangle",
+                    //     title: "HUCON İPTAL EDİLDİ!",
+                    //     message:
+                    //         "HUCON İPTAL EDİLDİ! DETAYLI BİLGİ İÇİN TIKLAYINIZ",
+                    //     time: new Date(2025, 3, 19, 14, 10), // 19 Nisan 2025, 14:10
+                    //     unread: true,
+                    //     link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
+                    //     image: "./img/fish.png", // Bildirim resmi ekledik
+                    // },
                 ];
 
                 // LocalStorage Yönetimi
@@ -872,20 +907,31 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                                     notification.link;
                             }
 
-                            // Bildirimin içeriğini oluştur
-                            notificationElement.innerHTML = `
-                <div class="notification-icon">
-                    <i class="${notification.icon}"></i>
-                </div>
-                <div class="notification-text">
-                    <h3>${notification.title}</h3>
-                    <p>${notification.message}</p>
-                    <span class="notification-time">${formatTime(
-                        notification.time
-                    )}</span>
-                </div>
-                <div class="notification-status"></div>
-            `;
+                            // HTML içeriğini oluştur
+                            let notificationHTML = `
+                        <div class="notification-icon">
+                            <i class="${notification.icon}"></i>
+                        </div>
+                        <div class="notification-text">
+                            <h3>${notification.title}</h3>
+                            <p>${notification.message}</p>`;
+
+                            // Eğer bildirimde resim varsa ekle
+                            if (notification.image) {
+                                notificationHTML += `
+                            <img src="${notification.image}" alt="${notification.title}" class="notification-image">`;
+                            }
+
+                            // Zaman bilgisini ve diğer öğeleri ekle
+                            notificationHTML += `
+                            <span class="notification-time">${formatTime(
+                                notification.time
+                            )}</span>
+                        </div>
+                        <div class="notification-status"></div>`;
+
+                            // HTML'i element içine ekle
+                            notificationElement.innerHTML = notificationHTML;
 
                             // Bildirime tıklama işlevini ekle
                             notificationElement.addEventListener(
@@ -1075,21 +1121,21 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                         markAllBtn.className = "mark-all-read-btn";
                         markAllBtn.textContent = "Tümünü Okundu İşaretle";
                         markAllBtn.style.cssText = `
-                background: linear-gradient(135deg, #007BFF, #00A3FF);
-                color: white;
-                border: none;
-                border-radius: 20px;
-                padding: 10px 20px;
-                margin: 15px auto 10px auto;
-                cursor: pointer;
-                display: block;
-                font-size: 0.95rem;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            `;
+                    background: linear-gradient(135deg, #007BFF, #00A3FF);
+                    color: white;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 10px 20px;
+                    margin: 15px auto 10px auto;
+                    cursor: pointer;
+                    display: block;
+                    font-size: 0.95rem;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                `;
 
                         markAllBtn.addEventListener("mouseenter", function () {
                             this.style.background =
@@ -1112,6 +1158,19 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                         // Bildirimlerin ALTINA ekle
                         notificationList.after(markAllBtn);
                     }
+                }
+
+                // Bildirim resimlerinin yüklenme hatalarını yönet
+                function handleImageErrors() {
+                    document
+                        .querySelectorAll(".notification-image")
+                        .forEach((img) => {
+                            img.onerror = function () {
+                                // Hata durumunda placeholder resim göster veya resmi gizle
+                                this.src = "./img/placeholder.jpg"; // Varsayılan placeholder resim
+                                // Alternatif olarak: this.style.display = 'none';
+                            };
+                        });
                 }
 
                 // Olay dinleyicilerini ekle
@@ -1153,6 +1212,9 @@ display:flex yerine body sınıfı ile kontrol edilecek */
 
                     // Bildirimleri oluştur
                     renderNotifications();
+
+                    // Resim hata yönetimini ayarla
+                    handleImageErrors();
 
                     // Zamanları periyodik olarak güncelle
                     setInterval(
