@@ -621,8 +621,6 @@
                 }
             }
 
-            /* Notification overlay'in gösterimi artık JavaScript ile 
-display:flex yerine body sınıfı ile kontrol edilecek */
             body.notifications-active .notification-overlay {
                 display: flex;
             }
@@ -647,25 +645,46 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                 }
             }
 
+            /* 1) İmaj üzerinde çalışılmamış hali (default) */
             .notification-image {
                 width: 100%;
                 border-radius: 8px;
-                margin-top: 10px;
-                margin-bottom: 5px;
-                max-height: 150px;
-                object-fit: contain;
-                transition: transform 0.3s ease;
+                margin: 10px 0 5px 0; /* eski margin */
+                object-fit: cover;
                 box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                cursor: zoom-in !important; /* büyüteç simgesi */
             }
 
-            .notification-item:hover .notification-image {
-                transform: scale(1.02);
+            /* 2) Tüm container’lardan overflow’u kaldır */
+            .notification-overlay,
+            .notification-content,
+            .notification-list {
+                overflow: visible !important;
             }
 
+            /* 3) “zoomed” sınıfı eklendiğinde – imajı %90 ekran ortala */
+            .notification-image.zoomed {
+                margin: 0 !important; /* margin sıfır */
+                object-fit: contain !important;
+                position: fixed !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw !important;
+                max-height: 90vh !important;
+                height: auto !important;
+                z-index: 10000 !important;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+                cursor: zoom-out !important; /* küçültme simgesi */
+                transition: transform 0.2s ease-in-out !important;
+            }
             /* Responsive adjustments */
             @media (max-width: 768px) {
-                .notification-image {
-                    max-height: 120px;
+                .notification-item:hover .notification-image {
+                    transform: scale(
+                        1.05
+                    ); /* Slightly smaller scale on mobile */
                 }
             }
 
@@ -734,8 +753,8 @@ display:flex yerine body sınıfı ile kontrol edilecek */
                     {
                         id: "notification4",
                         icon: "fas fa-info-circle",
-                        title: "GM Kayıt Başladı!",
-                        message: "GM Kayıt Başvurusu Açıldı! Tıklayın!",
+                        title: "HUCON İPTAL EDİLDİ!",
+                        message: "TIklayıp detaylı bilgiye ulaşabilirsiniz!",
                         time: new Date(2025, 3, 19, 14, 10), // 14 Nisan 2025, 14:30
                         unread: true,
                         link: "https://www.instagram.com/p/DIoN_BgILJo/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==", // Sayfa içi bağlantı
