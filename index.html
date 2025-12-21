@@ -1,1257 +1,328 @@
 <!DOCTYPE html>
 <html lang="tr">
-    <head>
-        <meta charset="utf-8" />
-        <title>HUCON'25</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <meta
-            content="hücon, Hucon, Cosplay, Anime, Convension, Hümat, BKFT, Convension, HACETTEPE, Etkinlik, Parti, HÜCON, 2025"
-            name="keywords"
-        />
-        <meta
-            name="description"
-            content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği! Hücon"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Ercüment Berke Arastaman" />
-        <meta property="og:type" content="Hücon" />
-        <meta property="og:title" content="Hücon" />
-        <meta
-            property="og:description"
-            content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!"
-        />
-        <meta property="og:url" content="https://hucon.com.tr/" />
-        <meta
-            property="og:image"
-            content="https://hucon.com.tr/img/hlogo.png"
-        />
 
-        <meta itemprop="name" content="Hücon" />
-        <meta
-            itemprop="description"
-            content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!"
-        />
-        <meta itemprop="image" content="https://hucon.com.tr/img/hlogo.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HÜCON'26 - Ankara'nın En Büyük Alt Kültür Etkinliği</title>
 
-        <!-- Favicons -->
-        <link href="img/hlogo.png" rel="icon" />
-        <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-        <!-- Google Fonts ile modern font kullanımı -->
-        <link
-            href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        />
-        <link rel="stylesheet" href="./css/style.css" />
-    </head>
-    <body>
-        <div class="scroll-progress"></div>
-        <!-- Custom Cursor -->
-        <div class="custom-cursor"></div>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/hlogo.png">
+    <link rel="apple-touch-icon" href="img/hlogo.png">
 
-        <!-- Particle JS Container -->
-        <div id="particles-js"></div>
-        <!-- Su efektleri -->
-        <div class="water-effect">
-            <img
-                src="./img/fish.png"
-                class="fish"
-                style="top: 20%; animation-delay: 0s"
-            />
-            <img
-                src="./img/fish.png"
-                class="fish"
-                style="top: 40%; animation-delay: 3s; width: 70px"
-            />
-            <img
-                src="./img/fish.png"
-                class="fish"
-                style="top: 60%; animation-delay: 6s; width: 50px"
-            />
-            <img
-                src="./img/fish.png"
-                class="fish"
-                style="top: 80%; animation-delay: 9s; width: 30px"
-            />
-        </div>
-        <!-- Hero & Navigasyon -->
-        <div class="hero">
-            <div class="bubbles">
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-            </div>
-            <div class="hero-overlay">
-                <div class="hero-content">
-                    <div class="animated-logo">
-                        <img
-                            src="img/hlogo.png"
-                            alt="HUCON Logo"
-                            style="height: 500px"
-                        />
-                    </div>
-                    <div class="countdown">
-                        <div class="countdown-item">
-                            <span id="days">00</span>
-                            <small>Gün</small>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="hours">00</span>
-                            <small>Saat</small>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="minutes">00</span>
-                            <small>Dakika</small>
-                        </div>
-                    </div>
-                </div>
-                <h3 style="margin-bottom: 20px; margin-top: 20px">
-                    26-27 Nisan - Beytepe Kongre Merkezi
-                </h3>
-                <nav>
-                    <a href="#about">Hakkında</a>
-                    <a href="#participants">Katılımcılar</a>
-                    <a href="#program">Program</a>
-                    <a href="#location">Konum</a>
-                    <a href="#faq">SSS</a>
-                </nav>
+    <!-- SEO Meta Tags -->
+    <meta name="keywords"
+        content="hücon, Hucon, Cosplay, Anime, Convention, Hümat, HUEST, HACETTEPE, Etkinlik, Parti, HÜCON, 2026, Ankara, alt kültür, e-spor, cosplay yarışması, hazine avı, rol yapma oyunları" />
+    <meta name="description"
+        content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği! Hücon" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Ercüment Berke Arastaman" />
+    <link rel="canonical" href="https://hucon.com.tr/" />
 
-                <!-- Yeni eklenen Linkler butonu -->
-                <button class="link-btn" id="openLinks">Başvurular</button>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HÜCON" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content="HÜCON'26 - Kamuoyu Bilgilendirmesi" />
+    <meta property="og:description"
+        content="Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!" />
+    <meta property="og:url" content="https://hucon.com.tr/" />
+    <meta property="og:image" content="https://hucon.com.tr/img/hlogo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-                <button
-                    class="video-btn"
-                    id="openModal"
-                    style="margin-bottom: 70px"
-                >
-                    <i class="fas fa-play"></i>
-                </button>
-            </div>
-        </div>
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HÜCON'26 - " />
+    <meta name="twitter:description"
+        content="HÜCON'26 Cosplay yarışması, e-spor turnuvaları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!" />
+    <meta name="twitter:image" content="https://hucon.com.tr/img/hlogo.png" />
 
-        <!-- Yeni Linkler açılır pencere (overlay) -->
-        <div id="linksOverlay" class="links-overlay">
-            <div class="links-content">
-                <span class="close-btn" id="closeLinks">×</span>
-                <h2>Başvurular</h2>
-                <ul class="links-list">
-                    <li>
-                        <a
-                            href="https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header"
-                            target="_blank"
-                            class="link-button active"
-                        >
-                            Cosplay Yarışması Kayıt Formu
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform?usp=dialog"
-                            target="_blank"
-                            class="link-button active"
-                        >
-                            GM Kayıt Formu
-                        </a>
-                    </li>
-                    <li>
-                        <span class="link-button closed">
-                            Stant Başvurusu (Kapalı)
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <!-- Schema.org / Google -->
+    <meta itemprop="name" content="HÜCON'26 - Kamuoyu Bilgilendirmesi" />
+    <meta itemprop="description"
+        content="HÜCON'26  Cosplay yarışması, e-spor turnuvaları ve birçok aktiviteye ev sahipliği yapan Ankara'nın en büyük alt kültür etkinliği!" />
+    <meta itemprop="image" content="https://hucon.com.tr/img/hlogo.png" />
 
-        <!-- Vimeo Video Modal -->
-        <!-- Vimeo Video Modal -->
-        <div id="videoModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" id="closeModal">×</span>
-                <iframe
-                    id="vimeoVideo"
-                    src="https://player.vimeo.com/video/830803761?badge=0&autopause=0&player_id=0&app_id=58479"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                    allowfullscreen
-                ></iframe>
-            </div>
-        </div>
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "HÜCON'26",
+        "description": "Cosplay yarışması, e-spor turnuvaları, hazine avı ve rol yapma oyunları ile Ankara'nın en büyük alt kültür etkinliği!",
+        "image": "https://hucon.com.tr/img/hlogo.png",
+        "url": "https://hucon.com.tr/",
+        "organizer": {
+            "@type": "Organization",
+            "name": "HÜCON Organizasyon Ekibi",
+            "url": "https://hucon.com.tr/"
+        },
+        "location": {
+            "@type": "Place",
+            "name": "Hacettepe Üniversitesi",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ankara",
+                "addressCountry": "TR"
+            }
+        }
+    }
+    </script>
 
-        <!-- Hakkında Bölümü -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <section id="about" class="about">
-            <div class="about-container">
-                <h2 class="section-title">HUCON 2025</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <div class="info-card">
-                            <i class="fas fa-water"></i>
-                            <h3>Nedir?</h3>
-                            <p>
-                                Hacettepe Üniversitesi'nin ve Türkiye'nin en
-                                köklü alt kültür etkinliği olarak, anime
-                                tutkunlarından oyun severlere kadar herkesi
-                                buluşturan benzersiz bir deneyim sunuyoruz.
-                            </p>
-                        </div>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a2332 100%);
+            min-height: 100vh;
+            color: #f0f6fc;
+            line-height: 2.0;
+            padding: 50px 20px;
+            font-size: 18px;
+        }
 
-                        <div class="info-card">
-                            <i class="fas fa-users"></i>
-                            <h3>Katılım</h3>
-                            <p>
-                                Ücretsiz etkinliğimize herkes katılabilir.
-                                Cosplay yarışması, hazine avı, rol yapma
-                                oyunları, e-spor turnuvaları ve daha birçok
-                                aktivite sizleri bekliyor!
-                            </p>
-                        </div>
-                    </div>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(22, 27, 34, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 70px 80px;
+            box-shadow:
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
 
-                    <div class="date-card">
-                        <div class="date-header">
-                            <i class="fas fa-calendar-alt"></i>
-                            <h3>Etkinlik Tarihleri</h3>
-                        </div>
-                        <div class="date-body">
-                            <div class="date-item">
-                                <span class="day">26 Nisan</span>
-                                <span class="time">10:00 - 17:00</span>
-                            </div>
-                            <div class="date-item">
-                                <span class="day">27 Nisan</span>
-                                <span class="time">10:00 - 17:00</span>
-                            </div>
-                        </div>
-                        <div class="date-footer">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Beytepe Kongre ve Kültür Merkezi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
 
-        <!-- Katılımcılar -->
-        <!-- Güncellenmiş Katılımcı Kartları -->
-        <section id="participants">
-            <h2 class="section-title">Katılımcılar</h2>
-            <div class="participants">
-                <div class="participant-card">
-                    <img
-                        src="./img/about-bg.jpg"
-                        alt="Katılımcı 1"
-                        style="z-index: 50"
-                    />
-                    <h3>....</h3>
-                    <p>?</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <!-- Diğer katılımcılar -->
-            </div>
-        </section>
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
 
-        <!-- Program Bölümü -->
-        <section id="program">
-            <h2 class="section-title">Program</h2>
-            <div class="tabs">
-                <div class="tab active" data-day="day1">Gün 1</div>
-                <div class="tab" data-day="day2">Gün 2</div>
-            </div>
-            <div id="day1" class="program-content active">
-                <ul class="program-list">
-                    <li>
-                        <span class="program-time">10:00</span>
-                        <span>Açılış & Hoş Geldiniz</span>
-                    </li>
-                    <li>
-                        <span class="program-time">11:00</span>
-                        <span>?</span>
-                    </li>
-                </ul>
-            </div>
-            <div id="day2" class="program-content">
-                <ul class="program-list">
-                    <li>
-                        <span class="program-time">10:00</span>
-                        <span>Açılış & Hoş Geldiniz</span>
-                    </li>
-                    <li>
-                        <span class="program-time">11:00</span>
-                        <span>?</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
+        .subtitle {
+            font-size: 1.6rem;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background: rgba(167, 139, 250, 0.15);
+            border-radius: 8px;
+            display: inline-block;
+        }
 
-        <!-- Konum -->
-        <section id="location">
-            <h2 class="section-title">Konum</h2>
-            <p style="text-align: center; margin-bottom: 20px">
-                Üniversiteler, Hacettepe Üniversitesi, Beytepe Kongre ve Kültür
-                Merkezi 06800 Çankaya/Ankara
-            </p>
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3747.6327734179863!2d32.73249505022254!3d39.881907551840634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d347714f1c805d%3A0xe29c06b288d5604b!2sBeytepe%20Kongre%20ve%20K%C3%BClt%C3%BCr%20Merkezi!5e0!3m2!1str!2str!4v1680394936394!5m2!1str!2str"
-                    frameborder="0"
-                    style="border: 0"
-                    allowfullscreen
-                ></iframe>
-            </div>
-        </section>
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 50px 0 25px 0;
+            padding-left: 18px;
+            border-left: 5px solid #a78bfa;
+        }
 
-        <!-- SSS Bölümü -->
-        <section id="faq">
-            <h2 class="section-title">Sıkça Sorulan Sorular</h2>
-            <div class="faq-container">
-                <!-- Güncellenmiş SSS Öğeleri -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Etkinlik ücretli mi? Nasıl katılabilirim?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>
-                            Etkinliğimiz tamamen ücretsizdir. Etkinlik girişinde
-                            kayıt yapmanız gerekmektedir, etkinlik günü
-                            istediğiniz zaman katılım sağlayabilirsiniz.
-                        </p>
-                    </div>
-                </div>
+        p {
+            color: #e6edf3;
+            font-size: 1.15rem;
+            margin-bottom: 28px;
+            text-align: left;
+            letter-spacing: 0.3px;
+        }
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Fotoğraf ve video çekimi yapılabilir mi?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>
-                            Etkinlik alanında serbestçe fotoğraf ve video çekimi
-                            yapabilirsiniz. Ancak diğer katılımcıların
-                            mahremiyetine saygı göstermenizi rica ederiz.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.12) 0%, rgba(192, 132, 252, 0.12) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            border-radius: 18px;
+            padding: 35px 40px;
+            margin: 40px 0;
+        }
 
-        <div class="container">
-            <div class="copyright" style="height: 5px">
-                <strong
-                    ><a
-                        href="https://github.com/Berke-aras"
-                        style="font-size: 25px"
-                        >©</a
-                    ></strong
-                >
-            </div>
-        </div>
+        .highlight-box p {
+            color: #f0f0f5;
+            margin-bottom: 0;
+            font-size: 1.15rem;
+        }
 
-        <script src="https://player.vimeo.com/api/player.js"></script>
-        <script src="./js/main.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        />
+        .warning-box {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            border-radius: 18px;
+            padding: 35px 40px;
+            margin: 40px 0;
+        }
 
-        <!-- Bildirim Butonu ve Overlay -->
-        <button id="notificationBtn" class="notification-btn">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">0</span>
-        </button>
+        .warning-box p {
+            color: #fef3c7;
+            font-weight: 500;
+            font-size: 1.15rem;
+        }
 
-        <!-- Bildirim Overlay -->
-        <div id="notificationOverlay" class="notification-overlay">
-            <div class="notification-content">
-                <div class="notification-header">
-                    <h2>Bildirimler</h2>
-                    <span
-                        class="close-notification-btn"
-                        id="closeNotificationBtn"
-                        >×</span
-                    >
-                </div>
-                <div class="notification-list" id="notificationList">
-                    <!-- Bildirimler JavaScript ile oluşturulacak -->
-                </div>
-            </div>
-        </div>
+        .info-box {
+            background: rgba(96, 165, 250, 0.08);
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            border-radius: 18px;
+            padding: 35px 40px;
+            margin: 40px 0;
+        }
 
-        <style>
-            /* Bildirim Butonu Stili */
-            .notification-btn {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background: var(--accent-color);
-                color: white;
-                border: none;
-                cursor: pointer;
-                z-index: 99;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.2rem;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-                transition: all 0.3s ease;
+        .info-box p {
+            color: #dbeafe;
+            font-size: 1.15rem;
+        }
+
+        .signature {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            text-align: right;
+        }
+
+        .signature p {
+            color: #c9d1d9;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .signature .team-name {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #ffffff;
+            font-style: normal;
+        }
+
+        .emphasis {
+            color: #c084fc;
+            font-weight: 600;
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+                border-radius: 16px;
             }
 
-            .notification-btn:hover {
-                transform: scale(1.1);
-                background: #ffa500;
+            .logo {
+                font-size: 2.5rem;
             }
 
-            .notification-badge {
-                position: absolute;
-                top: -5px;
-                right: -5px;
-                background: #e74c3c;
-                color: white;
-                border-radius: 50%;
-                width: 20px;
-                height: 20px;
-                font-size: 0.7rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                animation: pulse-red 1.5s infinite;
-            }
-
-            @keyframes pulse-red {
-                0% {
-                    transform: scale(1);
-                    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
-                }
-                50% {
-                    transform: scale(1.1);
-                    box-shadow: 0 0 10px 5px rgba(231, 76, 60, 0);
-                }
-                100% {
-                    transform: scale(1);
-                    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
-                }
-            }
-
-            /* Bildirim Overlay Stili */
-            .notification-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.85);
-                backdrop-filter: blur(5px);
-                z-index: 1000;
-                justify-content: center;
-                align-items: center;
-                padding: 20px;
-                animation: fadeIn 0.3s ease-in-out;
-                pointer-events: auto;
-            }
-
-            .notification-content {
-                background: linear-gradient(135deg, #001f3f, #013a63);
-                width: 90%;
-                max-width: 500px;
-                border-radius: 15px;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                animation: slideIn 0.4s ease;
-                max-height: 80vh;
-                display: flex;
-                flex-direction: column;
-                pointer-events: auto;
-            }
-
-            .notification-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 15px 20px;
-                background: var(--card-bg);
-                border-bottom: 2px solid var(--accent-color);
-            }
-
-            .notification-header h2 {
-                margin: 0;
-                color: var(--text-color);
-                font-size: 1.5rem;
-            }
-
-            .close-notification-btn {
-                font-size: 2rem;
-                cursor: pointer;
-                color: var(--text-color);
-                transition: color 0.3s;
-            }
-
-            .close-notification-btn:hover {
-                color: var(--accent-color);
-            }
-
-            .notification-list {
-                padding: 10px;
-                overflow-y: auto;
-                max-height: calc(80vh - 60px);
-            }
-
-            .notification-item {
-                display: flex;
-                padding: 15px;
-                border-radius: 10px;
-                margin-bottom: 10px;
-                background: rgba(255, 255, 255, 0.05);
-                position: relative;
-                transition: all 0.3s ease;
-                cursor: pointer;
-            }
-
-            .notification-item:hover {
-                background: rgba(255, 255, 255, 0.1);
-                transform: translateY(-2px);
-            }
-
-            .notification-item.unread {
-                background: rgba(255, 133, 27, 0.1);
-                border-left: 3px solid var(--accent-color);
-            }
-
-            .notification-icon {
-                flex: 0 0 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: var(--accent-color);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-right: 15px;
-            }
-
-            .notification-text {
-                flex: 1;
-            }
-
-            .notification-text h3 {
-                margin: 0 0 5px 0;
+            .subtitle {
                 font-size: 1rem;
-                color: var(--text-color);
+                letter-spacing: 2px;
             }
 
-            .notification-text p {
-                margin: 0;
-                font-size: 0.9rem;
-                color: rgba(255, 255, 255, 0.8);
-                line-height: 1.4;
+            h2 {
+                font-size: 1.4rem;
             }
 
-            .notification-time {
-                display: block;
-                font-size: 0.75rem;
-                color: rgba(255, 255, 255, 0.5);
-                margin-top: 8px;
+            p {
+                font-size: 1.1rem;
             }
 
-            .notification-status {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                position: absolute;
-                top: 15px;
-                right: 15px;
+            body {
+                padding: 20px 15px;
+                font-size: 16px;
             }
 
-            .notification-item.unread .notification-status {
-                background: var(--accent-color);
+            .highlight-box,
+            .warning-box,
+            .info-box {
+                padding: 25px 20px;
             }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">HÜCON'26</h1>
+            <p class="subtitle">Kamuoyunun Bilgisine</p>
+        </header>
+
+        <main>
+            <p>Geçmiş yıllarda HÜCON etkinliğinin düzenlenmesinde birlikte rol oynadığımız bir öğrenci topluluğunun,
+                "HÜCON" adı altında, bizim planladığımız organizasyondan tamamen bağımsız bir etkinlik gerçekleştirmeyi
+                hedeflediğini, topluluğun kendi iletişim kanalları üzerinden yapılan bir paylaşımla öğrenmiş
+                bulunuyoruz.</p>
+
+            <p>Bu noktada kamuoyunun doğru bilgilendirilmesi adına bazı hususları açık ve net biçimde ifade etme
+                zorunluluğu doğmuştur.</p>
+
+            <p>Öncelikle belirtmek isteriz ki, söz konusu öğrenci topluluğu tarafından tarafımıza, "HÜCON'26" adıyla
+                gerçekleştirileceği iddia edilen etkinliğe ilişkin herhangi bir resmî ya da gayriresmî bilgilendirme,
+                görüşme ya da mutabakat süreci yürütülmemiştir. Bu durum, geçmiş yıllardaki deneyimler ve bu yıl yaşanan
+                gelişmeler göz önünde bulundurulduğunda ayrıca kaygı vericidir.</p>
+
+            <p>Bir önceki sene HÜCON organizasyonunun iptaline giden süreçte, etkinliğin paydaşlarından biri olan bu
+                öğrenci topluluğu kaynaklı ciddi yapısal ve yönetsel sorunlar yaşanmıştır. Bu deneyim, HÜCON ekibi
+                açısından yalnızca bir organizasyonun değil; emek, güven ve süreklilik ilkesinin de zarar gördüğü bir
+                süreç olmuştur.</p>
+
+            <p>2025–2026 dönemi başından itibaren ise, etkinliğin temel amacı, içeriği ve vizyonuna dair bu öğrenci
+                topluluğu tarafından yönlendirici ve dönüştürücü talepler gündeme gelmiş; bu durum HÜCON'un yıllar
+                içinde oluşmuş kimliğiyle bağdaşmadığı için taraflar arasında kaçınılmaz bir yol ayrılığı yaşanmıştır.
+                Bu ayrılığa rağmen, etkinliğin tamamen ortadan kalkmaması ve sürekliliğinin sağlanabilmesi adına HÜMAT
+                ve HUEST ekibi olarak süreci sahiplenmiş, dönemin başından bu yana ciddi bir emek ve zaman harcayarak
+                organizasyonu ayakta tutmaya yönelik çalışmalarımıza devam etmiş bulunmaktayız.</p>
+
+            <p>Ayrıca bu süreçte, söz konusu öğrenci topluluğu tarafından etkinliğin veto edilmesi, HÜCON'un devamlılığı
+                açısından önemli bir kırılma noktası yaratmış; buna rağmen ekip olarak geri adım atmadan, yalnızca
+                etkinliğin varlığını sürdürebilmesi için sorumluluk almaya devam etmiş bulunmaktayız.</p>
+
+            <p>Tüm bu yaşanmışlıklara rağmen, bugün gelinen noktada bu öğrenci topluluğunun, bilgimiz olmaksızın "HÜCON"
+                adıyla farklı bir etkinliği duyurması, kamuoyunda ciddi bir karmaşa yaratmaktadır.</p>
+
+            <div class="warning-box">
+                <p><strong>Bu nedenle açıkça ifade ediyoruz ki;</strong><br><br>
+                    Söz konusu etkinlik HÜCON'26'yı temsil etmemektedir. HÜCON'26'nın organizasyon süreci, planlanan
+                    içeriği, ekibi ve hedeflenen yapısı ile herhangi bir bağlantısı bulunmamaktadır.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p>HÜCON'26'ya ilişkin tüm resmî bilgiler (tarih, tema, içerik ve organizasyon yapısı), yalnızca resmî
+                    HÜCON hesabı üzerinden ve yetkili organizasyon ekibi tarafından ileri bir tarihte kamuoyuyla
+                    paylaşılacaktır. Bu kapsam dışında yapılan hiçbir duyuru HÜCON'26'yı temsil etmemektedir.</p>
+            </div>
+
+            <p>Toplulukların etkinlik üretme özgürlüğüne saygı duyuyoruz; ancak kamuoyunda oluşabilecek karışıklıkların
+                ve yanlış yönlendirmelerin önüne geçilebilmesi adına, HÜCON'la ilişkilendirilen etkinliklerin hangi
+                organizasyon tarafından yürütüldüğünün açık ve şeffaf biçimde belirtilmesinin önemli olduğunu kamuoyunun
+                bilgisine sunarız.</p>
+
+            <p><strong>Gereğinin bilinmesini isteriz.</strong></p>
+
+            <div class="signature">
+                <p class="team-name">HÜCON'26 Organizasyon Ekibi</p>
+            </div>
+        </main>
+    </div>
+</body>
 
-            .notification-empty {
-                text-align: center;
-                padding: 20px;
-                color: rgba(255, 255, 255, 0.6);
-                font-style: italic;
-            }
-
-            /* Buton Animasyonu */
-            .mark-all-read-btn {
-                position: relative;
-                overflow: hidden;
-            }
-
-            .mark-all-read-btn::after {
-                content: "";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 5px;
-                height: 5px;
-                background: rgba(255, 255, 255, 0.5);
-                opacity: 0;
-                border-radius: 100%;
-                transform: scale(1, 1) translate(-50%);
-                transform-origin: 50% 50%;
-            }
-
-            .mark-all-read-btn:focus:not(:active)::after {
-                animation: ripple 1s ease-out;
-            }
-
-            @keyframes ripple {
-                0% {
-                    transform: scale(0, 0);
-                    opacity: 0.5;
-                }
-                20% {
-                    transform: scale(25, 25);
-                    opacity: 0.3;
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(40, 40);
-                }
-            }
-
-            body.notifications-active .notification-overlay {
-                display: flex;
-            }
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-
-            @keyframes slideIn {
-                from {
-                    transform: translateY(-30px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-
-            /* 1) İmaj üzerinde çalışılmamış hali (default) */
-            .notification-image {
-                width: 100%;
-                border-radius: 8px;
-                margin: 10px 0 5px 0; /* eski margin */
-                object-fit: cover;
-                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                cursor: zoom-in !important; /* büyüteç simgesi */
-            }
-
-            /* 2) Tüm container’lardan overflow’u kaldır */
-            .notification-overlay,
-            .notification-content,
-            .notification-list {
-                overflow: visible !important;
-            }
-
-            /* 3) “zoomed” sınıfı eklendiğinde – imajı %90 ekran ortala */
-            .notification-image.zoomed {
-                margin: 0 !important; /* margin sıfır */
-                object-fit: contain !important;
-                position: fixed !important;
-                top: 50% !important;
-                left: 50% !important;
-                transform: translate(-50%, -50%) !important;
-                width: 90vw !important;
-                max-height: 90vh !important;
-                height: auto !important;
-                z-index: 10000 !important;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
-                cursor: zoom-out !important; /* küçültme simgesi */
-                transition: transform 0.2s ease-in-out !important;
-            }
-            /* Responsive adjustments */
-            @media (max-width: 768px) {
-                .notification-item:hover .notification-image {
-                    transform: scale(
-                        1.05
-                    ); /* Slightly smaller scale on mobile */
-                }
-            }
-
-            /* Mobil Uyumlu Düzenlemeler */
-            @media (max-width: 768px) {
-                .notification-btn {
-                    bottom: 15px;
-                    right: 15px;
-                    width: 45px;
-                    height: 45px;
-                }
-
-                .notification-content {
-                    width: 95%;
-                    max-height: 85vh;
-                }
-
-                .notification-header {
-                    padding: 12px 15px;
-                }
-
-                .notification-header h2 {
-                    font-size: 1.3rem;
-                }
-
-                .notification-item {
-                    padding: 12px;
-                }
-
-                .mark-all-read-btn {
-                    padding: 8px 16px;
-                    font-size: 0.85rem;
-                }
-            }
-        </style>
-
-        <script>
-            // Bildirim Sistemi - Geliştirilmiş Versiyon
-            document.addEventListener("DOMContentLoaded", function () {
-                // Gerekli elementleri seçelim
-                const body = document.body;
-                const notificationBtn =
-                    document.getElementById("notificationBtn");
-                const closeNotificationBtn = document.getElementById(
-                    "closeNotificationBtn"
-                );
-                const notificationOverlay = document.getElementById(
-                    "notificationOverlay"
-                );
-                const notificationBadge = document.querySelector(
-                    ".notification-badge"
-                );
-                const notificationList =
-                    document.getElementById("notificationList");
-
-                // Bildirim ayarları
-                const NOTIFICATION_SETTINGS = {
-                    autoDisplayOnLoad: true, // Sayfa yüklendiğinde bildirimleri otomatik göster
-                    autoDisplayDelay: 2000, // Otomatik gösterim gecikmesi (ms)
-                    refreshInterval: 60000, // Zaman bilgilerinin yenilenme sıklığı (ms)
-                    storageKey: "hucon_notifications", // LocalStorage anahtarı
-                };
-
-                // Bildirim verilerini tanımlayalım
-                const notifications = [
-                    {
-                        id: "notification4",
-                        icon: "fas fa-info-circle",
-                        title: "HUCON İPTAL EDİLDİ!",
-                        message: "TIklayıp detaylı bilgiye ulaşabilirsiniz!",
-                        time: new Date(2025, 3, 19, 14, 10), // 14 Nisan 2025, 14:30
-                        unread: true,
-                        link: "https://www.instagram.com/p/DIoN_BgILJo/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==", // Sayfa içi bağlantı
-                        image: "./img/Screenshot 2025-04-20 at 16-59-35 HUCON'25 (@hucon_25) • Instagram photos and videos.png", // Bildirim resmi ekledik
-                    },
-                    // {
-                    //     id: "notification2",
-                    //     icon: "fas fa-info-circle",
-                    //     title: "Cosplay Kayıt Başladı!",
-                    //     message:
-                    //         "Cosplay Yarışması Başvurusu Açıldı! Tıklayın!",
-                    //     time: new Date(2025, 3, 16, 20, 30), // 17 Nisan 2025, 20:30
-                    //     unread: true,
-                    //     link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
-                    //     image: "./img/fish.png", // Bildirim resmi ekledik
-                    // },
-                    // {
-                    //     id: "notification3",
-                    //     icon: "fas fa-exclamation-triangle",
-                    //     title: "HUCON İPTAL EDİLDİ!",
-                    //     message:
-                    //         "HUCON İPTAL EDİLDİ! DETAYLI BİLGİ İÇİN TIKLAYINIZ",
-                    //     time: new Date(2025, 3, 19, 14, 10), // 19 Nisan 2025, 14:10
-                    //     unread: true,
-                    //     link: "https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform?usp=header", // Sayfa içi bağlantı
-                    //     image: "./img/fish.png", // Bildirim resmi ekledik
-                    // },
-                ];
-
-                // LocalStorage Yönetimi
-                const NotificationStorage = {
-                    // Tüm bildirim durumlarını al
-                    getAll: function () {
-                        const data = localStorage.getItem(
-                            NOTIFICATION_SETTINGS.storageKey
-                        );
-                        return data
-                            ? JSON.parse(data)
-                            : {
-                                  readNotifications: [],
-                                  lastSeenTime: 0,
-                              };
-                    },
-
-                    // Bildirim durumlarını kaydet
-                    save: function (data) {
-                        localStorage.setItem(
-                            NOTIFICATION_SETTINGS.storageKey,
-                            JSON.stringify(data)
-                        );
-                    },
-
-                    // Okunmuş bildirimleri al
-                    getReadNotifications: function () {
-                        return this.getAll().readNotifications || [];
-                    },
-
-                    // Son görülme zamanını al
-                    getLastSeenTime: function () {
-                        return this.getAll().lastSeenTime || 0;
-                    },
-
-                    // Bildirimi okundu olarak işaretle
-                    markAsRead: function (notificationId) {
-                        const data = this.getAll();
-                        if (!data.readNotifications.includes(notificationId)) {
-                            data.readNotifications.push(notificationId);
-                            this.save(data);
-                        }
-                    },
-
-                    // Son görülme zamanını güncelle
-                    updateLastSeenTime: function () {
-                        const data = this.getAll();
-                        data.lastSeenTime = Date.now();
-                        this.save(data);
-                    },
-                };
-
-                // Zaman Formatla
-                function formatTime(date) {
-                    const now = new Date();
-                    const diff = now - date;
-
-                    const seconds = Math.floor(diff / 1000);
-                    const minutes = Math.floor(seconds / 60);
-                    const hours = Math.floor(minutes / 60);
-                    const days = Math.floor(hours / 24);
-
-                    // Eğer fark 1 günden az ise saat:dakika olarak göster
-                    if (days < 1) {
-                        // Aynı gün ise "Bugün" olarak göster
-                        if (date.getDate() === now.getDate()) {
-                            let h = date.getHours();
-                            let m = date.getMinutes();
-                            return `Bugün, ${h < 10 ? "0" + h : h}:${
-                                m < 10 ? "0" + m : m
-                            }`;
-                        }
-
-                        // Dün ise "Dün" olarak göster
-                        if (date.getDate() === now.getDate() - 1) {
-                            let h = date.getHours();
-                            let m = date.getMinutes();
-                            return `Dün, ${h < 10 ? "0" + h : h}:${
-                                m < 10 ? "0" + m : m
-                            }`;
-                        }
-                    }
-
-                    // 7 günden az ise gün adı ve saat:dakika olarak göster
-                    if (days < 7) {
-                        const dayNames = [
-                            "Pazar",
-                            "Pazartesi",
-                            "Salı",
-                            "Çarşamba",
-                            "Perşembe",
-                            "Cuma",
-                            "Cumartesi",
-                        ];
-                        let h = date.getHours();
-                        let m = date.getMinutes();
-                        return `${dayNames[date.getDay()]}, ${
-                            h < 10 ? "0" + h : h
-                        }:${m < 10 ? "0" + m : m}`;
-                    }
-
-                    // Diğer durumlar için tam tarih
-                    return `${date.getDate()} ${date.toLocaleString("tr-TR", { month: "long" })}, ${date.getFullYear()}`;
-                }
-
-                // Bildirimleri oluştur ve göster
-                function renderNotifications() {
-                    // Okunmuş bildirimleri al
-                    const readNotifications =
-                        NotificationStorage.getReadNotifications();
-
-                    // Bildirimleri tarih sırasına göre sırala (en yeni üstte)
-                    const sortedNotifications = [...notifications].sort(
-                        (a, b) => b.time - a.time
-                    );
-
-                    // Önce listeyi temizle
-                    notificationList.innerHTML = "";
-
-                    // Bildirimleri ekle
-                    if (sortedNotifications.length === 0) {
-                        notificationList.innerHTML =
-                            '<div class="notification-empty">Henüz bildirim bulunmuyor.</div>';
-                    } else {
-                        sortedNotifications.forEach((notification) => {
-                            // LocalStorage'da okunmuş mu kontrol et
-                            const isRead = readNotifications.includes(
-                                notification.id
-                            );
-
-                            // Bildirim öğesini oluştur
-                            const notificationElement =
-                                document.createElement("div");
-                            notificationElement.className = `notification-item ${
-                                isRead ? "" : "unread"
-                            }`;
-                            notificationElement.dataset.id = notification.id;
-
-                            // Bildirimin link yönlendirmesi varsa data-link ekle
-                            if (notification.link) {
-                                notificationElement.dataset.link =
-                                    notification.link;
-                            }
-
-                            // HTML içeriğini oluştur
-                            let notificationHTML = `
-                        <div class="notification-icon">
-                            <i class="${notification.icon}"></i>
-                        </div>
-                        <div class="notification-text">
-                            <h3>${notification.title}</h3>
-                            <p>${notification.message}</p>`;
-
-                            // Eğer bildirimde resim varsa ekle
-                            if (notification.image) {
-                                notificationHTML += `
-                            <img src="${notification.image}" alt="${notification.title}" class="notification-image">`;
-                            }
-
-                            // Zaman bilgisini ve diğer öğeleri ekle
-                            notificationHTML += `
-                            <span class="notification-time">${formatTime(
-                                notification.time
-                            )}</span>
-                        </div>
-                        <div class="notification-status"></div>`;
-
-                            // HTML'i element içine ekle
-                            notificationElement.innerHTML = notificationHTML;
-
-                            // Bildirime tıklama işlevini ekle
-                            notificationElement.addEventListener(
-                                "click",
-                                function () {
-                                    // Bildirimi okundu olarak işaretle
-                                    markAsRead(notification.id);
-
-                                    // Yönlendirme varsa işle
-                                    if (notification.link) {
-                                        // Sayfa içi bağlantı mı?
-                                        if (notification.link.startsWith("#")) {
-                                            // Bildirim panelini kapat
-                                            hideNotifications();
-
-                                            // Belirli bir süre sonra sayfayı kaydır
-                                            setTimeout(() => {
-                                                const target =
-                                                    document.querySelector(
-                                                        notification.link
-                                                    );
-                                                if (target) {
-                                                    target.scrollIntoView({
-                                                        behavior: "smooth",
-                                                        block: "start",
-                                                    });
-                                                }
-                                            }, 300);
-                                        } else {
-                                            // Harici bağlantı
-                                            window.open(
-                                                notification.link,
-                                                "_blank"
-                                            );
-                                        }
-                                    }
-                                }
-                            );
-
-                            notificationList.appendChild(notificationElement);
-                        });
-                    }
-
-                    // Okunmamış bildirimleri güncelle
-                    updateUnreadCount();
-
-                    // Tümünü okundu işaretle butonunu güncelle
-                    updateMarkAllReadButton();
-                }
-
-                // Bildirimi okundu olarak işaretle
-                function markAsRead(id) {
-                    // DOM'da bildirim öğesini bul ve okundu olarak işaretle
-                    const notificationElement = document.querySelector(
-                        `.notification-item[data-id="${id}"]`
-                    );
-                    if (notificationElement) {
-                        notificationElement.classList.remove("unread");
-                    }
-
-                    // LocalStorage'a kaydet
-                    NotificationStorage.markAsRead(id);
-
-                    // Okunmamış bildirim sayısını güncelle
-                    updateUnreadCount();
-
-                    // Tümünü okundu işaretle butonunu güncelle
-                    updateMarkAllReadButton();
-                }
-
-                // Tüm bildirimleri okundu olarak işaretle
-                function markAllAsRead() {
-                    // Tüm bildirimlerin ID'lerini al
-                    const allIds = notifications.map(
-                        (notification) => notification.id
-                    );
-
-                    // DOM'da tüm bildirim öğelerini okundu olarak işaretle
-                    document
-                        .querySelectorAll(".notification-item.unread")
-                        .forEach((element) => {
-                            element.classList.remove("unread");
-                        });
-
-                    // Her bildirimi localStorage'da okundu olarak işaretle
-                    allIds.forEach((id) => NotificationStorage.markAsRead(id));
-
-                    // Okunmamış bildirim sayısını güncelle
-                    updateUnreadCount();
-
-                    // Butonu güncelle (bu durumda kaldır)
-                    updateMarkAllReadButton();
-                }
-
-                // Okunmamış bildirimleri güncelle
-                function updateUnreadCount() {
-                    const readNotifications =
-                        NotificationStorage.getReadNotifications();
-
-                    // Okunmamış bildirimleri say
-                    const unreadCount = notifications.filter(
-                        (notification) =>
-                            !readNotifications.includes(notification.id)
-                    ).length;
-
-                    // Bildirim rozetini güncelle
-                    if (unreadCount > 0) {
-                        notificationBadge.textContent = unreadCount;
-                        notificationBadge.style.display = "flex";
-                    } else {
-                        notificationBadge.style.display = "none";
-                    }
-                }
-
-                // Bildirimleri göster
-                function showNotifications() {
-                    body.classList.add("notifications-active");
-                    body.style.overflow = "hidden";
-                    notificationOverlay.style.display = "flex";
-
-                    // Son görüntüleme zamanını güncelle
-                    NotificationStorage.updateLastSeenTime();
-                }
-
-                // Bildirimleri gizle
-                function hideNotifications() {
-                    body.classList.remove("notifications-active");
-                    body.style.overflow = "";
-                    notificationOverlay.style.display = "none";
-                }
-
-                // Yeni bildirim var mı kontrol et
-                function hasNewNotifications() {
-                    const lastSeenTime = NotificationStorage.getLastSeenTime();
-                    const readNotifications =
-                        NotificationStorage.getReadNotifications();
-
-                    return notifications.some((notification) => {
-                        // Okunmamış ve son görülmeden sonra eklenmiş bildirimleri bul
-                        return (
-                            !readNotifications.includes(notification.id) &&
-                            notification.time.getTime() > lastSeenTime
-                        );
-                    });
-                }
-
-                // Zaman bilgilerini güncelle
-                function updateTimestamps() {
-                    document
-                        .querySelectorAll(".notification-time")
-                        .forEach((timeElement, index) => {
-                            const notificationId =
-                                timeElement.closest(".notification-item")
-                                    .dataset.id;
-                            const notification = notifications.find(
-                                (n) => n.id === notificationId
-                            );
-
-                            if (notification) {
-                                timeElement.textContent = formatTime(
-                                    notification.time
-                                );
-                            }
-                        });
-                }
-
-                // "Tümünü Okundu Olarak İşaretle" butonunu ekle/güncelle
-                function updateMarkAllReadButton() {
-                    // Önce varolan butonu kaldır
-                    const existingBtn =
-                        document.querySelector(".mark-all-read-btn");
-                    if (existingBtn) {
-                        existingBtn.remove();
-                    }
-
-                    // Okunmamış bildirim sayısını kontrol et
-                    const readNotifications =
-                        NotificationStorage.getReadNotifications();
-                    const unreadCount = notifications.filter(
-                        (notification) =>
-                            !readNotifications.includes(notification.id)
-                    ).length;
-
-                    // Eğer okunmamış bildirim varsa butonu göster
-                    if (unreadCount > 0) {
-                        const markAllBtn = document.createElement("button");
-                        markAllBtn.className = "mark-all-read-btn";
-                        markAllBtn.textContent = "Tümünü Okundu İşaretle";
-                        markAllBtn.style.cssText = `
-                    background: linear-gradient(135deg, #007BFF, #00A3FF);
-                    color: white;
-                    border: none;
-                    border-radius: 20px;
-                    padding: 10px 20px;
-                    margin: 15px auto 10px auto;
-                    cursor: pointer;
-                    display: block;
-                    font-size: 0.95rem;
-                    font-weight: 500;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                `;
-
-                        markAllBtn.addEventListener("mouseenter", function () {
-                            this.style.background =
-                                "linear-gradient(135deg, #0069D9, #0090EA)";
-                            this.style.transform = "translateY(-2px)";
-                            this.style.boxShadow =
-                                "0 6px 12px rgba(0, 0, 0, 0.25)";
-                        });
-
-                        markAllBtn.addEventListener("mouseleave", function () {
-                            this.style.background =
-                                "linear-gradient(135deg, #007BFF, #00A3FF)";
-                            this.style.transform = "translateY(0)";
-                            this.style.boxShadow =
-                                "0 4px 8px rgba(0, 0, 0, 0.2)";
-                        });
-
-                        markAllBtn.addEventListener("click", markAllAsRead);
-
-                        // Bildirimlerin ALTINA ekle
-                        notificationList.after(markAllBtn);
-                    }
-                }
-
-                // Bildirim resimlerinin yüklenme hatalarını yönet
-                function handleImageErrors() {
-                    document
-                        .querySelectorAll(".notification-image")
-                        .forEach((img) => {
-                            img.onerror = function () {
-                                // Hata durumunda placeholder resim göster veya resmi gizle
-                                this.src = "./img/placeholder.jpg"; // Varsayılan placeholder resim
-                                // Alternatif olarak: this.style.display = 'none';
-                            };
-                        });
-                }
-
-                // Olay dinleyicilerini ekle
-                function setupEventListeners() {
-                    // Bildirim butonuna tıklanınca
-                    notificationBtn.addEventListener(
-                        "click",
-                        showNotifications
-                    );
-
-                    // Kapatma butonuna tıklanınca
-                    closeNotificationBtn.addEventListener(
-                        "click",
-                        hideNotifications
-                    );
-
-                    // Overlay dışına tıklanınca kapat
-                    notificationOverlay.addEventListener("click", function (e) {
-                        if (e.target === notificationOverlay) {
-                            hideNotifications();
-                        }
-                    });
-
-                    // ESC tuşuna basınca kapat
-                    document.addEventListener("keydown", function (e) {
-                        if (
-                            e.key === "Escape" &&
-                            body.classList.contains("notifications-active")
-                        ) {
-                            hideNotifications();
-                        }
-                    });
-                }
-
-                // Uygulamayı başlat
-                function initNotifications() {
-                    // Olay dinleyicilerini ekle
-                    setupEventListeners();
-
-                    // Bildirimleri oluştur
-                    renderNotifications();
-
-                    // Resim hata yönetimini ayarla
-                    handleImageErrors();
-
-                    // Zamanları periyodik olarak güncelle
-                    setInterval(
-                        updateTimestamps,
-                        NOTIFICATION_SETTINGS.refreshInterval
-                    );
-
-                    // Sayfa yüklendiğinde otomatik gösterme
-                    if (NOTIFICATION_SETTINGS.autoDisplayOnLoad) {
-                        setTimeout(() => {
-                            showNotifications();
-                        }, NOTIFICATION_SETTINGS.autoDisplayDelay);
-                    }
-                }
-
-                // Başlat
-                initNotifications();
-            });
-        </script>
-    </body>
 </html>

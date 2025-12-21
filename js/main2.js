@@ -1,164 +1,226 @@
-jQuery(document).ready(function ($) {
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $(".back-to-top").fadeIn("slow");
-        } else {
-            $(".back-to-top").fadeOut("slow");
-        }
-    });
-    $(".back-to-top").click(function () {
-        $("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo");
-        return false;
-    });
+// Vimeo Video Modal İşlevselliği
+const openModal = document.getElementById("openModal");
+const closeModal = document.getElementById("closeModal");
+const videoModal = document.getElementById("videoModal");
+const player = new Vimeo.Player(document.getElementById("vimeoVideo"));
 
-    // Header fixed on scroll
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $("#header").addClass("header-scrolled");
-        } else {
-            $("#header").removeClass("header-scrolled");
-        }
-    });
-
-    if ($(window).scrollTop() > 100) {
-        $("#header").addClass("header-scrolled");
-    }
-
-    // Real view height for mobile devices
-    if (window.matchMedia("(max-width: 767px)").matches) {
-        $("#intro").css({ height: $(window).height() });
-    }
-
-    // Initiate the wowjs animation library
-    new WOW().init();
-
-    // Initialize Venobox
-    $(".venobox").venobox({
-        bgcolor: "",
-        overlayColor: "rgba(6, 12, 34, 0.85)",
-        closeBackground: "",
-        closeColor: "#fff",
-    });
-
-    // Initiate superfish on nav menu
-    $(".nav-menu").superfish({
-        animation: {
-            opacity: "show",
-        },
-        speed: 400,
-    });
-
-    // Mobile Navigation
-    if ($("#nav-menu-container").length) {
-        var $mobile_nav = $("#nav-menu-container").clone().prop({
-            id: "mobile-nav",
-        });
-        $mobile_nav.find("> ul").attr({
-            class: "",
-            id: "",
-        });
-        $("body").append($mobile_nav);
-        $("body").prepend(
-            '<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>'
-        );
-        $("body").append('<div id="mobile-body-overly"></div>');
-        $("#mobile-nav")
-            .find(".menu-has-children")
-            .prepend('<i class="fa fa-chevron-down"></i>');
-
-        $(document).on("click", ".menu-has-children i", function (e) {
-            $(this).next().toggleClass("menu-item-active");
-            $(this).nextAll("ul").eq(0).slideToggle();
-            $(this).toggleClass("fa-chevron-up fa-chevron-down");
-        });
-
-        $(document).on("click", "#mobile-nav-toggle", function (e) {
-            $("body").toggleClass("mobile-nav-active");
-            $("#mobile-nav-toggle i").toggleClass("fa-times fa-bars");
-            $("#mobile-body-overly").toggle();
-        });
-
-        $(document).click(function (e) {
-            var container = $("#mobile-nav, #mobile-nav-toggle");
-            if (
-                !container.is(e.target) &&
-                container.has(e.target).length === 0
-            ) {
-                if ($("body").hasClass("mobile-nav-active")) {
-                    $("body").removeClass("mobile-nav-active");
-                    $("#mobile-nav-toggle i").toggleClass("fa-times fa-bars");
-                    $("#mobile-body-overly").fadeOut();
-                }
-            }
-        });
-    } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
-        $("#mobile-nav, #mobile-nav-toggle").hide();
-    }
-
-    // Smooth scroll for the menu and links with .scrollto classes
-    $(".nav-menu a, #mobile-nav a, .scrollto").on("click", function () {
-        if (
-            location.pathname.replace(/^\//, "") ==
-                this.pathname.replace(/^\//, "") &&
-            location.hostname == this.hostname
-        ) {
-            var target = $(this.hash);
-            if (target.length) {
-                var top_space = 0;
-
-                if ($("#header").length) {
-                    top_space = $("#header").outerHeight();
-
-                    if (!$("#header").hasClass("header-fixed")) {
-                        top_space = top_space - 20;
-                    }
-                }
-
-                $("html, body").animate(
-                    {
-                        scrollTop: target.offset().top - top_space,
-                    },
-                    1500,
-                    "easeInOutExpo"
-                );
-
-                if ($(this).parents(".nav-menu").length) {
-                    $(".nav-menu .menu-active").removeClass("menu-active");
-                    $(this).closest("li").addClass("menu-active");
-                }
-
-                if ($("body").hasClass("mobile-nav-active")) {
-                    $("body").removeClass("mobile-nav-active");
-                    $("#mobile-nav-toggle i").toggleClass("fa-times fa-bars");
-                    $("#mobile-body-overly").fadeOut();
-                }
-                return false;
-            }
-        }
-    });
-
-    // Gallery carousel (uses the Owl Carousel library)
-    $(".gallery-carousel").owlCarousel({
-        autoplay: true,
-        dots: true,
-        loop: true,
-        center: true,
-        responsive: {
-            0: { items: 1 },
-            768: { items: 3 },
-            992: { items: 4 },
-            1200: { items: 5 },
-        },
-    });
-
-    // Buy tickets select the ticket type on click
-    $("#buy-ticket-modal").on("show.bs.modal", function (event) {
-        var button = $(event.relatedTarget);
-        var ticketType = button.data("ticket-type");
-        var modal = $(this);
-        modal.find("#ticket-type").val(ticketType);
-    });
-
-    // custom code
+openModal.addEventListener("click", () => {
+    videoModal.style.display = "block";
 });
+
+closeModal.addEventListener("click", () => {
+    videoModal.style.display = "none";
+    player.pause();
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === videoModal) {
+        videoModal.style.display = "none";
+        player.pause();
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const linksOverlay = document.getElementById("linksOverlay");
+
+    document.getElementById("openLinks").addEventListener("click", function () {
+        linksOverlay.style.display = "flex";
+    });
+
+    document
+        .getElementById("closeLinks")
+        .addEventListener("click", function () {
+            linksOverlay.style.display = "none";
+        });
+
+    // Overlay dışına tıklandığında kapat
+    linksOverlay.addEventListener("click", function (event) {
+        // Eğer tıklanan alan doğrudan overlay ise (içerideki kutu hariç)
+        if (event.target === linksOverlay) {
+            linksOverlay.style.display = "none";
+        }
+    });
+});
+
+// Program Sekme Geçişi
+const tabs = document.querySelectorAll(".tab");
+const contents = document.querySelectorAll(".program-content");
+
+tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        const day = tab.getAttribute("data-day");
+        contents.forEach((content) => {
+            content.classList.remove("active");
+            if (content.id === day) {
+                content.classList.add("active");
+            }
+        });
+    });
+});
+
+// Program animasyon düzeltmesi
+document.addEventListener("DOMContentLoaded", function () {
+    const timelineEvents = document.querySelectorAll(".timeline-event");
+
+    function checkVisibility() {
+        timelineEvents.forEach((event) => {
+            const rect = event.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) {
+                event.classList.add("visible");
+            }
+        });
+    }
+
+    // İlk yüklemede kontrol
+    checkVisibility();
+
+    // Scroll sırasında kontrol
+    window.addEventListener("scroll", checkVisibility);
+});
+
+// Katılımcı kart etkileşimi
+document.querySelectorAll(".participant-card").forEach((card) => {
+    card.addEventListener("click", function () {
+        // Modal açma mantığı buraya eklenecek
+        console.log(
+            "Katılımcı detayları göster:",
+            this.querySelector("h3").textContent
+        );
+    });
+});
+
+// Countdown Script
+const countDownDate = new Date("Apr 26, 2025 10:00:00").getTime();
+
+const x = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    document.getElementById("days").innerText = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+    );
+    document.getElementById("hours").innerText = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    document.getElementById("minutes").innerText = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+    );
+}, 1000);
+
+window.addEventListener("scroll", () => {
+    const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.querySelector(".scroll-progress").style.width = scrolled + "%";
+});
+
+document.querySelectorAll(".faq-question").forEach((item) => {
+    item.addEventListener("click", () => {
+        const parent = item.parentElement;
+        const answer = parent.querySelector(".faq-answer");
+        const icon = item.querySelector("i");
+
+        // Diğer açık olanları kapat
+        document.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (
+                otherItem !== parent &&
+                otherItem.classList.contains("active")
+            ) {
+                otherItem.classList.remove("active");
+                otherItem.querySelector(".faq-answer").style.maxHeight = "0";
+                otherItem.querySelector("i").style.transform = "rotate(0deg)";
+            }
+        });
+
+        // Tıklananı aç/kapat
+        parent.classList.toggle("active");
+        if (parent.classList.contains("active")) {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            icon.style.transform = "rotate(45deg)";
+        } else {
+            answer.style.maxHeight = "0";
+            icon.style.transform = "rotate(0deg)";
+        }
+    });
+});
+
+// Custom Cursor
+const cursor = document.querySelector(".custom-cursor");
+document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+document.querySelectorAll("a, button, .participant-card").forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+    });
+    element.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+    });
+});
+
+// Sayfa Görünürlük Animasyonu - Kitap Sayfası Efekti
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section");
+
+    // IntersectionObserver ile section görünürlüğünü takip et
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15,
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("page-visible");
+            }
+        });
+    }, observerOptions);
+
+    // Tüm section'ları observe et
+    sections.forEach((section) => {
+        sectionObserver.observe(section);
+    });
+
+    // Sayfa çevirme ipucunu gizle (scroll olunca)
+    const pageTurnHint = document.querySelector(".page-turn-hint");
+    if (pageTurnHint) {
+        window.addEventListener(
+            "scroll",
+            function () {
+                if (window.scrollY > 100) {
+                    pageTurnHint.style.opacity = "0";
+                    pageTurnHint.style.transition = "opacity 0.5s ease";
+                } else {
+                    pageTurnHint.style.opacity = "0.8";
+                }
+            },
+            { passive: true }
+        );
+    }
+});
+
+// Scroll Progress güncelle
+window.addEventListener(
+    "scroll",
+    () => {
+        const winScroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const progressBar = document.querySelector(".scroll-progress");
+        if (progressBar) {
+            progressBar.style.width = scrolled + "%";
+        }
+    },
+    { passive: true }
+);
