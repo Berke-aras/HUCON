@@ -69,6 +69,13 @@
 
 <body>
 
+    <!-- Ambient Particles -->
+    <div class="particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+    </div>
+
     <button class="nav-btn nav-prev" id="prevBtn" aria-label="Önceki sayfa">
         <i class="fas fa-chevron-left"></i>
     </button>
@@ -86,19 +93,14 @@
 
                     <img src="img/hlogo.png" alt="HUCON logosu" class="float-anim cover-logo">
 
-                    <h1
-                        style="font-size: 3rem; color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.5); line-height: 1;">
-                        HUCON'25</h1>
-                    <h2
-                        style="font-size: 1.2rem; color: var(--parchment); margin-top: 10px; letter-spacing: 3px; font-weight: 400;">
-                        FAIRY TALE & MITOLOJİ</h2>
+                    <h1 class="cover-title">HUCON'25</h1>
+                    <h2 class="cover-subtitle">FAIRY TALE & MITOLOJİ</h2>
 
-                    <div style="margin: 20px 0; font-size: 2rem; color: var(--gold);">
+                    <div class="cover-ornament">
                         <i class="fas fa-dragon"></i> &#10023; <i class="fas fa-scroll"></i>
                     </div>
 
-                    <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 5px;">Hacettepe Beytepe
-                        Kampüsü</p>
+                    <p class="cover-location">Hacettepe Beytepe Kampüsü</p>
 
                     <div class="countdown">
                         <div class="countdown-item">
@@ -114,6 +116,11 @@
                             <small>Dakika</small>
                         </div>
                     </div>
+
+                    <div class="open-hint">
+                        <i class="fas fa-book-open"></i>
+                        <span>Sayfayı Çevir</span>
+                    </div>
                 </div>
 
                 <div class="back">
@@ -121,28 +128,27 @@
 
                     <h2 class="page-title">Üç Diyarın Efsanesi</h2>
 
-                    <div class="page-content" style="padding: 0 5px;">
+                    <div class="page-content page-content-narrow">
                         <p><span class="drop-cap">E</span>fsaneler uyanıyor, kadim kapılar aralanıyor. Bu yıl Hucon'da
                             sadece bir etkinlik değil, zamanın ötesine bir yolculuk var.</p>
 
                         <div class="myth-section myth-turk">
                             <div class="myth-title">
-                                <i class="fas fa-paw myth-icon" style="color:var(--turk-cyan)"></i>
+                                <i class="fas fa-paw myth-icon"></i>
                                 Bozkırın Ruhu
                             </div>
                         </div>
 
                         <div class="myth-section myth-greek">
                             <div class="myth-title">
-                                <i class="fas fa-landmark myth-icon" style="color:var(--greek-blue)"></i>
+                                <i class="fas fa-landmark myth-icon"></i>
                                 Olympos Zirvesi
                             </div>
                         </div>
 
                         <div class="myth-section myth-viking">
                             <div class="myth-title">
-                                <i class="fas fa-gavel myth-icon"
-                                    style="color:var(--viking-red); transform: rotate(-15deg);"></i>
+                                <i class="fas fa-gavel myth-icon"></i>
                                 Valhalla Çağrısı
                             </div>
                         </div>
@@ -161,14 +167,12 @@
                         <p>Kaderin ağlarını ördüğü o an geliyor. Hazırlıklarını yap, kostümünü kuşan.</p>
 
                         <div class="time-box">
-                            <h3 style="color:var(--ink-brown); margin-bottom:5px; font-size:1.3rem;"><i
-                                    class="far fa-clock"></i> Buluşma Vakti</h3>
-                            <p style="font-size:1.1rem; font-weight:bold; margin-bottom:0; font-style:italic;">Yakında Duyurulacak</p>
+                            <h3><i class="far fa-clock"></i> Buluşma Vakti</h3>
+                            <p class="time-box-pending">Yakında Duyurulacak</p>
                         </div>
 
-                        <p style="margin-bottom: 5px;"><strong>Konum:</strong> Beytepe Kongre Merkezi</p>
-                        <p style="margin-bottom: 10px; font-size:1rem; opacity:0.8;"><em>"Tüm yollar büyüye
-                                çıkıyor."</em></p>
+                        <p><strong>Konum:</strong> Beytepe Kongre Merkezi</p>
+                        <p class="page-quote"><em>"Tüm yollar büyüye çıkıyor."</em></p>
 
                         <div class="map-container map-section">
                             <iframe class="map-frame"
@@ -185,25 +189,25 @@
                     <div class="page-border"></div>
                     <h2 class="page-title">1. Gün: Yaratılış</h2>
 
-                    <ul style="list-style: none; padding: 0 5px;">
+                    <ul class="schedule-list">
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">10:00</strong> -
+                            <strong class="schedule-time">10:00</strong> -
                             Kapıların Açılışı ve Karşılama
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">11:30</strong>
-                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                            <strong class="schedule-time-pending">11:30</strong>
+                            <span class="schedule-pending"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">14:00</strong>
-                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                            <strong class="schedule-time-pending">14:00</strong>
+                            <span class="schedule-pending"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">16:00</strong>
-                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                            <strong class="schedule-time-pending">16:00</strong>
+                            <span class="schedule-pending"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">18:00</strong> -
+                            <strong class="schedule-time">18:00</strong> -
                             Kapanış
                         </li>
                     </ul>
@@ -217,25 +221,25 @@
                     <div class="page-border"></div>
                     <h2 class="page-title">2. Gün: Kıyamet</h2>
 
-                    <ul style="list-style: none; padding: 0 5px;">
+                    <ul class="schedule-list">
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">10:00</strong> -
+                            <strong class="schedule-time">10:00</strong> -
                             Kapıların Açılışı
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">12:00</strong>
-                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                            <strong class="schedule-time-pending">12:00</strong>
+                            <span class="schedule-pending"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">13:00</strong>
-                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                            <strong class="schedule-time-pending">13:00</strong>
+                            <span class="schedule-pending"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">15:30</strong>
-                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                            <strong class="schedule-time-pending">15:30</strong>
+                            <span class="schedule-pending"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">17:30</strong> -
+                            <strong class="schedule-time">17:30</strong> -
                             Ödül Töreni ve Kapanış
                         </li>
                     </ul>
@@ -252,22 +256,20 @@
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform"
                             target="_blank" rel="noopener noreferrer" class="apply-link">
                             <div class="myth-section myth-viking" role="button" tabindex="0">
-                                <h3 style="color:var(--viking-red); font-size:1.2rem;"><i class="fas fa-mask"></i>
+                                <h3 class="apply-heading"><i class="fas fa-mask"></i>
                                     Cosplay Yarışması</h3>
-                                <p style="font-size:0.9rem;">Sahne senin. En iyi kostümünü sergile.</p>
-                                <div style="text-align:right; font-size:0.8rem; color:var(--viking-red);"><i
-                                        class="fas fa-arrow-right"></i> Başvur</div>
+                                <p class="apply-desc">Sahne senin. En iyi kostümünü sergile.</p>
+                                <div class="apply-cta"><i class="fas fa-arrow-right"></i> Başvur</div>
                             </div>
                         </a>
 
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform"
                             target="_blank" rel="noopener noreferrer" class="apply-link">
                             <div class="myth-section myth-turk" role="button" tabindex="0">
-                                <h3 style="color:var(--turk-cyan); font-size:1.2rem;"><i class="fas fa-dice-d20"></i>
+                                <h3 class="apply-heading"><i class="fas fa-dice-d20"></i>
                                     Dungeon Master</h3>
-                                <p style="font-size:0.9rem;">Kendi maceranı yönetmek ister misin?</p>
-                                <div style="text-align:right; font-size:0.8rem; color:var(--turk-cyan);"><i
-                                        class="fas fa-arrow-right"></i> Başvur</div>
+                                <p class="apply-desc">Kendi maceranı yönetmek ister misin?</p>
+                                <div class="apply-cta"><i class="fas fa-arrow-right"></i> Başvur</div>
                             </div>
                         </a>
                     </div>
@@ -282,33 +284,41 @@
                     <h2 class="page-title">Sıkça Sorulanlar</h2>
 
                     <div class="page-content">
-                        <div style="margin-bottom:15px;">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">Giriş Ücretli
-                                mi?</strong>
+                        <div class="faq-item">
+                            <strong class="faq-question">Giriş Ücretli mi?</strong>
                             <p>Hayır! Hucon, tüm fantastik evren gezginlerine ücretsizdir.</p>
                         </div>
-                        <div style="margin-bottom:15px;">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">Kostüm Zorunlu
-                                mu?</strong>
+                        <div class="faq-item">
+                            <strong class="faq-question">Kostüm Zorunlu mu?</strong>
                             <p>Hayır, sivil de gelebilirsin ama büyüyü bozmamak için bir pelerin fena olmaz!</p>
+                        </div>
+                        <div class="faq-item">
+                            <strong class="faq-question">Etkinlik Ne Zaman?</strong>
+                            <p>Etkinlik tarihi yakında duyurulacaktır. Sosyal medya hesaplarımızı takip edin!</p>
+                        </div>
+                        <div class="faq-item">
+                            <strong class="faq-question">Cosplay Yarışmasına Nasıl Katılabilirim?</strong>
+                            <p>"Kahraman Ol" sayfasındaki başvuru formunu doldurarak katılabilirsin.</p>
+                        </div>
+                        <div class="faq-item">
+                            <strong class="faq-question">Bize Nereden Ulaşabilirsiniz?</strong>
+                            <p>Instagram ve X hesaplarımızdan bize yazabilirsiniz.</p>
                         </div>
                     </div>
                     <div class="page-number">- 7 -</div>
                 </div>
 
-                <div class="back cover-back"
-                    style="background: var(--book-cover); color: var(--gold); border-left: 2px solid var(--book-spine);">
-                    <div
-                        style="position:absolute; inset:0; background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4='); opacity:0.3;">
-                    </div>
+                <div class="back cover-back">
+                    <div class="cover-back-texture"></div>
 
-                    <div
-                        style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; z-index:2;">
+                    <div class="cover-back-content">
+                        <img src="img/hlogo.png" alt="HUCON logosu" class="back-logo">
 
-                        <div style="font-size: 4rem; opacity:0.8; margin-bottom:20px;">&#10086;</div>
+                        <div class="back-ornament">&#10086;</div>
 
-                        <h2 style="font-family:'Cinzel Decorative'; font-size: 2rem;">Görüşmek Üzere</h2>
-                        <p style="color:var(--parchment); opacity:0.7; margin-top:10px;">Masal burada bitmiyor...</p>
+                        <h2 class="back-title">Görüşmek Üzere</h2>
+                        <p class="back-tagline">Masal burada bitmiyor...</p>
+                        <p class="back-teaser">Bir sonraki bölüm yakında...</p>
 
                         <div class="social-links">
                             <a href="https://instagram.com/hucon_25" target="_blank" rel="noopener noreferrer"
@@ -321,7 +331,7 @@
                             </a>
                         </div>
 
-                        <div style="margin-top: 50px; font-size: 0.8rem; color: rgba(255,255,255,0.3);">
+                        <div class="copyright">
                             &copy; 2025 HUCON - Hacettepe Üniversitesi
                         </div>
                     </div>

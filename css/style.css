@@ -47,6 +47,45 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 
+/* ===== AMBIENT PARTICLES ===== */
+.particles {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particles span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 8s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0% { opacity: 0; transform: translateY(100vh) scale(0.5); }
+    15% { opacity: 0.5; }
+    85% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+}
+
+.particles span:nth-child(1)  { left: 5%;  animation-delay: 0s;    animation-duration: 8s; }
+.particles span:nth-child(2)  { left: 12%; animation-delay: 1.5s;  animation-duration: 10s; width: 2px; height: 2px; }
+.particles span:nth-child(3)  { left: 22%; animation-delay: 3s;    animation-duration: 9s; }
+.particles span:nth-child(4)  { left: 33%; animation-delay: 0.5s;  animation-duration: 11s; width: 4px; height: 4px; }
+.particles span:nth-child(5)  { left: 42%; animation-delay: 2s;    animation-duration: 8.5s; width: 2px; height: 2px; }
+.particles span:nth-child(6)  { left: 55%; animation-delay: 4s;    animation-duration: 9.5s; }
+.particles span:nth-child(7)  { left: 64%; animation-delay: 1s;    animation-duration: 10.5s; width: 2px; height: 2px; }
+.particles span:nth-child(8)  { left: 73%; animation-delay: 3.5s;  animation-duration: 8s; }
+.particles span:nth-child(9)  { left: 82%; animation-delay: 2.5s;  animation-duration: 11s; width: 4px; height: 4px; }
+.particles span:nth-child(10) { left: 91%; animation-delay: 0.8s;  animation-duration: 9s; }
+.particles span:nth-child(11) { left: 8%;  animation-delay: 5s;    animation-duration: 10s; width: 2px; height: 2px; }
+.particles span:nth-child(12) { left: 48%; animation-delay: 6s;    animation-duration: 8.5s; }
+
 /* ===== BOOK CONTAINER ===== */
 .scene {
     width: 1100px;
@@ -65,6 +104,27 @@ h1, h2, h3, h4 {
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Kitap Sirtligi */
+.book::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    transform: translateX(-50%);
+    background: linear-gradient(to right,
+        rgba(26, 15, 8, 0.9) 0%,
+        rgba(44, 24, 16, 0.5) 30%,
+        rgba(212, 175, 55, 0.06) 50%,
+        rgba(44, 24, 16, 0.5) 70%,
+        rgba(26, 15, 8, 0.9) 100%
+    );
+    z-index: 200;
+    pointer-events: none;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 /* ===== SAYFA YAPISI ===== */
@@ -127,6 +187,17 @@ h1, h2, h3, h4 {
     transform: rotateY(-180deg);
 }
 
+/* Sayfa cevirme glow efekti - box-shadow ile (filter 3D context'i bozar) */
+@keyframes faceGlow {
+    0%   { box-shadow: 0 0 0 transparent; }
+    35%  { box-shadow: 0 0 30px var(--gold-glow), 0 0 60px rgba(212, 175, 55, 0.2); }
+    100% { box-shadow: 0 0 0 transparent; }
+}
+
+.page.flipped > .back {
+    animation: faceGlow 1.2s ease-out;
+}
+
 /* ===== KAPAK TASARIMI ===== */
 .page.cover .front {
     background:
@@ -155,6 +226,12 @@ h1, h2, h3, h4 {
     border-radius: 4px;
     box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.3);
     pointer-events: none;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") top 0 left 0 no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") top 0 right 0 no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") bottom 0 right 0 no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") bottom 0 left 0 no-repeat;
+    background-size: 20px 20px;
 }
 
 .cover-border::after {
@@ -171,6 +248,62 @@ h1, h2, h3, h4 {
     width: 160px;
     height: auto;
     margin-bottom: 20px;
+}
+
+/* ===== COVER CONTENT CLASSES ===== */
+.cover-title {
+    font-size: 3rem;
+    color: var(--gold);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    line-height: 1;
+}
+
+.cover-subtitle {
+    font-size: 1.2rem;
+    color: var(--parchment);
+    margin-top: 10px;
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+.cover-ornament {
+    margin: 20px 0;
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.cover-location {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+}
+
+/* ===== OPEN HINT ===== */
+.open-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-dim);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    opacity: 0.5;
+    animation: hintBounce 2.5s ease-in-out infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 5;
+    letter-spacing: 1px;
+}
+
+.open-hint i {
+    font-size: 1.1rem;
+}
+
+@keyframes hintBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+    50% { transform: translateX(-50%) translateY(-8px); opacity: 0.8; }
 }
 
 /* ===== MITOLOJI & DEKORATIF STILLER ===== */
@@ -210,6 +343,10 @@ h1, h2, h3, h4 {
     line-height: 1.5;
     margin-bottom: 10px;
     text-align: justify;
+}
+
+.page-content-narrow {
+    padding: 0 5px;
 }
 
 .page-title {
@@ -270,13 +407,9 @@ h1, h2, h3, h4 {
     text-align: center;
 }
 
-.myth-icon-img {
-    height: 28px;
-    width: auto;
-    vertical-align: middle;
-    margin-right: 12px;
-    filter: sepia(0.5) contrast(1.2);
-}
+.myth-turk .myth-icon { color: var(--turk-cyan); }
+.myth-greek .myth-icon { color: var(--greek-blue); }
+.myth-viking .myth-icon { color: var(--viking-red); transform: rotate(-15deg); display: inline-block; }
 
 .myth-title {
     font-family: 'Cinzel Decorative', serif;
@@ -296,6 +429,57 @@ h1, h2, h3, h4 {
     padding-top: 5px;
     color: var(--gold-dim);
 }
+
+/* ===== SCHEDULE ===== */
+.schedule-list {
+    list-style: none;
+    padding: 0 5px;
+}
+
+.schedule-time {
+    color: var(--ink-brown);
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.schedule-time-pending {
+    color: var(--ink-faded);
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.schedule-pending {
+    opacity: 0.4;
+    font-style: italic;
+}
+
+/* ===== FAQ ===== */
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    color: var(--ink-brown);
+    font-family: 'Cinzel Decorative', serif;
+}
+
+/* ===== APPLY SECTION ===== */
+.apply-heading {
+    font-size: 1.2rem;
+}
+
+.myth-viking .apply-heading { color: var(--viking-red); }
+.myth-turk .apply-heading { color: var(--turk-cyan); }
+
+.apply-desc {
+    font-size: 0.9rem;
+}
+
+.apply-cta {
+    text-align: right;
+    font-size: 0.8rem;
+}
+
+.myth-viking .apply-cta { color: var(--viking-red); }
+.myth-turk .apply-cta { color: var(--turk-cyan); }
 
 /* ===== NAVIGATION ARROWS ===== */
 .nav-btn {
@@ -381,6 +565,7 @@ h1, h2, h3, h4 {
     opacity: 1;
 }
 
+/* ===== TIME BOX ===== */
 .time-box {
     text-align: center;
     margin: 10px 0 !important;
@@ -388,6 +573,25 @@ h1, h2, h3, h4 {
     padding: 10px;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.2);
+}
+
+.time-box h3 {
+    color: var(--ink-brown);
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.time-box-pending {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+.page-quote {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 /* ===== COUNTDOWN TIMER ===== */
@@ -487,6 +691,82 @@ h1, h2, h3, h4 {
     display: block;
 }
 
+/* ===== BACK COVER ===== */
+.cover-back {
+    background: var(--book-cover);
+    color: var(--gold);
+    border-left: 2px solid var(--book-spine);
+}
+
+.cover-back-texture {
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.cover-back-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.back-logo {
+    width: 60px;
+    height: auto;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.back-ornament {
+    font-size: 3rem;
+    opacity: 0.7;
+    margin-bottom: 15px;
+}
+
+.back-title {
+    font-size: 2rem;
+}
+
+.back-tagline {
+    color: var(--parchment);
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.back-teaser {
+    color: var(--parchment-dark);
+    opacity: 0.4;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.copyright {
+    margin-top: 50px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== FOCUS VISIBLE ===== */
+.nav-btn:focus-visible,
+.social-link:focus-visible,
+.indicator-dot:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.apply-link:focus-visible .myth-section {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
 /* ===== RESPONSIVE (MOBILE) ===== */
 @media (max-width: 900px) {
     body {
@@ -495,6 +775,14 @@ h1, h2, h3, h4 {
         overflow-y: auto;
         background-attachment: fixed;
         padding: 0 0 40px;
+    }
+
+    .particles {
+        display: none;
+    }
+
+    .book::before {
+        display: none;
     }
 
     .scene {
@@ -524,6 +812,7 @@ h1, h2, h3, h4 {
         flex-direction: column;
         gap: 16px;
         pointer-events: auto;
+        animation: none !important;
     }
 
     .front,
@@ -543,15 +832,12 @@ h1, h2, h3, h4 {
         overflow: visible;
     }
 
-    .nav-btn {
+    .nav-btn,
+    .page-indicator,
+    .open-hint {
         display: none;
     }
 
-    .page-indicator {
-        display: none;
-    }
-
-    /* Kapak - mobilde tam ekran hissi */
     .page.cover .front {
         border: 2px solid var(--book-spine);
         min-height: 85vh;
@@ -559,170 +845,62 @@ h1, h2, h3, h4 {
         border-radius: 8px;
     }
 
-    .cover-back {
-        min-height: 300px;
-    }
+    .cover-back { min-height: 300px; }
 
-    .cover-logo {
-        width: 130px;
-        height: auto;
-    }
+    .cover-logo { width: 130px; height: auto; }
 
     .cover-border {
-        top: 10px;
-        bottom: 10px;
-        left: 10px;
-        right: 10px;
+        top: 10px; bottom: 10px; left: 10px; right: 10px;
+        background-size: 14px 14px;
     }
+    .cover-border::after { top: 4px; bottom: 4px; left: 4px; right: 4px; }
 
-    .cover-border::after {
-        top: 4px;
-        bottom: 4px;
-        left: 4px;
-        right: 4px;
-    }
+    .cover-title { font-size: 2.4rem; }
+    .cover-subtitle { font-size: 1rem; letter-spacing: 2px; }
 
-    .page-title {
-        font-size: 1.5rem;
-        margin-bottom: 0.8rem;
-    }
+    .page-title { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .page-title::after { width: 40px; margin-top: 8px; }
 
-    .page-title::after {
-        width: 40px;
-        margin-top: 8px;
-    }
+    .page-content p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; }
 
-    .page-content p {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 8px;
-    }
+    .myth-section { padding: 12px 12px 12px 16px; margin: 8px 0; }
+    .myth-title { font-size: 1.05rem; }
+    .myth-icon { font-size: 1.2rem; margin-right: 8px; }
+    .drop-cap { font-size: 2.4rem; padding-right: 8px; }
 
-    .myth-section {
-        padding: 12px 12px 12px 16px;
-        margin: 8px 0;
-    }
+    .countdown { gap: 16px; margin-top: 16px; }
+    .countdown-item { min-width: 50px; }
+    .countdown-item span { font-size: 1.5rem; }
+    .countdown-item small { font-size: 0.65rem; }
 
-    .myth-title {
-        font-size: 1.05rem;
-    }
+    .page-border { top: 14px; bottom: 14px; left: 14px; right: 14px; }
+    .page-border::before, .page-border::after { font-size: 1rem; }
 
-    .myth-icon {
-        font-size: 1.2rem;
-        margin-right: 8px;
-    }
+    .page-number { position: relative; bottom: auto; left: auto; margin-top: 16px; font-size: 0.8rem; }
 
-    .drop-cap {
-        font-size: 2.4rem;
-        padding-right: 8px;
-    }
+    .time-box { padding: 8px; margin: 8px 0 !important; }
+    .time-box h3 { font-size: 1.1rem; }
 
-    .countdown {
-        gap: 16px;
-        margin-top: 16px;
-    }
+    .map-container { height: 160px; margin-top: 10px; }
 
-    .countdown-item {
-        min-width: 50px;
-    }
+    .social-links { margin-top: 30px; gap: 16px; }
+    .social-link { width: 44px; height: 44px; font-size: 1.6rem; }
 
-    .countdown-item span {
-        font-size: 1.5rem;
-    }
+    .apply-link .myth-section { cursor: pointer; }
 
-    .countdown-item small {
-        font-size: 0.65rem;
-    }
-
-    .page-border {
-        top: 14px;
-        bottom: 14px;
-        left: 14px;
-        right: 14px;
-    }
-
-    .page-border::before,
-    .page-border::after {
-        font-size: 1rem;
-    }
-
-    .page-number {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        margin-top: 16px;
-        font-size: 0.8rem;
-    }
-
-    .time-box {
-        padding: 8px;
-        margin: 8px 0 !important;
-    }
-
-    .time-box h3 {
-        font-size: 1.1rem !important;
-    }
-
-    .map-container {
-        height: 160px;
-        margin-top: 10px;
-    }
-
-    .social-links {
-        margin-top: 30px;
-        gap: 16px;
-    }
-
-    .social-link {
-        width: 44px;
-        height: 44px;
-        font-size: 1.6rem;
-    }
-
-    .apply-link .myth-section {
-        cursor: pointer;
-    }
-
-    h1 {
-        font-size: 2.4rem !important;
-    }
-
-    h2[style*="letter-spacing"] {
-        font-size: 1rem !important;
-        letter-spacing: 2px !important;
-    }
+    .back-title { font-size: 1.6rem; }
+    .back-ornament { font-size: 2.5rem; }
+    .back-logo { width: 50px; }
 }
 
-/* Kucuk telefonlar */
 @media (max-width: 400px) {
-    .scene {
-        padding: 8px;
-    }
-
-    .front,
-    .back {
-        padding: 24px 16px;
-    }
-
-    .page.cover .front {
-        padding: 32px 16px;
-    }
-
-    .cover-logo {
-        width: 100px;
-    }
-
-    h1 {
-        font-size: 2rem !important;
-    }
-
-    .page-title {
-        font-size: 1.3rem;
-    }
-
-    .countdown-item span {
-        font-size: 1.3rem;
-    }
+    .scene { padding: 8px; }
+    .front, .back { padding: 24px 16px; }
+    .page.cover .front { padding: 32px 16px; }
+    .cover-logo { width: 100px; }
+    .cover-title { font-size: 2rem; }
+    .page-title { font-size: 1.3rem; }
+    .countdown-item span { font-size: 1.3rem; }
 }
 
 /* ===== PRINT ===== */
@@ -735,41 +913,31 @@ h1, h2, h3, h4 {
         display: block;
     }
 
-    .scene {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        max-height: none;
-        perspective: none;
-    }
-
-    .book {
-        display: block;
-        box-shadow: none;
-    }
-
-    .page {
-        position: relative;
-        width: 100%;
-        height: auto;
-        transform: none !important;
-        page-break-inside: avoid;
-    }
-
-    .front,
-    .back {
-        position: relative;
-        transform: none !important;
-        backface-visibility: visible;
-        page-break-inside: avoid;
-        padding: 20px;
-    }
+    .scene { width: 100%; height: auto; max-width: 100%; max-height: none; perspective: none; }
+    .book { display: block; box-shadow: none; }
+    .book::before { display: none; }
+    .page { position: relative; width: 100%; height: auto; transform: none !important; page-break-inside: avoid; }
+    .front, .back { position: relative; transform: none !important; backface-visibility: visible; page-break-inside: avoid; padding: 20px; }
 
     .nav-btn,
     .page-indicator,
-    .countdown,
-    .map-container,
-    .cover-border {
+    .cover-border,
+    .particles,
+    .open-hint,
+    .map-container {
+        display: none;
+    }
+}
+
+/* ===== PREFERS REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .particles {
         display: none;
     }
 }
