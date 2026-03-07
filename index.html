@@ -11,7 +11,20 @@
         content="Peri masalları ve mitoloji temalı cosplay yarışması, e-spor turnuvaları, hazine avı - Ankara'nın en büyük alt kültür etkinliği!" />
 
     <!-- Favicon -->
-    <link href="img/hlogo.png" rel="icon" />
+    <link rel="icon" href="img/hlogo.png">
+
+    <!-- SEO -->
+    <link rel="canonical" href="https://hucon.com.tr/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HUCON'25 - Fairy Tale & Mitoloji Festivali">
+    <meta property="og:description"
+        content="Peri masalları ve mitoloji temalı cosplay yarışması, e-spor turnuvaları, hazine avı - Ankara'nın en büyük alt kültür etkinliği!">
+    <meta property="og:url" content="https://hucon.com.tr">
+    <meta property="og:site_name" content="HUCON'25">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HUCON'25 - Fairy Tale & Mitoloji Festivali">
+    <meta name="twitter:description"
+        content="Peri masalları ve mitoloji temalı cosplay yarışması, e-spor turnuvaları, hazine avı - Ankara'nın en büyük alt kültür etkinliği!">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,529 +36,55 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
 
-    <style>
-        /* ===== TEMEL AYARLAR & DEĞİŞKENLER ===== */
-        :root {
-            /* Kitap Cildi & Kağıt */
-            --book-cover: #2c1810;
-            --book-spine: #1a0f08;
-            --parchment: #f4e4bc;
-            --parchment-mid: #e8dcb5;
-            --parchment-dark: #d6c698;
-            --ink-brown: #2b1d14;
-            --ink-faded: #4a3b32;
-
-            /* Altın Varak & Büyü */
-            --gold: #d4af37;
-            --gold-dim: #aa8c2c;
-            --gold-glow: rgba(212, 175, 55, 0.6);
-
-            /* Mitoloji Renkleri - Pastel/Eskitilmiş Tonlar */
-            --turk-cyan: #108782;
-            /* Daha koyu turkuaz */
-            --greek-blue: #2c5aa0;
-            /* Antik mavi */
-            --viking-red: #7a1f1f;
-            /* Kan kırmızısı */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            /* Ahşap/Deri Masa Zemin Hissi */
-            background:
-                radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%),
-                url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v5.1L5 15.5l1.4-1.4L20 27.2V20.5zM20 20h20v2H20v-2z' fill='%231a0f08' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"),
-                linear-gradient(135deg, #1a0f08 0%, #2c1810 50%, #0d0604 100%);
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--ink-brown);
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Cinzel Decorative', serif;
-            font-weight: 700;
-        }
-
-        /* ===== BOOK CONTAINER ===== */
-        .scene {
-            width: 1100px;
-            height: 750px;
-            max-width: 95vw;
-            max-height: 85vh;
-            perspective: 2500px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .book {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        /* ===== SAYFA YAPISI ===== */
-        .page {
-            width: 50%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            right: 0;
-            transform-origin: left center;
-            transform-style: preserve-3d;
-            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .front,
-        .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            padding: 50px;
-            overflow: hidden;
-            background-color: var(--parchment);
-
-            /* Gerçekçi Kağıt Dokusu: Noise + Leke + Gradyan */
-            background-image:
-                /* Hafif kirlilik/leke */
-                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 10% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 25%),
-                /* Kağıt dokusu (noise) */
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
-
-            box-shadow:
-                inset 3px 0px 5px rgba(0, 0, 0, 0.1),
-                /* Cilt payı */
-                inset -2px 0px 5px rgba(0, 0, 0, 0.05);
-            /* Dış kenar */
-
-            border-radius: 2px;
-        }
-
-        .front {
-            z-index: 2;
-            transform: rotateY(0deg) translateZ(0.5px);
-            /* Ön yüz gölgesi (cilt kısmı solda) */
-            background:
-                linear-gradient(to right, rgba(22, 14, 10, 0.15) 0%, rgba(22, 14, 10, 0.05) 5%, transparent 10%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"),
-                var(--parchment);
-            border-right: 1px solid rgba(139, 69, 19, 0.1);
-        }
-
-        .back {
-            transform: rotateY(180deg) translateZ(0.5px);
-            z-index: 1;
-            /* Arka yüz gölgesi (cilt kısmı sağda) */
-            background:
-                linear-gradient(to left, rgba(22, 14, 10, 0.15) 0%, rgba(22, 14, 10, 0.05) 5%, transparent 10%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"),
-                var(--parchment);
-            border-left: 1px solid rgba(139, 69, 19, 0.1);
-        }
-
-        .page.flipped {
-            transform: rotateY(-180deg);
-        }
-
-        /* ===== KAPAK TASARIMI (Cover) ===== */
-        .page.cover .front {
-            background:
-                radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%231a0f08' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
-                var(--book-cover);
-
-            box-shadow:
-                inset 0 0 60px rgba(0, 0, 0, 0.8),
-                inset 5px 0 15px rgba(255, 255, 255, 0.05);
-
-            color: var(--parchment);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border: 4px solid var(--book-spine);
-        }
-
-        .cover-border {
-            position: absolute;
-            top: 20px;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            border: 2px solid var(--gold);
-            border-radius: 4px;
-            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.3);
-            pointer-events: none;
-        }
-
-        .cover-border::after {
-            content: '';
-            position: absolute;
-            top: 6px;
-            bottom: 6px;
-            left: 6px;
-            right: 6px;
-            border: 1px solid var(--gold-dim);
-        }
-
-        /* ===== MİTOLOJİ & DEKORATİF STİLLER ===== */
-        .page-border {
-            position: absolute;
-            top: 25px;
-            bottom: 25px;
-            left: 25px;
-            right: 25px;
-            border: 1px solid rgba(139, 69, 19, 0.15);
-            pointer-events: none;
-        }
-
-        .page-border::before,
-        .page-border::after {
-            content: '❧';
-            position: absolute;
-            color: var(--ink-faded);
-            font-size: 1.2rem;
-            opacity: 0.5;
-        }
-
-        .page-border::before {
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%) rotate(90deg);
-        }
-
-        .page-border::after {
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%) rotate(90deg);
-        }
-
-        /* ===== COMPACT LAYOUT FIXES ===== */
-        .page-content p {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            /* Reduced from 1.6 */
-            margin-bottom: 10px;
-            /* Reduced from 12px */
-            text-align: justify;
-        }
-
-        .page-title {
-            text-align: center;
-            font-size: 2rem;
-            /* Slightly smaller */
-            color: var(--ink-brown);
-            margin-bottom: 1.5rem;
-            /* Reduced from 2rem */
-            position: relative;
-            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
-        }
-
-        .page-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: var(--gold-dim);
-            margin: 10px auto 0;
-            opacity: 0.6;
-        }
-
-        /* YENİ TASARIM: PAPER CUT STYLE MYTH BOXES */
-        .myth-section {
-            padding: 15px;
-            /* Reduced from 20px */
-            margin: 15px 0;
-            /* Reduced from 20px */
-            background: rgba(244, 235, 200, 0.5);
-            /* Hafif koyu parşömen */
-            position: relative;
-            border: 1px solid rgba(139, 69, 19, 0.1);
-            box-shadow: 2px 2px 0px rgba(139, 69, 19, 0.05);
-            /* Sert gölge */
-            transition: all 0.3s ease;
-            border-radius: 1px;
-        }
-
-        .myth-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 4px;
-            background: var(--ink-faded);
-        }
-
-        .myth-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 4px 4px 0px rgba(139, 69, 19, 0.1);
-            background: rgba(244, 235, 200, 0.8);
-        }
-
-        .myth-turk::before {
-            background: var(--turk-cyan);
-        }
-
-        .myth-greek::before {
-            background: var(--greek-blue);
-        }
-
-        .myth-viking::before {
-            background: var(--viking-red);
-        }
-
-        .myth-icon {
-            font-size: 1.4rem;
-            margin-right: 12px;
-            vertical-align: middle;
-            width: 24px;
-            text-align: center;
-        }
-
-        .myth-icon-img {
-            height: 28px;
-            width: auto;
-            vertical-align: middle;
-            margin-right: 12px;
-            filter: sepia(0.5) contrast(1.2);
-            /* Eski görünüm */
-        }
-
-        .myth-title {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--ink-brown);
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .drop-cap {
-            float: left;
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 3.2rem;
-            line-height: 0.8;
-            padding-right: 10px;
-            padding-top: 5px;
-            color: var(--gold-dim);
-        }
-
-        /* ===== NAVIGATION ARROWS ===== */
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2.5rem;
-            color: var(--parchment);
-            background: transparent;
-            border: none;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        .nav-prev {
-            left: 40px;
-        }
-
-        .nav-next {
-            right: 40px;
-        }
-
-        .page-number {
-            position: absolute;
-            bottom: 25px;
-            width: 100%;
-            text-align: center;
-            font-family: 'Cinzel Decorative', serif;
-            color: var(--ink-faded);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        @keyframes magicFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-                filter: drop-shadow(0 0 10px var(--gold-glow));
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "HUCON'25 - Fairy Tale & Mitoloji Festivali",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+            "@type": "Place",
+            "name": "Hacettepe Üniversitesi Beytepe Kongre Merkezi",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ankara",
+                "addressCountry": "TR"
             }
-
-            50% {
-                transform: translateY(-8px) rotate(1deg);
-                filter: drop-shadow(0 0 20px var(--gold-glow));
-            }
-        }
-
-        .float-anim {
-            animation: magicFloat 5s ease-in-out infinite;
-        }
-
-        /* ===== MAP STYLES ===== */
-        .map-container {
-            width: 100%;
-            height: 120px;
-            /* Further reduced from 150px */
-            margin-top: 8px;
-            border: 2px solid var(--gold-dim);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 0 20px rgba(61, 40, 23, 0.4);
-            transition: transform 0.3s;
-        }
-
-        .map-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            /* Sepia & High Contrast for Old Map Look */
-            filter: sepia(0.8) contrast(1.1) grayscale(0.4) hue-rotate(-10deg);
-            opacity: 0.8;
-            transition: all 0.5s ease;
-        }
-
-        .map-section:hover .map-frame {
-            /* Hoverda biraz daha netleşsin */
-            filter: sepia(0.4) contrast(1) grayscale(0);
-            opacity: 1;
-        }
-
-        /* Specific adjustments for the time box - AGGRESSIVE COMPACT */
-        .time-box {
-            text-align: center;
-            margin: 10px 0 !important;
-            /* Reduced from 20px */
-            border: 2px dashed var(--gold-dim);
-            padding: 10px;
-            /* Reduced from 15px */
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* ===== RESPONSIVE TASARIM (MOBİL) ===== */
-        @media (max-width: 900px) {
-            body {
-                height: auto;
-                overflow-y: auto;
-                /* Dikey scroll izni */
-                background-attachment: fixed;
-            }
-
-            .scene {
-                width: 100%;
-                height: auto;
-                max-width: 100%;
-                max-height: none;
-                perspective: none;
-                padding: 10px;
-                overflow: visible;
-            }
-
-            .book {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                transform-style: flat;
-                box-shadow: none;
-            }
-
-            .page {
-                position: relative;
-                width: 100%;
-                height: auto;
-                transform: none !important;
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                /* Mobilde tıklama ile sayfa dönmesin */
-                pointer-events: auto;
-            }
-
-            .front,
-            .back {
-                position: relative;
-                transform: none !important;
-                backface-visibility: visible;
-                width: 100%;
-                height: auto;
-                min-height: 500px;
-                border-radius: 5px;
-                /* Her "kart" için gölge */
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
-                /* Mobilde sağ/sol cilt payı gölgesini kaldır */
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"), var(--parchment);
-
-            }
-
-            /* Mobilde Navigation Gizle */
-            .nav-btn {
-                display: none;
-            }
-
-            /* Kapak ayarları */
-            .page.cover .front {
-                border: 2px solid var(--book-spine);
-            }
-
-            .cover-back {
-                min-height: 300px;
-            }
-        }
-    </style>
+        },
+        "description": "Peri masalları ve mitoloji temalı cosplay yarışması, e-spor turnuvaları, hazine avı - Ankara'nın en büyük alt kültür etkinliği!",
+        "organizer": {
+            "@type": "Organization",
+            "name": "HUCON - Hacettepe Üniversitesi",
+            "url": "https://hucon.com.tr"
+        },
+        "isAccessibleForFree": true
+    }
+    </script>
 </head>
 
 <body>
 
-    <button class="nav-btn nav-prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav-btn nav-next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    <button class="nav-btn nav-prev" id="prevBtn" aria-label="Önceki sayfa">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-btn nav-next" id="nextBtn" aria-label="Sonraki sayfa">
+        <i class="fas fa-chevron-right"></i>
+    </button>
 
-    <div class="scene">
+    <main class="scene">
         <div class="book" id="book">
 
             <!-- SAYFA 1: KAPAK -->
             <div class="page cover" style="z-index: 10;">
                 <div class="front">
                     <div class="cover-border"></div>
-                    <img src="img/hlogo.png" style="width: 160px; margin-bottom: 30px;" class="float-anim">
+
+                    <img src="img/hlogo.png" alt="HUCON logosu" class="float-anim cover-logo">
 
                     <h1
                         style="font-size: 3rem; color: var(--gold); text-shadow: 0 4px 10px rgba(0,0,0,0.5); line-height: 1;">
@@ -554,13 +93,27 @@
                         style="font-size: 1.2rem; color: var(--parchment); margin-top: 10px; letter-spacing: 3px; font-weight: 400;">
                         FAIRY TALE & MITOLOJİ</h2>
 
-                    <div style="margin: 30px 0; font-size: 2rem; color: var(--gold);">
-                        <i class="fas fa-dragon"></i> ✧ <i class="fas fa-scroll"></i>
+                    <div style="margin: 20px 0; font-size: 2rem; color: var(--gold);">
+                        <i class="fas fa-dragon"></i> &#10023; <i class="fas fa-scroll"></i>
                     </div>
 
-                    <p style="font-size: 1.2rem; color: var(--parchment-dark);">26-27 Nisan 2025</p>
-                    <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 5px;">Hacettepe Beytepe Kampüsü
-                    </p>
+                    <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 5px;">Hacettepe Beytepe
+                        Kampüsü</p>
+
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span>&infin;</span>
+                            <small>Gün</small>
+                        </div>
+                        <div class="countdown-item">
+                            <span>&infin;</span>
+                            <small>Saat</small>
+                        </div>
+                        <div class="countdown-item">
+                            <span>&infin;</span>
+                            <small>Dakika</small>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="back">
@@ -574,33 +127,24 @@
 
                         <div class="myth-section myth-turk">
                             <div class="myth-title">
-                                <!-- Türk simgesi: Resim olarak -->
-                                <img src="img/turkish_wolf.png" class="myth-icon-img" alt="Bozkurt">
+                                <i class="fas fa-paw myth-icon" style="color:var(--turk-cyan)"></i>
                                 Bozkırın Ruhu
                             </div>
-                            <p style="margin-top:5px; font-size:0.95rem;">Gök Tanrı'nın izinde, Umay Ana'nın şefkatiyle.
-                                Türk mitolojisinin köklerine iniyoruz.</p>
                         </div>
 
                         <div class="myth-section myth-greek">
                             <div class="myth-title">
-                                <!-- Yunan simgesi: Sütun/Tapınak -->
                                 <i class="fas fa-landmark myth-icon" style="color:var(--greek-blue)"></i>
                                 Olympos Zirvesi
                             </div>
-                            <p style="margin-top:5px; font-size:0.95rem;">Ambrosia kokuları arasında, tanrılar ve
-                                titanların savaşına tanıklık et.</p>
                         </div>
 
                         <div class="myth-section myth-viking">
                             <div class="myth-title">
-                                <!-- Viking: Balta yerine Gavel/Hammer (Mjolnir temsili) -->
                                 <i class="fas fa-gavel myth-icon"
                                     style="color:var(--viking-red); transform: rotate(-15deg);"></i>
                                 Valhalla Çağrısı
                             </div>
-                            <p style="margin-top:5px; font-size:0.95rem;">Kuzeyin buzlu rüzgarları ve savaşçıların
-                                onuru. Odin'in salonları seni bekliyor.</p>
                         </div>
                     </div>
                     <div class="page-number">- 2 -</div>
@@ -619,17 +163,16 @@
                         <div class="time-box">
                             <h3 style="color:var(--ink-brown); margin-bottom:5px; font-size:1.3rem;"><i
                                     class="far fa-clock"></i> Buluşma Vakti</h3>
-                            <p style="font-size:1.1rem; font-weight:bold; margin-bottom:5px;">26 Nisan • 10:00</p>
-                            <p style="font-size:1.1rem; font-weight:bold; margin-bottom:0;">27 Nisan • 18:00</p>
+                            <p style="font-size:1.1rem; font-weight:bold; margin-bottom:0; font-style:italic;">Yakında Duyurulacak</p>
                         </div>
 
                         <p style="margin-bottom: 5px;"><strong>Konum:</strong> Beytepe Kongre Merkezi</p>
                         <p style="margin-bottom: 10px; font-size:1rem; opacity:0.8;"><em>"Tüm yollar büyüye
                                 çıkıyor."</em></p>
 
-                        <!-- MAP EMBED -->
                         <div class="map-container map-section">
                             <iframe class="map-frame"
+                                title="Hacettepe Üniversitesi Beytepe Kampüsü Haritası"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1988.2323797685642!2d32.73315631484643!3d39.86659795646146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d347d5207c40d5%3A0xc92f80c554559288!2sHacettepe%20University%20Beytepe%20Campus!5e0!3m2!1sen!2str!4v1684321654987!5m2!1sen!2str"
                                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
@@ -647,21 +190,21 @@
                             <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">10:00</strong> -
                             Kapıların Açılışı ve Karşılama
                         </li>
-                        <li class="myth-section myth-greek">
-                            <strong style="color:var(--greek-blue); font-family:'Cinzel Decorative'">11:30</strong> -
-                            Panel: Antik Yunan'da Kahramanlık
+                        <li class="myth-section">
+                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">11:30</strong>
+                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
                         </li>
-                        <li class="myth-section myth-viking">
-                            <strong style="color:var(--viking-red); font-family:'Cinzel Decorative'">14:00</strong> -
-                            Workshop: Köpükten Kılıç Yapımı
+                        <li class="myth-section">
+                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">14:00</strong>
+                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
                         </li>
-                        <li class="myth-section myth-turk">
-                            <strong style="color:var(--turk-cyan); font-family:'Cinzel Decorative'">16:00</strong> -
-                            Hazine Avı: Ergenekon'dan Çıkış
+                        <li class="myth-section">
+                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">16:00</strong>
+                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
                         </li>
                         <li class="myth-section">
                             <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">18:00</strong> -
-                            Just Dance & K-Pop Random
+                            Kapanış
                         </li>
                     </ul>
                     <div class="page-number">- 4 -</div>
@@ -676,21 +219,24 @@
 
                     <ul style="list-style: none; padding: 0 5px;">
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown)">10:00</strong> - Yeni Günün Şafağı
-                        </li>
-                        <li class="myth-section myth-turk">
-                            <strong style="color:var(--turk-cyan)">12:00</strong> - Şamanik Müzik Dinletisi
+                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">10:00</strong> -
+                            Kapıların Açılışı
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown)">13:00</strong> - FRP Masaları & Magic: The Gathering
-                        </li>
-                        <li class="myth-section"
-                            style="background: rgba(212, 175, 55, 0.1); border-color: var(--gold);">
-                            <strong style="color:var(--gold-dim); font-size:1.2rem;">15:30</strong><br>
-                            <span style="font-weight: bold; font-size:1.1rem;">BÜYÜK COSPLAY YARIŞMASI</span>
+                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">12:00</strong>
+                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
                         </li>
                         <li class="myth-section">
-                            <strong style="color:var(--ink-brown)">17:30</strong> - Ödül Töreni
+                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">13:00</strong>
+                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                        </li>
+                        <li class="myth-section">
+                            <strong style="color:var(--ink-faded); font-family:'Cinzel Decorative'">15:30</strong>
+                            <span style="opacity:0.4; font-style:italic;"> - Yakında</span>
+                        </li>
+                        <li class="myth-section">
+                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">17:30</strong> -
+                            Ödül Töreni ve Kapanış
                         </li>
                     </ul>
                     <div class="page-number">- 5 -</div>
@@ -703,23 +249,27 @@
                     <div class="page-content">
                         <p>Sadece izleyici olma, hikayenin bir parçası ol. Yarışmalara katıl, yeteneğini göster.</p>
 
-                        <div class="myth-section myth-viking" style="cursor: pointer;"
-                            onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform')">
-                            <!-- Viking Icon -->
-                            <h3 style="color:var(--viking-red); font-size:1.2rem;"><i class="fas fa-mask"></i> Cosplay
-                                Yarışması</h3>
-                            <p style="font-size:0.9rem;">Sahne senin. En iyi kostümünü sergile.</p>
-                            <div style="text-align:right; font-size:0.8rem; color:var(--viking-red);">Başvur ➜</div>
-                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScyiTSoSxdqe8z8u259xTqJdMO9dKajgQZpby4RcA5r9cR84Q/viewform"
+                            target="_blank" rel="noopener noreferrer" class="apply-link">
+                            <div class="myth-section myth-viking" role="button" tabindex="0">
+                                <h3 style="color:var(--viking-red); font-size:1.2rem;"><i class="fas fa-mask"></i>
+                                    Cosplay Yarışması</h3>
+                                <p style="font-size:0.9rem;">Sahne senin. En iyi kostümünü sergile.</p>
+                                <div style="text-align:right; font-size:0.8rem; color:var(--viking-red);"><i
+                                        class="fas fa-arrow-right"></i> Başvur</div>
+                            </div>
+                        </a>
 
-                        <div class="myth-section myth-turk" style="cursor: pointer;"
-                            onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform')">
-                            <!-- DM Icon -->
-                            <h3 style="color:var(--turk-cyan); font-size:1.2rem;"><i class="fas fa-dice-d20"></i>
-                                Dungeon Master</h3>
-                            <p style="font-size:0.9rem;">Kendi maceranı yönetmek ister misin?</p>
-                            <div style="text-align:right; font-size:0.8rem; color:var(--turk-cyan);">Başvur ➜</div>
-                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDHOfwVxwtPOnnMdC0XXXmQenbZx7jHt1fGYUMwdHKfGYHSA/viewform"
+                            target="_blank" rel="noopener noreferrer" class="apply-link">
+                            <div class="myth-section myth-turk" role="button" tabindex="0">
+                                <h3 style="color:var(--turk-cyan); font-size:1.2rem;"><i class="fas fa-dice-d20"></i>
+                                    Dungeon Master</h3>
+                                <p style="font-size:0.9rem;">Kendi maceranı yönetmek ister misin?</p>
+                                <div style="text-align:right; font-size:0.8rem; color:var(--turk-cyan);"><i
+                                        class="fas fa-arrow-right"></i> Başvur</div>
+                            </div>
+                        </a>
                     </div>
                     <div class="page-number">- 6 -</div>
                 </div>
@@ -742,11 +292,6 @@
                                 mu?</strong>
                             <p>Hayır, sivil de gelebilirsin ama büyüyü bozmamak için bir pelerin fena olmaz!</p>
                         </div>
-                        <div style="margin-bottom:15px;">
-                            <strong style="color:var(--ink-brown); font-family:'Cinzel Decorative'">Yemek Var
-                                mı?</strong>
-                            <p>Kampüs içerisinde çeşitli yeme-içme alanları mevcuttur.</p>
-                        </div>
                     </div>
                     <div class="page-number">- 7 -</div>
                 </div>
@@ -760,116 +305,35 @@
                     <div
                         style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; z-index:2;">
 
-                        <div style="font-size: 4rem; opacity:0.8; margin-bottom:20px;">❦</div>
+                        <div style="font-size: 4rem; opacity:0.8; margin-bottom:20px;">&#10086;</div>
 
                         <h2 style="font-family:'Cinzel Decorative'; font-size: 2rem;">Görüşmek Üzere</h2>
                         <p style="color:var(--parchment); opacity:0.7; margin-top:10px;">Masal burada bitmiyor...</p>
 
-                        <div style="margin-top: 40px; display:flex; gap: 20px;">
-                            <a href="https://instagram.com/hucon_25" target="_blank"
-                                style="color:var(--gold); font-size: 2rem; transition:0.3s; width:50px; height:50px; border:1px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a href="https://twitter.com/hucon_25" target="_blank"
-                                style="color:var(--gold); font-size: 2rem; transition:0.3s; width:50px; height:50px; border:1px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i
-                                    class="fab fa-twitter"></i></a>
+                        <div class="social-links">
+                            <a href="https://instagram.com/hucon_25" target="_blank" rel="noopener noreferrer"
+                                class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://x.com/hucon_25" target="_blank" rel="noopener noreferrer"
+                                class="social-link" aria-label="X (Twitter)">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
                         </div>
 
                         <div style="margin-top: 50px; font-size: 0.8rem; color: rgba(255,255,255,0.3);">
-                            © 2025 HUCON - Hacettepe Üniversitesi
+                            &copy; 2025 HUCON - Hacettepe Üniversitesi
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-    </div>
+    </main>
 
-    <script>
-        const pages = document.querySelectorAll('.page');
-        let currentPage = 0;
+    <div class="page-indicator" id="pageIndicator"></div>
 
-        function updateBookState() {
-            // Mobilde çalışmasın
-            if (window.innerWidth <= 900) return;
-
-            pages.forEach((page, index) => {
-                let depth = 0;
-                let zIndex = 0;
-                let transform = '';
-
-                if (index < currentPage) {
-                    depth = (currentPage - 1) - index;
-                    page.classList.add('flipped');
-                    zIndex = 100 - depth;
-                    transform = `rotateY(-180deg) translateZ(${depth}px)`;
-                } else {
-                    depth = index - currentPage;
-                    page.classList.remove('flipped');
-                    zIndex = 100 - depth;
-                    transform = `rotateY(0deg) translateZ(${-depth}px)`;
-                }
-
-                page.style.zIndex = zIndex;
-                page.style.transform = transform;
-            });
-        }
-
-        function next() {
-            if (window.innerWidth <= 900) return;
-            if (currentPage < pages.length) {
-                currentPage++;
-                updateBookState();
-            }
-        }
-
-        function prev() {
-            if (window.innerWidth <= 900) return;
-            if (currentPage > 0) {
-                currentPage--;
-                updateBookState();
-            }
-        }
-
-        document.getElementById('nextBtn').addEventListener('click', next);
-        document.getElementById('prevBtn').addEventListener('click', prev);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "ArrowRight") next();
-            if (e.key === "ArrowLeft") prev();
-        });
-
-        pages.forEach((page, index) => {
-            page.addEventListener('click', (e) => {
-                // Mobilde tıklama devre dışı
-                if (window.innerWidth <= 900) return;
-
-                if (e.target.closest('a') || e.target.closest('.myth-section')) return;
-
-                if (index === currentPage) next();
-                else if (index === currentPage - 1) prev();
-            });
-        });
-
-        updateBookState();
-
-        // Prevent FOUC (Flash of Unstyled Content)
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
-        });
-
-        // Resize durumunda güncelle
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 900) {
-                updateBookState();
-            } else {
-                // Mobilde transformları temizle
-                pages.forEach(page => {
-                    page.style.transform = '';
-                    page.style.zIndex = '';
-                });
-            }
-        });
-    </script>
+    <script src="js/main.js"></script>
 
 </body>
 
