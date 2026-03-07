@@ -1,15 +1,15 @@
 /* ===== TEMEL AYARLAR & DEGISKENLER ===== */
 :root {
-    --book-cover: #2c1810;
-    --book-spine: #1a0f08;
+    --book-cover: #3b1560;
+    --book-spine: #2a0d42;
     --parchment: #f4e4bc;
     --parchment-mid: #e8dcb5;
     --parchment-dark: #d6c698;
     --ink-brown: #2b1d14;
     --ink-faded: #4a3b32;
-    --gold: #d4af37;
-    --gold-dim: #aa8c2c;
-    --gold-glow: rgba(212, 175, 55, 0.6);
+    --gold: #c9a84c;
+    --gold-dim: #a68935;
+    --gold-glow: rgba(201, 168, 76, 0.6);
     --turk-cyan: #108782;
     --greek-blue: #2c5aa0;
     --viking-red: #7a1f1f;
@@ -24,9 +24,9 @@
 body {
     font-family: 'Cormorant Garamond', serif;
     background:
-        radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%),
-        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v5.1L5 15.5l1.4-1.4L20 27.2V20.5zM20 20h20v2H20v-2z' fill='%231a0f08' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"),
-        linear-gradient(135deg, #1a0f08 0%, #2c1810 50%, #0d0604 100%);
+        radial-gradient(ellipse at center, rgba(80, 30, 130, 0.15) 0%, rgba(0, 0, 0, 0.7) 100%),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v5.1L5 15.5l1.4-1.4L20 27.2V20.5zM20 20h20v2H20v-2z' fill='%232a0d42' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, #2a0d42 0%, #3b1560 50%, #1a082e 100%);
     height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -103,28 +103,38 @@ h1, h2, h3, h4 {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* Kitap Sirtligi */
+/* Kitap Sirtligi - mor deri + altin bantlar */
 .book::before {
     content: '';
     position: absolute;
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 24px;
+    width: 26px;
     transform: translateX(-50%);
-    background: linear-gradient(to right,
-        rgba(26, 15, 8, 0.9) 0%,
-        rgba(44, 24, 16, 0.5) 30%,
-        rgba(212, 175, 55, 0.06) 50%,
-        rgba(44, 24, 16, 0.5) 70%,
-        rgba(26, 15, 8, 0.9) 100%
-    );
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 110px,
+            rgba(201, 168, 76, 0.2) 110px,
+            rgba(201, 168, 76, 0.4) 115px,
+            rgba(201, 168, 76, 0.2) 120px,
+            transparent 120px
+        ),
+        linear-gradient(to right,
+            rgba(42, 13, 66, 0.95) 0%,
+            rgba(59, 21, 96, 0.6) 30%,
+            rgba(201, 168, 76, 0.08) 50%,
+            rgba(59, 21, 96, 0.6) 70%,
+            rgba(42, 13, 66, 0.95) 100%
+        );
     z-index: 200;
     pointer-events: none;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== SAYFA YAPISI ===== */
@@ -167,30 +177,30 @@ h1, h2, h3, h4 {
     z-index: 2;
     transform: rotateY(0deg) translateZ(0.5px);
     background:
-        linear-gradient(to right, rgba(22, 14, 10, 0.15) 0%, rgba(22, 14, 10, 0.05) 5%, transparent 10%),
+        linear-gradient(to right, rgba(42, 13, 66, 0.18) 0%, rgba(42, 13, 66, 0.06) 5%, transparent 10%),
         url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"),
         var(--parchment);
-    border-right: 1px solid rgba(139, 69, 19, 0.1);
+    border-right: 1px solid rgba(80, 40, 120, 0.08);
 }
 
 .back {
     transform: rotateY(180deg) translateZ(0.5px);
     z-index: 1;
     background:
-        linear-gradient(to left, rgba(22, 14, 10, 0.15) 0%, rgba(22, 14, 10, 0.05) 5%, transparent 10%),
+        linear-gradient(to left, rgba(42, 13, 66, 0.18) 0%, rgba(42, 13, 66, 0.06) 5%, transparent 10%),
         url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"),
         var(--parchment);
-    border-left: 1px solid rgba(139, 69, 19, 0.1);
+    border-left: 1px solid rgba(80, 40, 120, 0.08);
 }
 
 .page.flipped {
     transform: rotateY(-180deg);
 }
 
-/* Sayfa cevirme glow efekti - box-shadow ile (filter 3D context'i bozar) */
+/* Sayfa cevirme glow efekti */
 @keyframes faceGlow {
     0%   { box-shadow: 0 0 0 transparent; }
-    35%  { box-shadow: 0 0 30px var(--gold-glow), 0 0 60px rgba(212, 175, 55, 0.2); }
+    35%  { box-shadow: 0 0 30px var(--gold-glow), 0 0 60px rgba(201, 168, 76, 0.2); }
     100% { box-shadow: 0 0 0 transparent; }
 }
 
@@ -201,12 +211,14 @@ h1, h2, h3, h4 {
 /* ===== KAPAK TASARIMI ===== */
 .page.cover .front {
     background:
+        radial-gradient(ellipse at 30% 30%, rgba(80, 30, 130, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(60, 15, 100, 0.1) 0%, transparent 40%),
         radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%231a0f08' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%232a0d42' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),
         var(--book-cover);
     box-shadow:
-        inset 0 0 60px rgba(0, 0, 0, 0.8),
-        inset 5px 0 15px rgba(255, 255, 255, 0.05);
+        inset 0 0 80px rgba(0, 0, 0, 0.7),
+        inset 5px 0 15px rgba(255, 255, 255, 0.03);
     color: var(--parchment);
     display: flex;
     flex-direction: column;
@@ -216,32 +228,58 @@ h1, h2, h3, h4 {
     border: 4px solid var(--book-spine);
 }
 
+/* Suslenmis kapak cercevesi - 3 katmanli altin cerceve + kose ornamentleri */
 .cover-border {
     position: absolute;
-    top: 20px;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    border: 2px solid var(--gold);
-    border-radius: 4px;
-    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.3);
+    top: 16px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    border: 3px solid var(--gold);
+    border-radius: 3px;
+    box-shadow:
+        inset 0 0 30px rgba(201, 168, 76, 0.15),
+        0 0 12px rgba(201, 168, 76, 0.1);
     pointer-events: none;
-    background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") top 0 left 0 no-repeat,
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") top 0 right 0 no-repeat,
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") bottom 0 right 0 no-repeat,
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E") bottom 0 left 0 no-repeat;
-    background-size: 20px 20px;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c9a84c' opacity='.8'/%3E%3Ccircle cx='22' cy='22' r='9' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.45'/%3E%3Cpath d='M22 2l2 16-2 2-2-2zM42 22l-16 2-2-2 2-2zM22 42l-2-16 2-2 2 2zM2 22l16-2 2 2-2 2z' fill='%23c9a84c' opacity='.5'/%3E%3Cpath d='M36 8l-12 11-2-1 1-2zM8 8l11 12-1 2-2-1zM8 36l12-11 2 1-1 2zM36 36l-11-12 1-2 2 1z' fill='%23c9a84c' opacity='.3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c9a84c' opacity='.8'/%3E%3Ccircle cx='22' cy='22' r='9' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.45'/%3E%3Cpath d='M22 2l2 16-2 2-2-2zM42 22l-16 2-2-2 2-2zM22 42l-2-16 2-2 2 2zM2 22l16-2 2 2-2 2z' fill='%23c9a84c' opacity='.5'/%3E%3Cpath d='M36 8l-12 11-2-1 1-2zM8 8l11 12-1 2-2-1zM8 36l12-11 2 1-1 2zM36 36l-11-12 1-2 2 1z' fill='%23c9a84c' opacity='.3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c9a84c' opacity='.8'/%3E%3Ccircle cx='22' cy='22' r='9' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.45'/%3E%3Cpath d='M22 2l2 16-2 2-2-2zM42 22l-16 2-2-2 2-2zM22 42l-2-16 2-2 2 2zM2 22l16-2 2 2-2 2z' fill='%23c9a84c' opacity='.5'/%3E%3Cpath d='M36 8l-12 11-2-1 1-2zM8 8l11 12-1 2-2-1zM8 36l12-11 2 1-1 2zM36 36l-11-12 1-2 2 1z' fill='%23c9a84c' opacity='.3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c9a84c' opacity='.8'/%3E%3Ccircle cx='22' cy='22' r='9' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.45'/%3E%3Cpath d='M22 2l2 16-2 2-2-2zM42 22l-16 2-2-2 2-2zM22 42l-2-16 2-2 2 2zM2 22l16-2 2 2-2 2z' fill='%23c9a84c' opacity='.5'/%3E%3Cpath d='M36 8l-12 11-2-1 1-2zM8 8l11 12-1 2-2-1zM8 36l12-11 2 1-1 2zM36 36l-11-12 1-2 2 1z' fill='%23c9a84c' opacity='.3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.4'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23c9a84c' opacity='.5'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.4'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23c9a84c' opacity='.5'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.4'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23c9a84c' opacity='.5'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='none' stroke='%23c9a84c' stroke-width='.8' opacity='.4'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23c9a84c' opacity='.5'/%3E%3C/svg%3E");
+    background-position:
+        left top, right top, right bottom, left bottom,
+        center top, center bottom, left center, right center;
+    background-repeat: no-repeat;
+    background-size:
+        44px 44px, 44px 44px, 44px 44px, 44px 44px,
+        16px 16px, 16px 16px, 16px 16px, 16px 16px;
 }
 
+/* Orta dekoratif cerceve katmani */
+.cover-border::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    pointer-events: none;
+}
+
+/* Ic cerceve katmani */
 .cover-border::after {
     content: '';
     position: absolute;
-    top: 6px;
-    bottom: 6px;
-    left: 6px;
-    right: 6px;
-    border: 1px solid var(--gold-dim);
+    top: 11px;
+    bottom: 11px;
+    left: 11px;
+    right: 11px;
+    border: 2px solid var(--gold-dim);
 }
 
 .cover-logo {
@@ -313,7 +351,7 @@ h1, h2, h3, h4 {
     bottom: 25px;
     left: 25px;
     right: 25px;
-    border: 1px solid rgba(139, 69, 19, 0.15);
+    border: 1px solid rgba(80, 40, 120, 0.12);
     pointer-events: none;
 }
 
@@ -373,8 +411,8 @@ h1, h2, h3, h4 {
     margin: 15px 0;
     background: rgba(244, 235, 200, 0.5);
     position: relative;
-    border: 1px solid rgba(139, 69, 19, 0.1);
-    box-shadow: 2px 2px 0px rgba(139, 69, 19, 0.05);
+    border: 1px solid rgba(80, 40, 120, 0.08);
+    box-shadow: 2px 2px 0px rgba(80, 40, 120, 0.04);
     transition: all 0.3s ease;
     border-radius: 1px;
 }
@@ -391,7 +429,7 @@ h1, h2, h3, h4 {
 
 .myth-section:hover {
     transform: translateY(-2px);
-    box-shadow: 4px 4px 0px rgba(139, 69, 19, 0.1);
+    box-shadow: 4px 4px 0px rgba(80, 40, 120, 0.08);
     background: rgba(244, 235, 200, 0.8);
 }
 
@@ -547,7 +585,7 @@ h1, h2, h3, h4 {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 0 20px rgba(61, 40, 23, 0.4);
+    box-shadow: inset 0 0 20px rgba(42, 20, 66, 0.3);
     transition: transform 0.3s;
 }
 
@@ -646,7 +684,7 @@ h1, h2, h3, h4 {
 }
 
 .indicator-dot:hover {
-    background: rgba(212, 175, 55, 0.5);
+    background: rgba(201, 168, 76, 0.5);
     transform: scale(1.2);
 }
 
@@ -851,9 +889,13 @@ h1, h2, h3, h4 {
 
     .cover-border {
         top: 10px; bottom: 10px; left: 10px; right: 10px;
-        background-size: 14px 14px;
+        border-width: 2px;
+        background-size:
+            30px 30px, 30px 30px, 30px 30px, 30px 30px,
+            12px 12px, 12px 12px, 12px 12px, 12px 12px;
     }
-    .cover-border::after { top: 4px; bottom: 4px; left: 4px; right: 4px; }
+    .cover-border::before { top: 3px; bottom: 3px; left: 3px; right: 3px; }
+    .cover-border::after { top: 8px; bottom: 8px; left: 8px; right: 8px; }
 
     .cover-title { font-size: 2.4rem; }
     .cover-subtitle { font-size: 1rem; letter-spacing: 2px; }
