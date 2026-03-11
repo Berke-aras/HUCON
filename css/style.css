@@ -162,6 +162,8 @@ h1, h2, h3, h4 {
     -webkit-backface-visibility: hidden;
     padding: 50px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     background-color: var(--parchment);
     background-image:
         radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.03) 0%, transparent 20%),
@@ -376,6 +378,29 @@ h1, h2, h3, h4 {
     transform: translateX(-50%) rotate(90deg);
 }
 
+.page-content {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-dim) transparent;
+}
+
+.page-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.page-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+    background: var(--gold-dim);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
 .page-content p {
     font-size: 1.1rem;
     line-height: 1.5;
@@ -394,6 +419,7 @@ h1, h2, h3, h4 {
     margin-bottom: 1.5rem;
     position: relative;
     text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
 }
 
 .page-title::after {
@@ -407,8 +433,8 @@ h1, h2, h3, h4 {
 }
 
 .myth-section {
-    padding: 15px;
-    margin: 15px 0;
+    padding: 12px 15px;
+    margin: 10px 0;
     background: rgba(244, 235, 200, 0.5);
     position: relative;
     border: 1px solid rgba(80, 40, 120, 0.08);
@@ -491,7 +517,11 @@ h1, h2, h3, h4 {
 
 /* ===== FAQ ===== */
 .faq-item {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    margin-bottom: 2px;
 }
 
 .faq-question {
@@ -501,14 +531,16 @@ h1, h2, h3, h4 {
 
 /* ===== APPLY SECTION ===== */
 .apply-heading {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
 }
 
 .myth-viking .apply-heading { color: var(--viking-red); }
 .myth-turk .apply-heading { color: var(--turk-cyan); }
 
 .apply-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
 }
 
 .apply-cta {
@@ -883,6 +915,14 @@ h1, h2, h3, h4 {
             url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"),
             var(--parchment);
         overflow: visible;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-content {
+        flex: initial;
+        overflow-y: visible;
+        min-height: auto;
     }
 
     .nav-btn,
@@ -959,6 +999,38 @@ h1, h2, h3, h4 {
     .cover-title { font-size: 2rem; }
     .page-title { font-size: 1.3rem; }
     .countdown-item span { font-size: 1.3rem; }
+}
+
+/* Kucuk yukseklikli ekranlar (laptop vb.) */
+@media (max-height: 800px) and (min-width: 901px) {
+    .scene { height: 700px; }
+    .front, .back { padding: 35px 40px; }
+    .page.cover .front { padding: 35px 40px; }
+    .page-title { font-size: 1.7rem; margin-bottom: 1rem; }
+    .page-title::after { margin-top: 6px; }
+    .page-number { bottom: 20px; }
+    .page-border { top: 18px; bottom: 18px; left: 18px; right: 18px; }
+    .myth-section { padding: 10px 12px; margin: 7px 0; }
+    .faq-item { margin-bottom: 8px; }
+    .apply-heading { font-size: 1rem; }
+    .faq-question { font-size: 0.95rem; }
+}
+
+@media (max-height: 650px) and (min-width: 901px) {
+    .scene { height: 600px; }
+    .front, .back { padding: 28px 35px; }
+    .page.cover .front { padding: 28px 35px; }
+    .page-title { font-size: 1.5rem; margin-bottom: 0.7rem; }
+    .page-number { bottom: 14px; font-size: 0.8rem; }
+    .page-border { top: 14px; bottom: 14px; left: 14px; right: 14px; }
+    .page-content p { font-size: 0.95rem; line-height: 1.4; margin-bottom: 6px; }
+    .myth-section { padding: 8px 10px; margin: 5px 0; }
+    .faq-item { margin-bottom: 6px; }
+    .apply-heading { font-size: 0.95rem; }
+    .apply-desc { font-size: 0.8rem; }
+    .faq-question { font-size: 0.9rem; }
+    .cover-title { font-size: 2.5rem; }
+    .cover-subtitle { font-size: 1rem; }
 }
 
 /* ===== PRINT ===== */
