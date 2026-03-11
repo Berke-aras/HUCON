@@ -889,10 +889,75 @@ h1, h2, h3, h4 {
     color: rgba(255, 255, 255, 0.3);
 }
 
+/* ===== SIDE NAV ===== */
+.side-nav {
+    position: fixed;
+    left: calc(50vw - min(275px, 23.75vw));
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 150;
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.side-nav.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(-30px);
+    pointer-events: none;
+}
+
+.side-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(42, 13, 66, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    color: var(--gold-dim);
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.side-nav-btn i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    color: var(--gold);
+    transition: transform 0.3s ease;
+}
+
+.side-nav-btn:hover {
+    background: rgba(59, 21, 96, 0.85);
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateX(6px);
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+}
+
+.side-nav-btn:hover i {
+    transform: scale(1.15);
+}
+
+.side-nav-btn:active {
+    transform: translateX(3px) scale(0.97);
+}
+
 /* ===== FOCUS VISIBLE ===== */
 .nav-btn:focus-visible,
 .social-link:focus-visible,
-.indicator-dot:focus-visible {
+.indicator-dot:focus-visible,
+.side-nav-btn:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
 }
@@ -980,7 +1045,8 @@ h1, h2, h3, h4 {
 
     .nav-btn,
     .page-indicator,
-    .open-hint {
+    .open-hint,
+    .side-nav {
         display: none;
     }
 
@@ -1096,7 +1162,8 @@ h1, h2, h3, h4 {
     .cover-border,
     .particles,
     .open-hint,
-    .map-container {
+    .map-container,
+    .side-nav {
         display: none;
     }
 }

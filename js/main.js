@@ -60,6 +60,33 @@
         });
 
         updateIndicator();
+        updateSideNav();
+    }
+
+    /* ===== SIDE NAV ===== */
+
+    var sideNav = document.getElementById('sideNav');
+
+    function updateSideNav() {
+        if (!sideNav) return;
+        if (currentPage === 0) {
+            sideNav.classList.remove('hidden');
+        } else {
+            sideNav.classList.add('hidden');
+        }
+    }
+
+    if (sideNav) {
+        var sideNavBtns = sideNav.querySelectorAll('.side-nav-btn');
+        sideNavBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var target = parseInt(btn.dataset.target, 10);
+                if (!isNaN(target)) {
+                    goToPage(target);
+                }
+            });
+        });
     }
 
     /* ===== NAVIGATION WITH ANIMATION LOCK ===== */
