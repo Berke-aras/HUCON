@@ -506,7 +506,8 @@
         if (!handled && !isMobile()) {
             var clicked = mouseTarget ? mouseTarget.closest('.page') : null;
             if (clicked && !mouseTarget.closest('a') && !mouseTarget.closest('button') &&
-                !mouseTarget.closest('[role="button"]')) {
+                !mouseTarget.closest('[role="button"]') && !mouseTarget.closest('.apply-cta') &&
+                !mouseTarget.closest('.faq-item') && !mouseTarget.closest('.cookie-banner')) {
                 var idx = Array.prototype.indexOf.call(pages, clicked);
                 if (idx === currentPage) next();
                 else if (idx === currentPage - 1) prev();
