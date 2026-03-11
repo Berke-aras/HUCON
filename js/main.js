@@ -177,16 +177,20 @@
         document.body.classList.add('loaded');
     });
 
-    /* ===== RESIZE HANDLER ===== */
+    /* ===== RESIZE HANDLER (debounced) ===== */
 
+    var resizeTimer;
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 900) {
-            updateBookState();
-        } else {
-            pages.forEach(function (page) {
-                page.style.transform = '';
-                page.style.zIndex = '';
-            });
-        }
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            if (window.innerWidth > 900) {
+                updateBookState();
+            } else {
+                pages.forEach(function (page) {
+                    page.style.transform = '';
+                    page.style.zIndex = '';
+                });
+            }
+        }, 150);
     });
 })();
