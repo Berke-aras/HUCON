@@ -519,6 +519,12 @@ h1, h2, h3, h4 {
 .myth-viking .apply-cta { color: var(--viking-red); }
 .myth-turk .apply-cta { color: var(--turk-cyan); }
 
+.apply-coming-soon {
+    color: var(--ink-faded);
+    opacity: 0.5;
+    font-style: italic;
+}
+
 /* ===== NAVIGATION ARROWS ===== */
 .nav-btn {
     position: absolute;

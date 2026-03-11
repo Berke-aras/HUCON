@@ -138,6 +138,34 @@
         }
     }, { passive: true });
 
+    /* ===== COUNTDOWN ===== */
+
+    var targetDate = new Date('2026-05-16T10:00:00+03:00').getTime();
+
+    function updateCountdown() {
+        var daysEl = document.getElementById('countDays');
+        var hoursEl = document.getElementById('countHours');
+        var minsEl = document.getElementById('countMins');
+        if (!daysEl) return;
+
+        var now = new Date().getTime();
+        var diff = targetDate - now;
+
+        if (diff <= 0) {
+            daysEl.textContent = '0';
+            hoursEl.textContent = '0';
+            minsEl.textContent = '0';
+            return;
+        }
+
+        daysEl.textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hoursEl.textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minsEl.textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
     /* ===== INIT ===== */
 
     buildIndicator();
