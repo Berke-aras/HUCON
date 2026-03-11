@@ -379,6 +379,7 @@ h1, h2, h3, h4 {
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%) rotate(90deg);
+    display: none;
 }
 
 .page-content {
@@ -413,6 +414,20 @@ h1, h2, h3, h4 {
 
 .page-content-narrow {
     padding: 0 5px;
+}
+
+.page-poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 2px;
 }
 
 .page-title {
@@ -504,8 +519,16 @@ h1, h2, h3, h4 {
     flex: 1;
     overflow-y: auto;
     min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     scrollbar-width: thin;
     scrollbar-color: var(--gold-dim) transparent;
+}
+
+.schedule-list .myth-section {
+    padding: clamp(12px, 2vh, 22px) 15px;
+    font-size: clamp(1rem, 1.8vh, 1.2rem);
 }
 
 .schedule-list::-webkit-scrollbar {
@@ -524,11 +547,13 @@ h1, h2, h3, h4 {
 .schedule-time {
     color: var(--ink-brown);
     font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.05rem, 2vh, 1.3rem);
 }
 
 .schedule-time-pending {
     color: var(--ink-faded);
     font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.05rem, 2vh, 1.3rem);
 }
 
 .schedule-pending {
@@ -609,7 +634,7 @@ h1, h2, h3, h4 {
 
 .page-number {
     position: absolute;
-    bottom: clamp(10px, 2.5vh, 30px);
+    bottom: clamp(12px, 1vh, 10px);
     left: 0;
     width: 100%;
     text-align: center;
@@ -617,6 +642,7 @@ h1, h2, h3, h4 {
     color: var(--ink-faded);
     font-size: 0.9rem;
     opacity: 0.7;
+    z-index: 3;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -735,7 +761,7 @@ h1, h2, h3, h4 {
 /* ===== PAGE INDICATOR ===== */
 .page-indicator {
     position: fixed;
-    bottom: 30px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
