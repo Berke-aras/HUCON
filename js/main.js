@@ -5,7 +5,7 @@
     var currentPage = 0;
     var isAnimating = false;
     var ANIMATION_DURATION = 1200;
-    var MOBILE_ANIM_DURATION = 500;
+    var MOBILE_ANIM_DURATION = 600;
     var indicatorContainer = document.getElementById('pageIndicator');
     var MOBILE_BREAKPOINT = 900;
 
@@ -262,37 +262,258 @@
         if (e.key === 'ArrowLeft') prev();
     });
 
-    /* ===== PAGE CLICK (DESKTOP) ===== */
+    /* ===== DRAG-TO-FLIP ===== */
 
-    pages.forEach(function (page, index) {
-        page.addEventListener('click', function (e) {
-            if (isMobile()) return;
-            if (e.target.closest('a') || e.target.closest('[role="button"]')) return;
+    var isDragging = false;
+    var dragStartX = 0;
+    var dragStartY = 0;
+    var dragStartTime = 0;
+    var dragDirection = 0;
+    var dragLocked = false;
+    var dragProgress = 0;
+    var dragRaf = null;
+    var DRAG_THRESHOLD = 10;
+    var COMPLETE_THRESHOLD = 0.25;
+    var VELOCITY_THRESHOLD = 0.35;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            if (index === currentPage) next();
-            else if (index === currentPage - 1) prev();
+    function onDragStart(x, y) {
+        if (isAnimating || reducedMotion) return;
+        dragStartX = x;
+        dragStartY = y;
+        dragStartTime = Date.now();
+        dragDirection = 0;
+        dragLocked = false;
+        dragProgress = 0;
+        isDragging = false;
+    }
+
+    function onDragMove(x, y) {
+        if (isAnimating || reducedMotion) return;
+
+        var dx = x - dragStartX;
+        var dy = y - dragStartY;
+
+        if (!dragLocked) {
+            if (Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
+            dragLocked = true;
+            if (Math.abs(dy) > Math.abs(dx)) {
+                dragDirection = 0;
+                return;
+            }
+            dragDirection = dx < 0 ? 1 : -1;
+        }
+
+        if (dragDirection === 0) return;
+
+        if (isMobile()) {
+            if (dragDirection === 1 && mobileIndex >= faces.length - 1) return;
+            if (dragDirection === -1 && mobileIndex <= 0) return;
+        } else {
+            if (dragDirection === 1 && currentPage >= pages.length) return;
+            if (dragDirection === -1 && currentPage <= 0) return;
+        }
+
+        if (!isDragging) {
+            isDragging = true;
+            document.body.style.userSelect = 'none';
+            document.body.style.webkitUserSelect = 'none';
+            if (isMobile()) {
+                addDraggingClass(true);
+            } else {
+                addDraggingClass(false);
+            }
+        }
+
+        var screenW = window.innerWidth;
+        dragProgress = Math.min(Math.abs(dx) / (screenW * 0.4), 1);
+
+        if (dragRaf) cancelAnimationFrame(dragRaf);
+        dragRaf = requestAnimationFrame(function () {
+            if (isMobile()) {
+                renderMobileDrag(dragProgress, dragDirection);
+            } else {
+                renderDesktopDrag(dragProgress, dragDirection);
+            }
         });
-    });
+    }
 
-    /* ===== TOUCH / SWIPE SUPPORT ===== */
+    function onDragEnd(x) {
+        if (dragRaf) { cancelAnimationFrame(dragRaf); dragRaf = null; }
+        document.body.style.userSelect = '';
+        document.body.style.webkitUserSelect = '';
 
-    var touchStartX = 0;
-    var touchStartY = 0;
-    var SWIPE_THRESHOLD = 50;
+        if (!isDragging) {
+            if (dragLocked && dragDirection !== 0) {
+                var dx = Math.abs(x - dragStartX);
+                var elapsed = Date.now() - dragStartTime;
+                if (dx > 40 || (dx > 20 && elapsed < 250)) {
+                    if (dragDirection === 1) next();
+                    else prev();
+                    return true;
+                }
+            }
+            return false;
+        }
 
+        isDragging = false;
+        removeDraggingClass();
+
+        var elapsed2 = Math.max(Date.now() - dragStartTime, 1);
+        var velocity = Math.abs(x - dragStartX) / elapsed2;
+        var shouldComplete = dragProgress > COMPLETE_THRESHOLD || velocity > VELOCITY_THRESHOLD;
+
+        if (isMobile()) {
+            clearMobileDragStyles();
+            if (shouldComplete) {
+                if (dragDirection === 1) mobileNext();
+                else mobilePrev();
+            } else {
+                isAnimating = true;
+                setTimeout(function () { isAnimating = false; }, MOBILE_ANIM_DURATION);
+            }
+        } else {
+            if (shouldComplete) {
+                if (dragDirection === 1) {
+                    currentPage++;
+                } else {
+                    currentPage--;
+                }
+            }
+            pages.forEach(function (p) { p.classList.remove('dragging'); });
+            updateBookState();
+            isAnimating = true;
+            setTimeout(function () { isAnimating = false; }, ANIMATION_DURATION);
+        }
+
+        dragProgress = 0;
+        dragDirection = 0;
+        return true;
+    }
+
+    function addDraggingClass(mobile) {
+        if (mobile) {
+            var current = faces[mobileIndex];
+            if (current) current.classList.add('dragging');
+            if (dragDirection === 1 && mobileIndex < faces.length - 1) {
+                faces[mobileIndex + 1].classList.add('dragging');
+            } else if (dragDirection === -1 && mobileIndex > 0) {
+                faces[mobileIndex - 1].classList.add('dragging');
+            }
+        } else {
+            var page;
+            if (dragDirection === 1) page = pages[currentPage];
+            else if (currentPage > 0) page = pages[currentPage - 1];
+            if (page) page.classList.add('dragging');
+        }
+    }
+
+    function removeDraggingClass() {
+        faces.forEach(function (f) { f.classList.remove('dragging'); });
+        pages.forEach(function (p) { p.classList.remove('dragging'); });
+    }
+
+    function clearMobileDragStyles() {
+        faces.forEach(function (f) {
+            f.style.transform = '';
+            f.style.zIndex = '';
+        });
+    }
+
+    function renderDesktopDrag(progress, dir) {
+        var page, angle;
+        if (dir === 1) {
+            page = pages[currentPage];
+            if (!page) return;
+            angle = -progress * 180;
+            page.style.transform = 'rotateY(' + angle + 'deg) translateZ(0px)';
+        } else {
+            if (currentPage <= 0) return;
+            page = pages[currentPage - 1];
+            if (!page) return;
+            angle = -180 + progress * 180;
+            page.style.transform = 'rotateY(' + angle + 'deg) translateZ(0px)';
+        }
+    }
+
+    function renderMobileDrag(progress, dir) {
+        var current = faces[mobileIndex];
+        if (!current) return;
+
+        if (dir === 1) {
+            var nxt = faces[mobileIndex + 1];
+            if (!nxt) return;
+            var tx = -progress * 100;
+            var ry = -progress * 30;
+            current.style.transform = 'perspective(1200px) translateX(' + tx + '%) rotateY(' + ry + 'deg)';
+            var ntx = 100 - progress * 100;
+            var nry = 30 - progress * 30;
+            nxt.style.transform = 'perspective(1200px) translateX(' + ntx + '%) rotateY(' + nry + 'deg)';
+            nxt.style.zIndex = '2';
+        } else {
+            var prv = faces[mobileIndex - 1];
+            if (!prv) return;
+            var tx2 = progress * 100;
+            var ry2 = progress * 30;
+            current.style.transform = 'perspective(1200px) translateX(' + tx2 + '%) rotateY(' + ry2 + 'deg)';
+            var ptx = -100 + progress * 100;
+            var pry = -30 + progress * 30;
+            prv.style.transform = 'perspective(1200px) translateX(' + ptx + '%) rotateY(' + pry + 'deg)';
+            prv.style.zIndex = '2';
+        }
+    }
+
+    /* Touch events */
     document.addEventListener('touchstart', function (e) {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
+        if (e.target.closest('.nav-btn') || e.target.closest('.mobile-menu-wrap') ||
+            e.target.closest('.page-indicator') || e.target.closest('.side-nav')) return;
+        var t = e.changedTouches[0];
+        onDragStart(t.clientX, t.clientY);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+        var t = e.changedTouches[0];
+        onDragMove(t.clientX, t.clientY);
     }, { passive: true });
 
     document.addEventListener('touchend', function (e) {
-        var deltaX = e.changedTouches[0].screenX - touchStartX;
-        var deltaY = e.changedTouches[0].screenY - touchStartY;
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > SWIPE_THRESHOLD) {
-            if (deltaX < 0) next();
-            else prev();
-        }
+        var t = e.changedTouches[0];
+        onDragEnd(t.clientX);
     }, { passive: true });
+
+    /* Mouse events (desktop) */
+    var isMouseDown = false;
+    var mouseTarget = null;
+    var bookEl = document.getElementById('book');
+
+    document.addEventListener('mousedown', function (e) {
+        if (e.button !== 0 || isMobile()) return;
+        if (!bookEl || !bookEl.contains(e.target)) return;
+        isMouseDown = true;
+        mouseTarget = e.target;
+        onDragStart(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('mousemove', function (e) {
+        if (!isMouseDown) return;
+        onDragMove(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('mouseup', function (e) {
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        var handled = onDragEnd(e.clientX);
+        if (!handled && !isMobile()) {
+            var clicked = mouseTarget ? mouseTarget.closest('.page') : null;
+            if (clicked && !mouseTarget.closest('a') && !mouseTarget.closest('button') &&
+                !mouseTarget.closest('[role="button"]')) {
+                var idx = Array.prototype.indexOf.call(pages, clicked);
+                if (idx === currentPage) next();
+                else if (idx === currentPage - 1) prev();
+            }
+        }
+        mouseTarget = null;
+    });
 
     /* ===== COUNTDOWN ===== */
 
@@ -325,7 +546,10 @@
     /* ===== INIT ===== */
 
     function initMode() {
+        isDragging = false;
+        removeDraggingClass();
         if (isMobile()) {
+            clearMobileDragStyles();
             pages.forEach(function (page) {
                 page.style.transform = '';
                 page.style.zIndex = '';
@@ -334,6 +558,8 @@
         } else {
             faces.forEach(function (face) {
                 face.classList.remove('mobile-active', 'mobile-prev');
+                face.style.transform = '';
+                face.style.zIndex = '';
             });
             updateBookState();
         }

@@ -147,7 +147,7 @@ h1, h2, h3, h4 {
     right: 0;
     transform-origin: left center;
     transform-style: preserve-3d;
-    transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     background: transparent;
     cursor: pointer;
     will-change: transform;
@@ -186,6 +186,12 @@ h1, h2, h3, h4 {
         url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"),
         var(--parchment);
     border-right: 1px solid rgba(80, 40, 120, 0.08);
+    box-shadow:
+        inset 3px 0px 5px rgba(0, 0, 0, 0.1),
+        inset -2px 0px 5px rgba(0, 0, 0, 0.05),
+        1px 0 0 rgba(214, 198, 152, 0.6),
+        2px 0 0 rgba(200, 180, 140, 0.4),
+        3px 0 0 rgba(180, 160, 120, 0.2);
 }
 
 .back {
@@ -202,15 +208,81 @@ h1, h2, h3, h4 {
     transform: rotateY(-180deg);
 }
 
-/* Sayfa cevirme glow efekti */
+/* Sayfa cevirme glow efekti — opacity-only (GPU-composited) */
 @keyframes faceGlow {
-    0%   { box-shadow: 0 0 0 transparent; }
-    35%  { box-shadow: 0 0 30px var(--gold-glow), 0 0 60px rgba(201, 168, 76, 0.2); }
-    100% { box-shadow: 0 0 0 transparent; }
+    0% { opacity: 0; }
+    35% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
-.page.flipped > .back {
-    animation: faceGlow 1.2s ease-out;
+.back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 11;
+    box-shadow: inset 0 0 30px var(--gold-glow), inset 0 0 60px rgba(201, 168, 76, 0.15);
+    opacity: 0;
+    border-radius: 2px;
+}
+
+.page.flipped > .back::before {
+    animation: faceGlow 1.2s ease-out forwards;
+}
+
+/* Dynamic flip shadow overlays */
+.front::after,
+.back::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.front::after {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.06) 30%, transparent 70%);
+}
+
+.back::after {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.08) 25%, transparent 60%);
+}
+
+.page.flipped > .front::after {
+    animation: flipShadowLift 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page.flipped > .back::after {
+    animation: flipShadowReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page.flipped + .page > .front::after {
+    animation: underPageShadow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.08) 20%, transparent 50%);
+}
+
+@keyframes flipShadowLift {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+
+@keyframes flipShadowReveal {
+    0% { opacity: 0; }
+    45% { opacity: 0; }
+    60% { opacity: 0.9; }
+    80% { opacity: 0.3; }
+    100% { opacity: 0; }
+}
+
+@keyframes underPageShadow {
+    0% { opacity: 0; }
+    25% { opacity: 0.7; }
+    60% { opacity: 0.5; }
+    100% { opacity: 0; }
 }
 
 /* ===== KAPAK TASARIMI ===== */
@@ -647,19 +719,14 @@ h1, h2, h3, h4 {
 
 /* ===== ANIMATIONS ===== */
 @keyframes magicFloat {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-        filter: drop-shadow(0 0 10px var(--gold-glow));
-    }
-    50% {
-        transform: translateY(-8px) rotate(1deg);
-        filter: drop-shadow(0 0 20px var(--gold-glow));
-    }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
 }
 
 .float-anim {
     animation: magicFloat 5s ease-in-out infinite;
-    will-change: transform, filter;
+    filter: drop-shadow(0 0 15px var(--gold-glow));
+    will-change: transform;
 }
 
 /* ===== MAP ===== */
@@ -1064,6 +1131,9 @@ h1, h2, h3, h4 {
     outline-offset: 2px;
 }
 
+/* ===== DRAG HELPER ===== */
+.dragging { transition: none !important; }
+
 /* ===== RESPONSIVE (MOBILE) ===== */
 @media (max-width: 900px) {
     body {
@@ -1113,6 +1183,10 @@ h1, h2, h3, h4 {
         contain: none;
     }
 
+    .back::before {
+        content: none;
+    }
+
     .front,
     .back {
         position: absolute;
@@ -1131,23 +1205,41 @@ h1, h2, h3, h4 {
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        transform: translateX(100%) !important;
-        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: perspective(1200px) translateX(100%) rotateY(30deg);
+        transition: transform 0.55s cubic-bezier(0.3, 0.0, 0.2, 1);
         pointer-events: none;
+        transform-origin: center center;
     }
 
     .front.mobile-active,
     .back.mobile-active {
-        transform: translateX(0) !important;
+        transform: perspective(1200px) translateX(0) rotateY(0deg);
         pointer-events: auto;
         z-index: 2;
     }
 
     .front.mobile-prev,
     .back.mobile-prev {
-        transform: translateX(-100%) !important;
+        transform: perspective(1200px) translateX(-100%) rotateY(-30deg);
         pointer-events: none;
         z-index: 1;
+    }
+
+    .front::after,
+    .back::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 10;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 25%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.55s cubic-bezier(0.3, 0, 0.2, 1);
+    }
+
+    .front.mobile-prev::after,
+    .back.mobile-prev::after {
+        opacity: 0.7;
     }
 
     .page-content,
@@ -1316,7 +1408,8 @@ h1, h2, h3, h4 {
     .particles,
     .open-hint,
     .map-container,
-    .side-nav {
+    .side-nav,
+    .mobile-menu-wrap {
         display: none;
     }
 }
