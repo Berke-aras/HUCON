@@ -5,20 +5,79 @@
     var currentPage = 0;
     var isAnimating = false;
     var ANIMATION_DURATION = 1200;
+    var MOBILE_ANIM_DURATION = 500;
     var indicatorContainer = document.getElementById('pageIndicator');
+    var MOBILE_BREAKPOINT = 900;
+
+    /* ===== MOBILE FACES ===== */
+
+    var faces = [];
+    pages.forEach(function (page) {
+        var front = page.querySelector('.front');
+        var back = page.querySelector('.back');
+        if (front) faces.push(front);
+        if (back) faces.push(back);
+    });
+    var mobileIndex = 0;
+
+    function isMobile() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+
+    function updateMobileFaces() {
+        faces.forEach(function (face, i) {
+            face.classList.remove('mobile-active', 'mobile-prev');
+            if (i === mobileIndex) {
+                face.classList.add('mobile-active');
+            } else if (i < mobileIndex) {
+                face.classList.add('mobile-prev');
+            }
+        });
+        updateMobileIndicator();
+    }
+
+    function mobileNext() {
+        if (isAnimating || mobileIndex >= faces.length - 1) return;
+        isAnimating = true;
+        mobileIndex++;
+        updateMobileFaces();
+        setTimeout(function () { isAnimating = false; }, MOBILE_ANIM_DURATION);
+    }
+
+    function mobilePrev() {
+        if (isAnimating || mobileIndex <= 0) return;
+        isAnimating = true;
+        mobileIndex--;
+        updateMobileFaces();
+        setTimeout(function () { isAnimating = false; }, MOBILE_ANIM_DURATION);
+    }
+
+    function mobileGoTo(target) {
+        if (isAnimating || target === mobileIndex) return;
+        if (target < 0 || target >= faces.length) return;
+        isAnimating = true;
+        mobileIndex = target;
+        updateMobileFaces();
+        setTimeout(function () { isAnimating = false; }, MOBILE_ANIM_DURATION);
+    }
 
     /* ===== PAGE INDICATOR ===== */
 
     function buildIndicator() {
         if (!indicatorContainer) return;
         indicatorContainer.innerHTML = '';
-        for (var i = 0; i <= pages.length; i++) {
+        var count = isMobile() ? faces.length : pages.length + 1;
+        for (var i = 0; i < count; i++) {
             var dot = document.createElement('span');
             dot.className = 'indicator-dot' + (i === 0 ? ' active' : '');
             dot.dataset.page = i;
             (function (target) {
                 dot.addEventListener('click', function () {
-                    goToPage(target);
+                    if (isMobile()) {
+                        mobileGoTo(target);
+                    } else {
+                        goToPage(target);
+                    }
                 });
             })(i);
             indicatorContainer.appendChild(dot);
@@ -33,10 +92,22 @@
         });
     }
 
-    /* ===== BOOK STATE ===== */
+    function updateMobileIndicator() {
+        if (!indicatorContainer) return;
+        var dots = indicatorContainer.querySelectorAll('.indicator-dot');
+        dots.forEach(function (dot, i) {
+            dot.classList.toggle('active', i === mobileIndex);
+        });
+    }
+
+    /* ===== BOOK STATE (DESKTOP) ===== */
 
     function updateBookState() {
-        if (window.innerWidth <= 900) return;
+        if (isMobile()) return;
+
+        faces.forEach(function (face) {
+            face.classList.remove('mobile-active', 'mobile-prev');
+        });
 
         pages.forEach(function (page, index) {
             var depth = 0;
@@ -92,7 +163,8 @@
     /* ===== NAVIGATION WITH ANIMATION LOCK ===== */
 
     function next() {
-        if (window.innerWidth <= 900 || isAnimating) return;
+        if (isAnimating) return;
+        if (isMobile()) { mobileNext(); return; }
         if (currentPage < pages.length) {
             isAnimating = true;
             currentPage++;
@@ -102,7 +174,8 @@
     }
 
     function prev() {
-        if (window.innerWidth <= 900 || isAnimating) return;
+        if (isAnimating) return;
+        if (isMobile()) { mobilePrev(); return; }
         if (currentPage > 0) {
             isAnimating = true;
             currentPage--;
@@ -112,13 +185,70 @@
     }
 
     function goToPage(target) {
-        if (window.innerWidth <= 900 || isAnimating || target === currentPage) return;
+        if (isAnimating || target === currentPage) return;
+        if (isMobile()) { mobileGoTo(target); return; }
         if (target < 0 || target > pages.length) return;
         isAnimating = true;
         currentPage = target;
         updateBookState();
         setTimeout(function () { isAnimating = false; }, ANIMATION_DURATION);
     }
+
+    /* ===== MOBILE MENU ===== */
+
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var mobileMenuIcon = document.getElementById('mobileMenuIcon');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileMenuWrap = document.getElementById('mobileMenuWrap');
+    var menuOpen = false;
+
+    function toggleMobileMenu() {
+        if (!mobileMenu) return;
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        if (mobileMenuIcon) {
+            mobileMenuIcon.className = menuOpen ? 'fas fa-times' : 'fas fa-bars';
+        }
+    }
+
+    function closeMobileMenu() {
+        if (!mobileMenu || !menuOpen) return;
+        menuOpen = false;
+        mobileMenu.classList.remove('open');
+        if (mobileMenuIcon) {
+            mobileMenuIcon.className = 'fas fa-bars';
+        }
+    }
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+    }
+
+    document.addEventListener('click', function (e) {
+        if (menuOpen && mobileMenuWrap && !mobileMenuWrap.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+
+    var mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+    mobileMenuItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+            var target = parseInt(item.dataset.mobileTarget, 10);
+            if (!isNaN(target)) {
+                closeMobileMenu();
+                setTimeout(function () {
+                    if (isMobile()) {
+                        mobileGoTo(target);
+                    } else {
+                        goToPage(target);
+                    }
+                }, 150);
+            }
+        });
+    });
 
     /* ===== BUTTON EVENTS ===== */
 
@@ -132,11 +262,11 @@
         if (e.key === 'ArrowLeft') prev();
     });
 
-    /* ===== PAGE CLICK ===== */
+    /* ===== PAGE CLICK (DESKTOP) ===== */
 
     pages.forEach(function (page, index) {
         page.addEventListener('click', function (e) {
-            if (window.innerWidth <= 900) return;
+            if (isMobile()) return;
             if (e.target.closest('a') || e.target.closest('[role="button"]')) return;
 
             if (index === currentPage) next();
@@ -156,7 +286,6 @@
     }, { passive: true });
 
     document.addEventListener('touchend', function (e) {
-        if (window.innerWidth <= 900) return;
         var deltaX = e.changedTouches[0].screenX - touchStartX;
         var deltaY = e.changedTouches[0].screenY - touchStartY;
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > SWIPE_THRESHOLD) {
@@ -195,8 +324,23 @@
 
     /* ===== INIT ===== */
 
-    buildIndicator();
-    updateBookState();
+    function initMode() {
+        if (isMobile()) {
+            pages.forEach(function (page) {
+                page.style.transform = '';
+                page.style.zIndex = '';
+            });
+            updateMobileFaces();
+        } else {
+            faces.forEach(function (face) {
+                face.classList.remove('mobile-active', 'mobile-prev');
+            });
+            updateBookState();
+        }
+        buildIndicator();
+    }
+
+    initMode();
 
     /* ===== FOUC PREVENTION ===== */
 
@@ -209,15 +353,6 @@
     var resizeTimer;
     window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-            if (window.innerWidth > 900) {
-                updateBookState();
-            } else {
-                pages.forEach(function (page) {
-                    page.style.transform = '';
-                    page.style.zIndex = '';
-                });
-            }
-        }, 150);
+        resizeTimer = setTimeout(initMode, 150);
     });
 })();
