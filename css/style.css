@@ -393,6 +393,22 @@ h1, h2, h3, h4 {
     margin-top: 5px;
 }
 
+/* ===== MOBILE APPLY BUTTON (KAPAK) ===== */
+.cover-apply-btn {
+    display: none;
+}
+
+@keyframes coverApplyGlow {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(201, 168, 76, 0.3), 0 0 20px rgba(201, 168, 76, 0.1);
+        border-color: rgba(201, 168, 76, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 18px rgba(201, 168, 76, 0.7), 0 0 40px rgba(201, 168, 76, 0.35);
+        border-color: rgba(201, 168, 76, 0.85);
+    }
+}
+
 /* ===== OPEN HINT ===== */
 .open-hint {
     position: absolute;
@@ -1311,6 +1327,35 @@ h1, h2, h3, h4 {
 
     .cover-title { font-size: 2.4rem; }
     .cover-subtitle { font-size: 1rem; letter-spacing: 2px; }
+
+    .cover-apply-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(42, 13, 66, 0.75);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        border-radius: 8px;
+        color: var(--gold);
+        padding: 9px 22px;
+        font-family: 'Cinzel Decorative', serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        margin-bottom: 14px;
+        animation: coverApplyGlow 2.5s ease-in-out infinite;
+        transition: transform 0.2s ease;
+    }
+
+    .cover-apply-btn i {
+        font-size: 0.9rem;
+    }
+
+    .cover-apply-btn:active {
+        transform: scale(0.95);
+    }
 
     .page-title { font-size: 1.5rem; margin-bottom: 0.8rem; }
     .page-title::after { width: 40px; margin-top: 8px; }

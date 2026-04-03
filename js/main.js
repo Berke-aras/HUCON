@@ -255,6 +255,13 @@
     document.getElementById('nextBtn').addEventListener('click', next);
     document.getElementById('prevBtn').addEventListener('click', prev);
 
+    var coverApplyBtn = document.getElementById('coverApplyBtn');
+    if (coverApplyBtn) {
+        coverApplyBtn.addEventListener('click', function () {
+            mobileGoTo(5);
+        });
+    }
+
     /* ===== KEYBOARD NAVIGATION ===== */
 
     document.addEventListener('keydown', function (e) {
