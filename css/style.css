@@ -421,6 +421,64 @@ h1, h2, h3, h4 {
     50% { transform: translateX(-50%) translateY(-8px); opacity: 0.8; }
 }
 
+/* ===== SPLASH BUTTONS (MOBILE) ===== */
+.splash-btns {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    margin: 15px 0;
+    z-index: 10;
+    width: 100%;
+    max-width: 240px;
+}
+
+@media (max-width: 900px) {
+    .splash-btns {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.splash-btn {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.oylama-btn {
+    background: linear-gradient(135deg, var(--gold), #e8dcb5);
+    color: var(--book-spine) !important;
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.apply-btn {
+    background: rgba(42, 13, 66, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--gold) !important;
+    color: var(--gold) !important;
+}
+
+.splash-btn:active {
+    transform: scale(0.96);
+}
+
+.splash-btn i {
+    font-size: 0.85rem;
+}
+
 /* ===== MITOLOJI & DEKORATIF STILLER ===== */
 .page-border {
     position: absolute;

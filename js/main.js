@@ -544,6 +544,18 @@
     updateCountdown();
     setInterval(updateCountdown, 60000);
 
+    /* ===== COVER BUTTONS ===== */
+    var splashApplyBtn = document.getElementById('splashApplyBtn');
+    if (splashApplyBtn) {
+        splashApplyBtn.addEventListener('click', function () {
+            if (isMobile()) {
+                mobileGoTo(5); // Kahraman Ol (p3back)
+            } else {
+                goToPage(2); // Page 3 (p3front/back)
+            }
+        });
+    }
+
     /* ===== INIT ===== */
 
     function initMode() {
