@@ -551,7 +551,7 @@
             if (isMobile()) {
                 mobileGoTo(5); // Kahraman Ol (p3back)
             } else {
-                goToPage(2); // Page 3 (p3front/back)
+                goToPage(3); // Sheet 3 (Shows Sheet 2 back: Kahraman Ol)
             }
         });
     }
