@@ -1020,6 +1020,19 @@ h1, h2, h3, h4 {
     transform: translateX(3px) scale(0.97);
 }
 
+.side-nav-btn.btn-lg {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 1.5px solid var(--gold);
+    background: rgba(59, 21, 96, 0.85);
+    box-shadow: 0 0 15px var(--gold-glow);
+    margin-bottom: 5px;
+}
+
+.side-nav-btn.btn-lg i {
+    font-size: 1.2rem;
+}
+
 /* ===== MOBILE MENU ===== */
 .mobile-menu-wrap {
     display: none;
@@ -1115,6 +1128,19 @@ h1, h2, h3, h4 {
 
 .mobile-menu-item:active {
     background: rgba(201, 168, 76, 0.15);
+}
+
+.mobile-menu-item.btn-lg {
+    padding: 14px 18px;
+    font-size: 1.15rem;
+    border: 1px solid var(--gold);
+    background: rgba(201, 168, 76, 0.1);
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.mobile-menu-item.btn-lg i {
+    font-size: 1.1rem;
 }
 
 /* ===== FOCUS VISIBLE ===== */
