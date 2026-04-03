@@ -1091,6 +1091,18 @@ h1, h2, h3, h4 {
     font-size: 1.2rem;
 }
 
+.side-nav-btn.btn-highlight {
+    padding: 11px 18px;
+    font-size: 1rem;
+    border-color: rgba(201, 168, 76, 0.5);
+    background: rgba(59, 21, 96, 0.8);
+    color: var(--gold);
+}
+
+.side-nav-btn.btn-highlight i {
+    color: var(--gold);
+}
+
 /* ===== MOBILE MENU ===== */
 .mobile-menu-wrap {
     display: none;
