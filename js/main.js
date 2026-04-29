@@ -582,29 +582,31 @@
     initMode();
 
     /* ===== WELCOME MODAL ===== */
-    var welcomeModal = document.getElementById('welcomeModal');
-    var welcomeModalClose = document.getElementById('welcomeModalClose');
+    window.addEventListener('DOMContentLoaded', function() {
+        var welcomeModal = document.getElementById('welcomeModal');
+        var welcomeModalClose = document.getElementById('welcomeModalClose');
 
-    if (welcomeModal && welcomeModalClose) {
-        // Her site açılışında göster
-        setTimeout(function() {
-            welcomeModal.classList.add('show');
-        }, 300);
+        if (welcomeModal && welcomeModalClose) {
+            // Her site açılışında göster
+            setTimeout(function() {
+                welcomeModal.classList.add('show');
+            }, 300);
 
-        function closeWelcomeModal() {
-            welcomeModal.classList.remove('show');
-        }
-
-        // Çarpı tuşuna basınca kapat
-        welcomeModalClose.addEventListener('click', closeWelcomeModal);
-
-        // Sağa sola (dışarıya) basınca kapat
-        welcomeModal.addEventListener('click', function(e) {
-            if (e.target === welcomeModal) {
-                closeWelcomeModal();
+            function closeWelcomeModal() {
+                welcomeModal.classList.remove('show');
             }
-        });
-    }
+
+            // Çarpı tuşuna basınca kapat
+            welcomeModalClose.addEventListener('click', closeWelcomeModal);
+
+            // Sağa sola (dışarıya) basınca kapat
+            welcomeModal.addEventListener('click', function(e) {
+                if (e.target === welcomeModal) {
+                    closeWelcomeModal();
+                }
+            });
+        }
+    });
 
     /* ===== FOUC PREVENTION ===== */
 
